@@ -1,0 +1,64 @@
+"use client";
+
+import { useRef, type ReactNode } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
+
+interface FadeInProps {
+  children: ReactNode;
+  direction?: "up" | "down" | "left" | "right" | "none";
+  distance?: number;
+  duration?: number;
+  delay?: number;
+  stagger?: number;
+  className?: string;
+}
+
+export function FadeIn({
+  children,
+  direction = "up",
+  distance = 50,
+  duration = 1,
+  delay = 0,
+  stagger = 0,
+  className = "",
+}: FadeInProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const element = containerRef.current;
+      if (!element) return;
+
+      const directionMap = {
+        up: { y: distance },
+        down: { y: -distance },
+        left: { x: distance },
+        right: { x: -distance },
+        none: {},
+      } as const;
+
+      const targets = stagger ? element.children : [element];
+
+      gsap.from(targets, {
+        opacity: 0,
+        ...directionMap[direction],
+        duration,
+        delay,
+        stagger,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: element,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+    },
+    { scope: containerRef }
+  );
+
+  return (
+    <div ref={containerRef} className={className}>
+      {children}
+    </div>
+  );
+}
