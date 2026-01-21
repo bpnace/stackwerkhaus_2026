@@ -1,5 +1,7 @@
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
+import { MagneticLink } from "@/components/animations/MagneticLink";
+import { ParallaxOrb } from "@/components/animations/ParallaxOrb";
 
 export function Hero() {
   return (
@@ -21,7 +23,7 @@ export function Hero() {
           <div className="space-y-6">
             <MaskedTextReveal
               as="h1"
-              className="font-display text-[12vw] leading-[0.82] tracking-[-0.02em] md:text-[6.5vw]"
+              className="font-display font-bold text-[12vw] leading-[0.82] tracking-[-0.02em] md:text-[6.5vw]"
             >
               Deine Webseite? Ganz einfach!
             </MaskedTextReveal>
@@ -41,7 +43,7 @@ export function Hero() {
                   <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                     Ablauf
                   </p>
-                  <p className="font-display text-2xl uppercase tracking-[0.2em]">
+                  <p className="font-display font-bold text-2xl uppercase tracking-[0.2em]">
                     In 5 Schritten live
                   </p>
                 </div>
@@ -56,14 +58,14 @@ export function Hero() {
                 <p>Entwicklung</p>
                 <p>Launch</p>
               </div>
-              <a
+              <MagneticLink
                 href="#work"
                 className="inline-flex items-center justify-between border border-black/20 px-5 py-4 text-xs uppercase tracking-[0.3em] transition-colors hover:bg-black hover:text-white"
                 data-cursor-text="Start"
               >
                 Projekte ansehen
                 <span className="text-lg">↘</span>
-              </a>
+              </MagneticLink>
             </div>
           </FadeIn>
         </div>
@@ -78,8 +80,14 @@ export function Hero() {
         </FadeIn>
       </div>
 
-      <div className="pointer-events-none absolute -right-24 top-24 hidden h-64 w-64 rounded-full border border-black/10 lg:block" />
-      <div className="pointer-events-none absolute -left-12 bottom-10 hidden h-40 w-40 rounded-full border border-black/10 lg:block" />
+      <ParallaxOrb
+        className="pointer-events-none absolute -right-24 top-24 hidden h-64 w-64 rounded-full border border-black/10 lg:block"
+        speed={0.08}
+      />
+      <ParallaxOrb
+        className="pointer-events-none absolute -left-12 bottom-10 hidden h-40 w-40 rounded-full border border-black/10 lg:block"
+        speed={0.14}
+      />
     </section>
   );
 }

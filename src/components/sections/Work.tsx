@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { ImageReveal } from "@/components/animations/ImageReveal";
+import { LazyAnimation } from "@/components/animations/LazyAnimation";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { getPortfolioProjects } from "@/lib/drupal";
 
@@ -15,7 +16,7 @@ export async function Work() {
           </p>
           <MaskedTextReveal
             as="h2"
-            className="font-display text-4xl uppercase tracking-[0.2em] md:text-5xl"
+            className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
             Ausgewählte Arbeiten
           </MaskedTextReveal>
@@ -37,12 +38,21 @@ export async function Work() {
           >
             <div className="absolute inset-0">
               {project.cover?.url ? (
-                <Image
-                  src={project.cover.url}
-                  alt={project.cover.alt || project.title}
-                  fill
-                  className="object-cover"
-                />
+                <LazyAnimation
+                  className="h-full w-full"
+                  fallback={
+                    <div className="h-full w-full bg-[linear-gradient(135deg,rgba(198,90,46,0.25),rgba(21,21,20,0.1))]" />
+                  }
+                >
+                  <ImageReveal
+                    src={project.cover.url}
+                    alt={project.cover.alt || project.title}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    direction={index % 2 === 0 ? "left" : "up"}
+                    className="h-full w-full"
+                  />
+                </LazyAnimation>
               ) : (
                 <div className="h-full w-full bg-[linear-gradient(135deg,rgba(198,90,46,0.25),rgba(21,21,20,0.1))]" />
               )}
@@ -53,7 +63,7 @@ export async function Work() {
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                   {project.client || project.services[0] || "Projekt"}
                 </p>
-                <h3 className="font-display text-3xl uppercase tracking-[0.18em]">
+                <h3 className="font-display font-bold text-3xl uppercase tracking-[0.18em]">
                   {project.title}
                 </h3>
               </div>

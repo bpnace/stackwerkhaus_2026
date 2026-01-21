@@ -1,3 +1,4 @@
+import { CountUp } from "@/components/animations/CountUp";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 
@@ -6,7 +7,6 @@ const competencies = [
   "KI-Integration für smarte Prozesse und Personalisierung",
   "UI/UX Design mit klarer Struktur und starker Markenwirkung",
   "Projektmanagement mit Notion und agilen Methoden",
-  "7–8 Jahre B2B/B2C-Erfahrung im Key Account Management",
   "Komplexes klar erklären und Kundenbedürfnisse präzise erfassen",
 ];
 
@@ -27,7 +27,7 @@ export function About() {
           </p>
           <MaskedTextReveal
             as="h2"
-            className="font-display text-4xl uppercase tracking-[0.2em] md:text-5xl"
+            className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
             Tarik Marshall
           </MaskedTextReveal>
@@ -47,6 +47,19 @@ export function About() {
               dein Unternehmen generieren.
             </p>
           </FadeIn>
+          <div className="flex flex-wrap items-center gap-4 border border-black/10 bg-white/70 px-4 py-4">
+            <span className="font-display text-4xl font-bold uppercase tracking-[0.18em]">
+              <CountUp value={8} suffix="+" />
+            </span>
+            <div>
+              <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                Jahre Erfahrung
+              </p>
+              <p className="text-sm text-ink-soft">
+                B2B/B2C Key Account Management
+              </p>
+            </div>
+          </div>
           <div className="grid gap-3 text-sm text-ink-soft">
             {competencies.map((item) => (
               <div key={item} className="border border-black/10 px-4 py-3">

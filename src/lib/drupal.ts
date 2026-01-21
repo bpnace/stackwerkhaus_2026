@@ -58,8 +58,11 @@ const getCover = (cover?: DrupalFile | DrupalFile[] | null) => {
   const file = Array.isArray(cover) ? cover[0] : cover;
   const url = file?.uri?.url;
   if (!url) return undefined;
+  const resolvedUrl = url.startsWith("http")
+    ? url
+    : new URL(url, baseUrl).toString();
   const alt = file?.resourceIdObjMeta?.alt || file?.filename || "";
-  return { url, alt };
+  return { url: resolvedUrl, alt };
 };
 
 export async function getPortfolioProjects(): Promise<PortfolioProject[]> {

@@ -6,7 +6,7 @@ export default function ImpressumPage() {
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Rechtliches
           </p>
-          <h1 className="font-display text-4xl uppercase tracking-[0.2em] md:text-5xl">
+          <h1 className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl">
             Impressum
           </h1>
           <p className="text-ink-soft">
@@ -16,7 +16,7 @@ export default function ImpressumPage() {
 
         <section className="space-y-6 text-sm text-ink-soft">
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Angaben gemäß § 5 TMG
             </h2>
             <p className="mt-3">
@@ -35,7 +35,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Kontakt
             </h2>
             <p className="mt-3">
@@ -50,7 +50,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
             </h2>
             <p className="mt-3">
@@ -65,7 +65,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Steuerliche Angaben
             </h2>
             <p className="mt-3">
@@ -79,7 +79,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Berufshaftpflichtversicherung
             </h2>
             <p className="mt-3">
@@ -89,7 +89,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               EU-Streitschlichtung
             </h2>
             <p className="mt-3">
@@ -105,7 +105,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Verbraucherstreitbeilegung
             </h2>
             <p className="mt-3">

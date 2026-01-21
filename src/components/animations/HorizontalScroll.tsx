@@ -2,6 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface HorizontalScrollProps {
   children: ReactNode;
@@ -14,12 +15,13 @@ export function HorizontalScroll({
 }: HorizontalScrollProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
 
   useGSAP(
     () => {
       const container = containerRef.current;
       const wrapper = wrapperRef.current;
-      if (!container || !wrapper) return;
+      if (!container || !wrapper || reducedMotion) return;
 
       const scrollWidth = wrapper.scrollWidth - container.offsetWidth;
 
@@ -36,7 +38,7 @@ export function HorizontalScroll({
         },
       });
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [reducedMotion] }
   );
 
   return (

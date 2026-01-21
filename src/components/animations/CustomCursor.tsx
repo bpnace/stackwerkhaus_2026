@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [cursorText, setCursorText] = useState("");
   const [enabled, setEnabled] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     const media = window.matchMedia("(pointer: fine)");
@@ -17,7 +19,7 @@ export function CustomCursor() {
   }, []);
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled || reducedMotion) return;
 
     const cursor = cursorRef.current;
     if (!cursor) return;
@@ -97,9 +99,9 @@ export function CustomCursor() {
       document.removeEventListener("mouseenter", handleMouseEnter, true);
       document.removeEventListener("mouseleave", handleMouseLeave, true);
     };
-  }, [enabled]);
+  }, [enabled, reducedMotion]);
 
-  if (!enabled) return null;
+  if (!enabled || reducedMotion) return null;
 
   return (
     <div

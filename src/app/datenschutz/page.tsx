@@ -6,7 +6,7 @@ export default function DatenschutzPage() {
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Rechtliches
           </p>
-          <h1 className="font-display text-4xl uppercase tracking-[0.2em] md:text-5xl">
+          <h1 className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl">
             Datenschutzerklärung
           </h1>
           <p className="text-ink-soft">
@@ -22,7 +22,7 @@ export default function DatenschutzPage() {
           </p>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               1. Verantwortlicher
             </h2>
             <p className="mt-3">
@@ -46,10 +46,10 @@ export default function DatenschutzPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               2. Datenerfassung auf dieser Website
             </h2>
-            <h3 className="mt-3 text-base uppercase tracking-[0.2em] text-foreground">
+            <h3 className="mt-3 text-base font-bold uppercase tracking-[0.2em] text-foreground">
               2.1 Server-Log-Dateien
             </h3>
             <p className="mt-2">
@@ -69,7 +69,7 @@ export default function DatenschutzPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               3. Kontaktaufnahme
             </h2>
             <p className="mt-3">
@@ -88,7 +88,7 @@ export default function DatenschutzPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               4. Externe Dienste
             </h2>
             <p className="mt-3">
@@ -108,7 +108,7 @@ export default function DatenschutzPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               5. Ihre Rechte
             </h2>
             <p className="mt-3">
@@ -119,7 +119,7 @@ export default function DatenschutzPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               6. Beschwerderecht
             </h2>
             <p className="mt-3">

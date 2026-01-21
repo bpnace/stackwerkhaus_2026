@@ -2,6 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface FadeInProps {
   children: ReactNode;
@@ -23,11 +24,12 @@ export function FadeIn({
   className = "",
 }: FadeInProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
 
   useGSAP(
     () => {
       const element = containerRef.current;
-      if (!element) return;
+      if (!element || reducedMotion) return;
 
       const directionMap = {
         up: { y: distance },
@@ -53,7 +55,7 @@ export function FadeIn({
         },
       });
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [reducedMotion] }
   );
 
   return (

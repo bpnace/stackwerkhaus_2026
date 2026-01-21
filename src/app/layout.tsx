@@ -8,6 +8,7 @@ import { CustomCursor } from "@/components/animations/CustomCursor";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SmoothScrollProvider } from "@/providers/SmoothScrollProvider";
+import { TransitionProvider } from "@/providers/TransitionProvider";
 import "./globals.css";
 
 const displayFont = Bodoni_Moda({
@@ -48,10 +49,12 @@ export default function RootLayout({
         className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} antialiased`}
       >
         <SmoothScrollProvider>
-          <CustomCursor />
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <TransitionProvider>
+            <CustomCursor />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </TransitionProvider>
         </SmoothScrollProvider>
       </body>
     </html>

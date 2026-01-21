@@ -3,12 +3,15 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface ImageRevealProps {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
+  fill?: boolean;
+  sizes?: string;
   direction?: "left" | "right" | "up" | "down";
   className?: string;
 }
@@ -18,17 +21,20 @@ export function ImageReveal({
   alt,
   width,
   height,
+  fill = false,
+  sizes,
   direction = "left",
   className = "",
 }: ImageRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
 
   useGSAP(
     () => {
       const container = containerRef.current;
       const image = imageRef.current;
-      if (!container || !image) return;
+      if (!container || !image || reducedMotion) return;
 
       const clipPathStart = {
         left: "inset(0 100% 0 0)",
@@ -62,19 +68,29 @@ export function ImageReveal({
         "-=0.8"
       );
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [direction, reducedMotion] }
   );
 
   return (
-    <div ref={containerRef} className={`overflow-hidden ${className}`}>
-      <div ref={imageRef}>
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className="h-full w-full object-cover"
-        />
+    <div ref={containerRef} className={`relative overflow-hidden ${className}`}>
+      <div ref={imageRef} className="h-full w-full">
+        {fill ? (
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes={sizes || "100vw"}
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <Image
+            src={src}
+            alt={alt}
+            width={width ?? 1200}
+            height={height ?? 900}
+            className="h-full w-full object-cover"
+          />
+        )}
       </div>
     </div>
   );

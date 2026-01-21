@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useResponsiveAnimation } from "@/hooks/useResponsiveAnimation";
 
 interface MarqueeProps {
   children: React.ReactNode;
@@ -20,11 +22,20 @@ export function Marquee({
 }: MarqueeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const tweenRef = useRef<gsap.core.Tween | null>(null);
+  const reducedMotion = useReducedMotion();
+  const { width } = useResponsiveAnimation({ minWidth: 0 });
 
   useGSAP(
     () => {
       const container = containerRef.current;
-      if (!container) return;
+      if (!container || reducedMotion) return;
+
+      const root = container.parentElement;
+      if (!root) return;
+
+      container
+        .querySelectorAll<HTMLElement>("[data-marquee-clone='true']")
+        .forEach((node) => node.remove());
 
       const items = Array.from(container.children) as HTMLElement[];
       if (items.length === 0) return;
@@ -34,9 +45,20 @@ export function Marquee({
         0
       );
 
-      items.forEach((item) => {
-        container.appendChild(item.cloneNode(true));
-      });
+      if (!totalWidth) return;
+
+      const viewportWidth = root.offsetWidth;
+      const cloneSets = Math.ceil(viewportWidth / totalWidth);
+
+      for (let i = 0; i < cloneSets; i += 1) {
+        items.forEach((item) => {
+          const clone = item.cloneNode(true) as HTMLElement;
+          clone.setAttribute("data-marquee-clone", "true");
+          container.appendChild(clone);
+        });
+      }
+
+      gsap.set(container, { x: 0 });
 
       tweenRef.current = gsap.to(container, {
         x: direction === "left" ? -totalWidth : totalWidth,
@@ -64,9 +86,14 @@ export function Marquee({
           container.removeEventListener("mouseleave", handleLeave);
         }
         tweenRef.current?.kill();
+        tweenRef.current = null;
+        gsap.set(container, { x: 0 });
+        container
+          .querySelectorAll<HTMLElement>("[data-marquee-clone='true']")
+          .forEach((node) => node.remove());
       };
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [direction, pauseOnHover, reducedMotion, speed, width] }
   );
 
   return (

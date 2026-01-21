@@ -1,4 +1,6 @@
 import { FadeIn } from "@/components/animations/FadeIn";
+import { MagneticLink } from "@/components/animations/MagneticLink";
+import { TransitionLink } from "@/components/ui/TransitionLink";
 
 const calendlyUrl = "https://calendly.com/stackwerkhaus/briefing";
 
@@ -10,7 +12,7 @@ export function Contact() {
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Kontakt
           </p>
-          <h2 className="font-display text-4xl uppercase tracking-[0.2em] md:text-5xl">
+          <h2 className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl">
             Bereit für den nächsten Schritt?
           </h2>
           <p className="max-w-lg text-base text-ink-soft">
@@ -27,7 +29,7 @@ export function Contact() {
               </p>
               <a
                 href="mailto:info@stackwerkhaus.de"
-                className="font-display text-2xl uppercase tracking-[0.2em]"
+                className="font-display font-bold text-2xl uppercase tracking-[0.2em]"
                 data-cursor-text="Mail"
               >
                 info@stackwerkhaus.de
@@ -35,14 +37,16 @@ export function Contact() {
             </div>
 
             <div className="flex flex-col gap-3 text-xs uppercase tracking-[0.35em]">
-              <a
+              <MagneticLink
                 href={calendlyUrl}
                 className="border border-black/20 px-6 py-4 text-center transition-colors hover:bg-black hover:text-white"
                 data-cursor-text="Termin"
+                target="_blank"
+                rel="noreferrer"
               >
                 Schedule a briefing
-              </a>
-              <a
+              </MagneticLink>
+              <TransitionLink
                 href="/datenschutz"
                 className="flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-ink-soft"
               >
@@ -50,7 +54,7 @@ export function Contact() {
                   ✓
                 </span>
                 Ich stimme der Datenschutzerklärung zu
-              </a>
+              </TransitionLink>
             </div>
           </div>
         </FadeIn>

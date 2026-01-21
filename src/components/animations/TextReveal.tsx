@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import SplitType from "split-type";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface TextRevealProps {
   children: string;
@@ -24,10 +25,11 @@ export function TextReveal({
   className = "",
 }: TextRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
 
   useGSAP(
     () => {
-      if (!containerRef.current) return;
+      if (!containerRef.current || reducedMotion) return;
 
       const split = new SplitType(containerRef.current, {
         types: type === "chars" ? "chars,words" : type,
@@ -77,7 +79,7 @@ export function TextReveal({
         split.revert();
       };
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [reducedMotion] }
   );
 
   return (

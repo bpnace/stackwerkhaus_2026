@@ -7,7 +7,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <div className="h-10 w-10 rounded-full border border-black/20" />
           <div>
-            <p className="font-display text-lg uppercase tracking-[0.2em]">
+            <p className="font-display font-bold text-lg uppercase tracking-[0.2em]">
               STACKWERKHAUS
             </p>
             <p className="text-[11px] uppercase tracking-[0.35em] text-ink-soft">
