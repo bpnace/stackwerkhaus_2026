@@ -55,7 +55,7 @@ export function Footer() {
             STACKWERKHAUS
           </p>
           <p className="text-ink-soft">
-            Webdesign aus Berlin – klar, schnell und ohne Technikstress.
+            Webdesign aus Berlin // klar, schnell und ohne Technikstress.
           </p>
           <a
             href="mailto:info@stackwerkhaus.de"

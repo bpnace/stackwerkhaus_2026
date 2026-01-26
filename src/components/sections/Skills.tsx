@@ -9,6 +9,19 @@ const skills = [
   "Design",
   "Entwicklung",
   "Launch",
+  "Responsive Design",
+  "SEO",
+  "Performance Optimierung",
+  "Content Management",
+  "E-Commerce",
+  "Wartung & Support",
+  "KI-Integration",
+  "Full-Stack Lösungen",
+  "Accessibility",
+  "Sicherheit",
+  "Analytics",
+  "Conversion Optimierung",
+  "Social Media Integration",
 ];
 
 export function Skills() {

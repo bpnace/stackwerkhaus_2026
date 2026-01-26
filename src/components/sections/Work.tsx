@@ -2,7 +2,8 @@ import { FadeIn } from "@/components/animations/FadeIn";
 import { ImageReveal } from "@/components/animations/ImageReveal";
 import { LazyAnimation } from "@/components/animations/LazyAnimation";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
-import { getPortfolioProjects } from "@/lib/drupal";
+import { TransitionLink } from "@/components/ui/TransitionLink";
+import { getPortfolioProjects } from "@/lib/projects";
 
 export async function Work() {
   const projects = await getPortfolioProjects();
@@ -29,12 +30,14 @@ export async function Work() {
 
       <FadeIn className="mt-12 grid gap-8 md:grid-cols-2" stagger={0.12}>
         {projects.map((project, index) => (
-          <article
+          <TransitionLink
             key={project.id}
             className={`group relative flex min-h-[320px] flex-col justify-between overflow-hidden border border-black/10 bg-white/70 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)] ${
               index === 2 ? "md:col-span-2" : ""
             }`}
             data-cursor-text="Ansehen"
+            aria-label={`Projekt ${project.title}`}
+            href={`/work/${project.slug}`}
           >
             <div className="absolute inset-0">
               {project.cover?.url ? (
@@ -82,7 +85,7 @@ export async function Work() {
               <span>Zum Projekt</span>
               <span>↗</span>
             </div>
-          </article>
+          </TransitionLink>
         ))}
       </FadeIn>
     </section>

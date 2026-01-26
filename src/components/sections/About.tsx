@@ -29,14 +29,14 @@ export function About() {
             as="h2"
             className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
-            Tarik Marshall
+            Arthur Marshall
           </MaskedTextReveal>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
-              Hey, ich bin Tarik aus Berlin – Gründer von STACKWERKHAUS und dein
+              Hey, ich bin Arthur aus Berlin, Gründer von STACKWERKHAUS und dein
               Ansprechpartner für deine Website. Ich mach’s dir einfach: Du
               sagst mir, was du brauchst, und ich kümmere mich um den Rest.
-              Keine Fachbegriffe, kein Technikstress.
+              Keine Fachbegriffe, kein Technikstress nur überzeugende Ergebnisse.
             </p>
           </FadeIn>
           <FadeIn direction="up">
@@ -56,7 +56,7 @@ export function About() {
                 Jahre Erfahrung
               </p>
               <p className="text-sm text-ink-soft">
-                B2B/B2C Key Account Management
+                B2B/B2C Konzeption & Entwicklung
               </p>
             </div>
           </div>
@@ -80,7 +80,7 @@ export function About() {
             </ul>
             <div className="flex items-center justify-between border-t border-black/10 pt-6 text-xs uppercase tracking-[0.35em]">
               <span>Berlin</span>
-              <span>STACKWERKHAUS</span>
+              <span><b>STACKWERKHAUS</b></span>
             </div>
           </div>
         </FadeIn>

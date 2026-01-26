@@ -44,7 +44,7 @@ export function Contact() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Schedule a briefing
+                Jetzt kostenlosen Termin vereinbaren
               </MagneticLink>
               <TransitionLink
                 href="/datenschutz"
