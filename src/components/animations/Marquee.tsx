@@ -48,7 +48,7 @@ export function Marquee({
       if (!totalWidth) return;
 
       const viewportWidth = root.offsetWidth;
-      const cloneSets = Math.ceil(viewportWidth / totalWidth);
+      const cloneSets = Math.max(2, Math.ceil(viewportWidth / totalWidth) + 1);
 
       for (let i = 0; i < cloneSets; i += 1) {
         items.forEach((item) => {
@@ -58,10 +58,13 @@ export function Marquee({
         });
       }
 
-      gsap.set(container, { x: 0 });
+      const startX = direction === "left" ? 0 : -totalWidth;
+      const endX = direction === "left" ? -totalWidth : 0;
+
+      gsap.set(container, { x: startX });
 
       tweenRef.current = gsap.to(container, {
-        x: direction === "left" ? -totalWidth : totalWidth,
+        x: endX,
         duration: totalWidth / speed,
         ease: "none",
         repeat: -1,
