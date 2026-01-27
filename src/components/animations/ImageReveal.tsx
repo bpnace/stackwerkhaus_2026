@@ -13,6 +13,10 @@ interface ImageRevealProps {
   fill?: boolean;
   sizes?: string;
   direction?: "left" | "right" | "up" | "down";
+  parallax?: number;
+  priority?: boolean;
+  fetchPriority?: "high" | "low" | "auto";
+  trigger?: "scroll" | "load";
   className?: string;
 }
 
@@ -24,6 +28,10 @@ export function ImageReveal({
   fill = false,
   sizes,
   direction = "left",
+  parallax = 0,
+  priority = false,
+  fetchPriority,
+  trigger = "scroll",
   className = "",
 }: ImageRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,16 +51,21 @@ export function ImageReveal({
         down: "inset(0 0 100% 0)",
       } as const;
 
+      const finalScale = parallax ? 1 + Math.abs(parallax) / 100 + 0.06 : 1;
       gsap.set(container, { clipPath: clipPathStart[direction] });
       gsap.set(image, { scale: 1.3 });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
+      const tl = gsap.timeline(
+        trigger === "scroll"
+          ? {
+              scrollTrigger: {
+                trigger: container,
+                start: "top 80%",
+                toggleActions: "play none none none",
+              },
+            }
+          : {}
+      );
 
       tl.to(container, {
         clipPath: "inset(0 0% 0 0)",
@@ -61,14 +74,27 @@ export function ImageReveal({
       }).to(
         image,
         {
-          scale: 1,
+          scale: finalScale,
           duration: 1.5,
           ease: "power3.out",
         },
         "-=0.8"
       );
+
+      if (parallax) {
+        gsap.to(image, {
+          yPercent: parallax,
+          ease: "none",
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
     },
-    { scope: containerRef, dependencies: [direction, reducedMotion] }
+    { scope: containerRef, dependencies: [direction, reducedMotion, parallax, trigger] }
   );
 
   return (
@@ -80,6 +106,8 @@ export function ImageReveal({
             alt={alt}
             fill
             sizes={sizes || "100vw"}
+            priority={priority}
+            fetchPriority={fetchPriority}
             className="h-full w-full object-cover"
           />
         ) : (
@@ -88,6 +116,8 @@ export function ImageReveal({
             alt={alt}
             width={width ?? 1200}
             height={height ?? 900}
+            priority={priority}
+            fetchPriority={fetchPriority}
             className="h-full w-full object-cover"
           />
         )}

@@ -71,7 +71,9 @@ export function MagneticLink({
       className={className}
       {...props}
     >
-      <span data-magnetic-inner>{children}</span>
+      <span data-magnetic-inner className="block w-full">
+        {children}
+      </span>
     </a>
   );
 }

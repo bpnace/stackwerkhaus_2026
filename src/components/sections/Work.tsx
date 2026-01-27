@@ -36,7 +36,7 @@ export async function Work() {
               index === 2 ? "md:col-span-2" : ""
             }`}
             data-cursor-text="Ansehen"
-            aria-label={`Projekt ${project.title}`}
+            aria-label={`${project.type ?? "Projekt"} ${project.title}`}
             href={`/work/${project.slug}`}
           >
             <div className="absolute inset-0">
@@ -52,19 +52,25 @@ export async function Work() {
                     alt={project.cover.alt || project.title}
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
-                    direction={index % 2 === 0 ? "left" : "up"}
+                    direction="left"
+                    parallax={10}
+                    trigger="load"
                     className="h-full w-full"
                   />
                 </LazyAnimation>
               ) : (
                 <div className="h-full w-full bg-[linear-gradient(135deg,rgba(198,90,46,0.25),rgba(21,21,20,0.1))]" />
               )}
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.9),rgba(255,255,255,0.65),rgba(255,255,255,0.3))] backdrop-blur-[2px]" />
               <div className="absolute inset-0 bg-black/25 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
             <div className="relative flex items-start justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                  {project.client || project.services[0] || "Projekt"}
+                  {project.client ||
+                    project.services[0] ||
+                    project.type ||
+                    "Projekt"}
                 </p>
                 <h3 className="font-display font-bold text-3xl uppercase tracking-[0.18em]">
                   {project.title}
@@ -82,7 +88,9 @@ export async function Work() {
               </p>
             )}
             <div className="relative mt-10 flex items-center justify-between text-xs uppercase tracking-[0.35em]">
-              <span>Zum Projekt</span>
+              <span>
+                {project.type === "Case Study" ? "Zur Case Study" : "Zum Projekt"}
+              </span>
               <span>↗</span>
             </div>
           </TransitionLink>

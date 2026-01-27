@@ -4,6 +4,7 @@ import { FadeIn } from "@/components/animations/FadeIn";
 import { ImageReveal } from "@/components/animations/ImageReveal";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { TransitionLink } from "@/components/ui/TransitionLink";
+import { MagneticLink } from "@/components/animations/MagneticLink";
 import {
   getPortfolioProjectBySlug,
   getPortfolioProjects,
@@ -86,11 +87,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const projectType = project.type ?? "Projekt";
   const title = `${project.title} – STACKWERKHAUS`;
   const description =
     project.summary ||
     project.body ||
-    "Projekt-Detailansicht aus dem Portfolio von STACKWERKHAUS.";
+    `${
+      projectType === "Case Study" ? "Case Study" : "Projekt"
+    }-Detailansicht aus dem Portfolio von STACKWERKHAUS.`;
 
   return {
     title,
@@ -127,6 +131,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
     (await getPortfolioProjectBySlug(slug)) ||
     (await getPortfolioProjects())[0];
   if (!project) notFound();
+  const projectType = project.type ?? "Projekt";
 
   const projects = await getPortfolioProjects();
   const moreProjects = projects
@@ -150,7 +155,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
               <span>↙</span>
               Zurück
             </TransitionLink>
-            <span>Projekt</span>
+            <span>{projectType}</span>
             <span className="font-bold text-foreground">
               {project.client ?? "STACKWERKHAUS"}
             </span>
@@ -167,7 +172,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
               <FadeIn direction="up">
                 <p className="max-w-xl text-lg text-ink-soft md:text-xl">
                   {project.summary ||
-                    "Ein Projekt, das Klarheit, Geschwindigkeit und Wirkung in eine prägnante Marke übersetzt."}
+                    `${projectType === "Case Study" ? "Eine Case Study" : "Ein Projekt"}, das Klarheit, Geschwindigkeit und Wirkung in eine prägnante Marke übersetzt.`}
                 </p>
               </FadeIn>
               <FadeIn direction="up" className="space-y-5 text-sm text-ink-soft">
@@ -196,7 +201,9 @@ export default async function WorkDetailPage({ params }: PageProps) {
               <div className="flex flex-col gap-6 border border-black/10 bg-white/70 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
                 <div>
                   <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                    Projektdetails
+                    {projectType === "Case Study"
+                      ? "Case Study Details"
+                      : "Projektdetails"}
                   </p>
                   <p className="font-display text-2xl font-bold uppercase tracking-[0.2em]">
                     {project.client || "Stackwerkhaus"}
@@ -210,12 +217,18 @@ export default async function WorkDetailPage({ params }: PageProps) {
                     >
                       <span
                         className={`flex-1 ${
-                          stat.label === "Leistungen" ? "text-right" : ""
+                          stat.label === "Leistungen" ? "text-left" : ""
                         }`}
                       >
                         {stat.label}
                       </span>
-                      <span className="text-foreground">{stat.value}</span>
+                      <span
+                        className={`text-foreground ${
+                          stat.label === "Leistungen" ? "text-right" : ""
+                        }`}
+                      >
+                        {stat.value}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -229,6 +242,26 @@ export default async function WorkDetailPage({ params }: PageProps) {
                     </span>
                   ))}
                 </div>
+                {project.website && (
+                  <MagneticLink
+                    href={project.website}
+                    target="_blank"
+                    rel="noreferrer"
+                    strength={0.15}
+                    className="flex w-full items-center border border-black/20 px-5 py-4 text-xs uppercase tracking-[0.3em] transition-colors transition-shadow hover:bg-black hover:text-white hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] focus-visible:shadow-[0_12px_30px_rgba(0,0,0,0.12)]"
+                  >
+                    <span className="flex w-full items-center justify-between gap-6">
+                      <span className="flex items-center gap-3">
+                        Live ansehen
+                        <span className="text-lg">↗</span>
+                      </span>
+                      <span className="justify-right flex h-2.5 w-2.5 items-center justify-center">
+                        <span className="absolute h-2.5 w-2.5 rounded-full bg-red-500/60 animate-ping" />
+                        <span className="relative h-2 w-2 rounded-full bg-red-500" />
+                      </span>
+                    </span>
+                  </MagneticLink>
+                )}
                 <div className="flex items-center justify-between border-t border-black/10 pt-4 text-xs uppercase tracking-[0.35em]">
                   <span>STACKWERKHAUS</span>
                   <span>{project.year ?? "2025"}</span>
@@ -239,7 +272,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
         </div>
 
         <div className="mx-auto w-full max-w-6xl px-6 pb-24 md:px-10">
-          <FadeIn direction="up">
+          <FadeIn direction="up" trigger="load">
             <div className="relative aspect-[16/9] overflow-hidden border border-black/10 bg-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
               {project.cover?.url ? (
                 <ImageReveal
@@ -249,6 +282,9 @@ export default async function WorkDetailPage({ params }: PageProps) {
                   sizes="(min-width: 1024px) 80vw, 100vw"
                   className="h-full w-full"
                   direction="up"
+                  trigger="load"
+                  priority
+                  fetchPriority="high"
                 />
               ) : (
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(198,90,46,0.3),rgba(21,21,20,0.15))]" />
@@ -303,13 +339,17 @@ export default async function WorkDetailPage({ params }: PageProps) {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-              Weitere Projekte
+              {projectType === "Case Study"
+                ? "Weitere Case Studies"
+                : "Weitere Projekte"}
             </p>
             <MaskedTextReveal
               as="h2"
               className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
             >
-              Nächste Cases
+              {projectType === "Case Study"
+                ? "Nächste Case Studies"
+                : "Nächste Projekte"}
             </MaskedTextReveal>
           </div>
           <TransitionLink
@@ -333,7 +373,10 @@ export default async function WorkDetailPage({ params }: PageProps) {
                 <div className="h-28 w-full border border-black/10 bg-[linear-gradient(135deg,rgba(198,90,46,0.2),rgba(21,21,20,0.08))]" />
                 <div>
                   <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                    {item.client || item.services[0] || "Projekt"}
+                    {item.client ||
+                      item.services[0] ||
+                      item.type ||
+                      "Projekt"}
                   </p>
                   <h3 className="font-display text-2xl font-bold uppercase tracking-[0.18em]">
                     {item.title}
@@ -341,7 +384,9 @@ export default async function WorkDetailPage({ params }: PageProps) {
                 </div>
               </div>
               <div className="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.35em]">
-                <span>Zum Projekt</span>
+                <span>
+                  {item.type === "Case Study" ? "Zur Case Study" : "Zum Projekt"}
+                </span>
                 <span>↗</span>
               </div>
             </TransitionLink>
