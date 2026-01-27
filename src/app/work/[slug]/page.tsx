@@ -82,16 +82,42 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!project) {
     return {
-      title: "Projekt nicht gefunden – STACKWERKHAUS",
+      title: "Projekt nicht gefunden - STACKWERKHAUS",
     };
   }
 
+  const title = `${project.title} – STACKWERKHAUS`;
+  const description =
+    project.summary ||
+    project.body ||
+    "Projekt-Detailansicht aus dem Portfolio von STACKWERKHAUS.";
+
   return {
-    title: `${project.title} – STACKWERKHAUS`,
-    description:
-      project.summary ||
-      project.body ||
-      "Projekt-Detailansicht aus dem Portfolio von STACKWERKHAUS.",
+    title,
+    description,
+    alternates: {
+      canonical: `/work/${project.slug}`,
+    },
+    openGraph: {
+      type: "article",
+      locale: "de_DE",
+      url: `/work/${project.slug}`,
+      siteName: "STACKWERKHAUS",
+      title,
+      description,
+      images: [
+        {
+          url: project.cover?.url || "/images/og_image.webp",
+          alt: project.cover?.alt || project.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [project.cover?.url || "/images/og_image.webp"],
+    },
   };
 }
 

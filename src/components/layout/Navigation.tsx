@@ -1,10 +1,11 @@
 import Link from "next/link";
 
 const links = [
+  { href: "#work", label: "Projekte" },
   { href: "#about", label: "Über mich" },
   { href: "#skills", label: "Leistungen" },
-  { href: "#work", label: "Projekte" },
   { href: "#contact", label: "Kontakt" },
+  { href: "#faq", label: "FAQ" },
 ];
 
 export function Navigation() {

@@ -1,9 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef } from "react";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+
+interface SmoothScrollContextValue {
+  scrollTo: (target: number | string, options?: { immediate?: boolean }) => void;
+}
+
+const SmoothScrollContext = createContext<SmoothScrollContextValue | null>(null);
 
 export function SmoothScrollProvider({
   children,
@@ -40,5 +46,42 @@ export function SmoothScrollProvider({
     };
   }, [reducedMotion]);
 
-  return <>{children}</>;
+  const value = useMemo<SmoothScrollContextValue>(
+    () => ({
+      scrollTo: (target, options) => {
+        if (reducedMotion || !lenisRef.current) {
+          if (typeof target === "number") {
+            window.scrollTo({
+              top: target,
+              behavior: options?.immediate ? "auto" : "smooth",
+            });
+          } else {
+            const element = document.querySelector(target);
+            element?.scrollIntoView({
+              behavior: options?.immediate ? "auto" : "smooth",
+              block: "start",
+            });
+          }
+          return;
+        }
+
+        lenisRef.current.scrollTo(target, { immediate: options?.immediate });
+      },
+    }),
+    [reducedMotion]
+  );
+
+  return (
+    <SmoothScrollContext.Provider value={value}>
+      {children}
+    </SmoothScrollContext.Provider>
+  );
+}
+
+export function useSmoothScroll() {
+  const context = useContext(SmoothScrollContext);
+  if (!context) {
+    throw new Error("useSmoothScroll must be used within SmoothScrollProvider");
+  }
+  return context;
 }

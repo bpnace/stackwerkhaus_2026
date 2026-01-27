@@ -3,6 +3,51 @@ import { MagneticLink } from "@/components/animations/MagneticLink";
 import { TransitionLink } from "@/components/ui/TransitionLink";
 
 const calendlyUrl = "https://calendly.com/stackwerkhaus/briefing";
+const faqItems = [
+  {
+    question: "Was kostet eine Website bei STACKWERKHAUS?",
+    answer:
+      "Basis-Websites starten ab 999€ inklusive Konzeption und Umsetzung. Der finale Preis hängt von Umfang, Seitenanzahl und Funktionen ab – nach dem Erstgespräch bekommst du ein klares Angebot.",
+  },
+  {
+    question: "Wie lange dauert ein Projekt?",
+    answer:
+      "Der Zeitrahmen richtet sich nach Umfang und Feedback. Nach dem Kick-off erhältst du einen realistischen Zeitplan.",
+  },
+  {
+    question: "Was ist im Webdesign enthalten?",
+    answer:
+      "Konzept, Struktur, Design, Umsetzung, responsive Optimierung und ein sauberer Launch.",
+  },
+  {
+    question: "Bietet ihr auch Branding an?",
+    answer:
+      "Ja – von Logo und Look & Feel bis hin zu einer klaren Markenlinie, die sich durch die Website zieht.",
+  },
+  {
+    question: "Was bedeutet Full-Stack Lösungen bei euch?",
+    answer:
+      "Neben der Oberfläche entsteht eine stabile technische Basis: Performance, Content-Struktur, Integrationen und eine saubere Übergabe.",
+  },
+  {
+    question: "Wie hilft KI-Integration meinem Business?",
+    answer:
+      "KI kann Inhalte oder Prozesse automatisieren – je nach Bedarf mit klar messbarem Nutzen.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
 
 export function Contact() {
   return (
@@ -59,6 +104,47 @@ export function Contact() {
           </div>
         </FadeIn>
       </div>
+
+      <div id="faq" className="mx-auto w-full max-w-6xl px-6 pb-24 md:px-10">
+        <FadeIn direction="up" className="space-y-8">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="space-y-3">
+              <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                FAQ
+              </p>
+              <h3 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-4xl">
+                Häufige Fragen
+              </h3>
+            </div>
+            <p className="max-w-md text-sm text-ink-soft">
+              Kurz, klar und ohne Technikstress – die wichtigsten Antworten auf
+              einen Blick.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {faqItems.map((item) => (
+              <div
+                key={item.question}
+                className="space-y-3 border border-black/10 bg-white/80 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.06)]"
+              >
+                <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                  Frage
+                </p>
+                <h4 className="font-display text-xl font-bold uppercase tracking-[0.16em]">
+                  {item.question}
+                </h4>
+                <p className="text-sm text-ink-soft">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+      </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
     </section>
   );
 }

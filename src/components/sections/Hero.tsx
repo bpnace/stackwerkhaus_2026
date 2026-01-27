@@ -1,12 +1,11 @@
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { MagneticLink } from "@/components/animations/MagneticLink";
-import { ParallaxOrb } from "@/components/animations/ParallaxOrb";
 
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-24">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-20">
         <FadeIn direction="up" className="flex flex-wrap items-center gap-4">
           <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Webdesign ohne Technikstress
@@ -69,6 +68,8 @@ export function Hero() {
 
         <FadeIn
           direction="up"
+          trigger="load"
+          delay={0.95}
           className="flex flex-wrap items-center justify-between gap-6 border-t border-black/10 pt-10 text-xs uppercase tracking-[0.35em] text-ink-soft"
         >
           <span>Berlin / Remote</span>
@@ -77,14 +78,6 @@ export function Hero() {
         </FadeIn>
       </div>
 
-      <ParallaxOrb
-        className="pointer-events-none absolute -right-24 top-24 hidden h-64 w-64 rounded-full border border-black/10 lg:block"
-        speed={0.08}
-      />
-      <ParallaxOrb
-        className="pointer-events-none absolute -left-12 bottom-10 hidden h-40 w-40 rounded-full border border-black/10 lg:block"
-        speed={0.14}
-      />
     </section>
   );
 }

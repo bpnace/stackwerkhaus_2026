@@ -60,6 +60,18 @@ export function CustomCursor() {
         });
         return;
       }
+      if (interactive.closest("[data-cursor-rest]")) {
+        setCursorText("");
+        setCursorRoute(null);
+        gsap.to(cursor, {
+          scale: 1,
+          width: 14,
+          height: 14,
+          duration: 0.2,
+          ease: "power2.out",
+        });
+        return;
+      }
 
       const hoverText = interactive.dataset.cursorText;
       if (hoverText) {
@@ -93,6 +105,18 @@ export function CustomCursor() {
 
       if (!interactive) return;
       if (interactive.closest("[data-cursor-ignore]")) {
+        setCursorText("");
+        setCursorRoute(null);
+        gsap.to(cursor, {
+          scale: 1,
+          width: 14,
+          height: 14,
+          duration: 0.25,
+          ease: "power2.out",
+        });
+        return;
+      }
+      if (interactive.closest("[data-cursor-rest]")) {
         setCursorText("");
         setCursorRoute(null);
         gsap.to(cursor, {

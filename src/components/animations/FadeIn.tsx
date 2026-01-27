@@ -11,6 +11,7 @@ interface FadeInProps {
   duration?: number;
   delay?: number;
   stagger?: number;
+  trigger?: "scroll" | "load";
   className?: string;
 }
 
@@ -21,6 +22,7 @@ export function FadeIn({
   duration = 1,
   delay = 0,
   stagger = 0,
+  trigger = "scroll",
   className = "",
 }: FadeInProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -41,21 +43,27 @@ export function FadeIn({
 
       const targets = stagger ? element.children : [element];
 
-      gsap.from(targets, {
+      const vars = {
         opacity: 0,
         ...directionMap[direction],
         duration,
         delay,
         stagger,
         ease: "power3.out",
-        scrollTrigger: {
-          trigger: element,
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-      });
+        ...(trigger === "scroll"
+          ? {
+              scrollTrigger: {
+                trigger: element,
+                start: "top 85%",
+                toggleActions: "play none none none",
+              },
+            }
+          : {}),
+      };
+
+      gsap.from(targets, vars);
     },
-    { scope: containerRef, dependencies: [reducedMotion] }
+    { scope: containerRef, dependencies: [reducedMotion, trigger] }
   );
 
   return (
