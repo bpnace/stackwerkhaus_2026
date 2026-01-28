@@ -70,7 +70,7 @@ export function Hero() {
           direction="up"
           trigger="load"
           delay={0.95}
-          className="flex flex-wrap items-center justify-between gap-6 border-t border-black/10 pt-10 text-xs uppercase tracking-[0.35em] text-ink-soft"
+          className="hidden flex-wrap items-center justify-between gap-6 border-t border-black/10 pt-10 text-xs uppercase tracking-[0.35em] text-ink-soft md:flex"
         >
           <span>Berlin / Remote</span>
           <span>Websites für Startups & junge Businesses</span>

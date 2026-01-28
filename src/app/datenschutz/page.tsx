@@ -1,12 +1,21 @@
+import { TransitionLink } from "@/components/ui/TransitionLink";
+
 export default function DatenschutzPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-6 py-16 md:px-10">
       <div className="space-y-10">
         <div className="space-y-3">
+          <TransitionLink
+            href="/#top"
+            className="inline-flex items-center gap-2 border border-black/20 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-ink-soft transition-colors hover:bg-black hover:text-white"
+          >
+            <span>↙</span>
+            Zurück zur Startseite
+          </TransitionLink>
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Rechtliches
           </p>
-          <h1 className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl">
+          <h1 className="break-words font-display font-bold text-3xl uppercase tracking-[0.12em] sm:text-4xl sm:tracking-[0.16em] md:text-5xl md:tracking-[0.2em]">
             Datenschutzerklärung
           </h1>
           <p className="text-ink-soft">

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MagneticLink } from "@/components/animations/MagneticLink";
 import { TransitionLink } from "@/components/ui/TransitionLink";
@@ -50,14 +53,17 @@ const faqJsonLd = {
 };
 
 export function Contact() {
+  const [consent, setConsent] = useState(false);
+  const ctaDisabled = !consent;
+
   return (
     <section id="contact" className="border-t border-black/10 bg-white/60">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-24 md:grid-cols-[1.1fr_0.9fr] md:px-10">
+      <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:py-24">
         <FadeIn direction="up" className="space-y-6">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Kontakt
           </p>
-          <h2 className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl">
+          <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
             Bereit für den nächsten Schritt?
           </h2>
           <p className="max-w-lg text-base text-ink-soft">
@@ -67,52 +73,68 @@ export function Contact() {
         </FadeIn>
 
         <FadeIn direction="up">
-          <div className="flex flex-col gap-6 border border-black/10 bg-white/80 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+          <div className="flex flex-col gap-6 border border-black/10 bg-white/80 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] md:p-8">
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                 Direkt starten
               </p>
               <a
                 href="mailto:info@stackwerkhaus.de"
-                className="font-display font-bold text-2xl uppercase tracking-[0.2em]"
+                className="break-all font-display text-xl font-bold uppercase tracking-[0.18em] md:text-2xl md:tracking-[0.2em]"
                 data-cursor-text="Mail"
               >
                 info@stackwerkhaus.de
               </a>
             </div>
 
-            <div className="flex flex-col gap-3 text-xs uppercase tracking-[0.35em]">
+            <div className="flex flex-col gap-3 text-[11px] uppercase tracking-[0.28em] text-ink-soft md:text-xs md:tracking-[0.35em]">
               <MagneticLink
                 href={calendlyUrl}
-                className="border border-black/20 px-6 py-4 text-center transition-colors hover:bg-black hover:text-white"
+                className={`w-full border border-black/20 px-5 py-4 text-center text-[11px] uppercase tracking-[0.28em] transition-colors md:text-xs md:tracking-[0.35em] ${
+                  ctaDisabled
+                    ? "cursor-not-allowed text-ink-soft/60"
+                    : "text-ink-soft hover:bg-black hover:text-white"
+                }`}
                 data-cursor-text="Termin"
+                data-cursor-ignore={ctaDisabled ? "true" : undefined}
                 target="_blank"
                 rel="noreferrer"
+                aria-disabled={ctaDisabled}
+                tabIndex={ctaDisabled ? -1 : undefined}
+                onClick={(event) => {
+                  if (ctaDisabled) event.preventDefault();
+                }}
               >
                 Jetzt kostenlosen Termin vereinbaren
               </MagneticLink>
-              <TransitionLink
-                href="/datenschutz"
-                className="flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-ink-soft"
-              >
-                <span className="inline-flex h-4 w-4 items-center justify-center border border-black/30">
-                  ✓
+              <label className="flex items-start gap-3 text-[10px] uppercase tracking-[0.28em] text-ink-soft md:text-[11px] md:tracking-[0.3em]">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(event) => setConsent(event.target.checked)}
+                  className="mt-0.5 h-4 w-4 border border-black/30 accent-black"
+                />
+                <span>
+                  Ich stimme der{" "}
+                  <TransitionLink href="/datenschutz" className="underline underline-offset-4">
+                    Datenschutzerklärung
+                  </TransitionLink>{" "}
+                  zu
                 </span>
-                Ich stimme der Datenschutzerklärung zu
-              </TransitionLink>
+              </label>
             </div>
           </div>
         </FadeIn>
       </div>
 
-      <div id="faq" className="mx-auto w-full max-w-6xl px-6 pb-24 md:px-10">
+      <div id="faq" className="mx-auto w-full max-w-6xl px-6 pb-20 md:px-10 md:pb-24">
         <FadeIn direction="up" className="space-y-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                 FAQ
               </p>
-              <h3 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-4xl">
+              <h3 className="font-display font-bold text-2xl uppercase tracking-[0.2em] md:text-4xl">
                 Häufige Fragen
               </h3>
             </div>

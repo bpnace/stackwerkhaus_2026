@@ -149,11 +149,11 @@ export default async function WorkDetailPage({ params }: PageProps) {
           <div className="flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft">
             <TransitionLink
               href="/#work"
-              className="flex items-center gap-2 text-ink-soft hover:text-foreground"
+              className="inline-flex items-center gap-2 border border-black/20 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-ink-soft transition-colors hover:bg-black hover:text-white"
               data-cursor-text="Zurück"
             >
               <span>↙</span>
-              Zurück
+              Zurück zur Übersicht
             </TransitionLink>
             <span>{projectType}</span>
             <span className="font-bold text-foreground">

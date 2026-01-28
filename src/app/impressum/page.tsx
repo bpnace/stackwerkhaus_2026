@@ -1,8 +1,17 @@
+import { TransitionLink } from "@/components/ui/TransitionLink";
+
 export default function ImpressumPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-6 py-16 md:px-10">
       <div className="space-y-10">
         <div className="space-y-3">
+          <TransitionLink
+            href="/#top"
+            className="inline-flex items-center gap-2 border border-black/20 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-ink-soft transition-colors hover:bg-black hover:text-white"
+          >
+            <span>↙</span>
+            Zurück zur Startseite
+          </TransitionLink>
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Rechtliches
           </p>

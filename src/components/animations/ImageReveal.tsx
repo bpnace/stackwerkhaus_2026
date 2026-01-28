@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -16,8 +16,10 @@ interface ImageRevealProps {
   parallax?: number;
   priority?: boolean;
   fetchPriority?: "high" | "low" | "auto";
+  disableOnMobile?: boolean;
   trigger?: "scroll" | "load";
   className?: string;
+  imageClassName?: string;
 }
 
 export function ImageReveal({
@@ -31,12 +33,33 @@ export function ImageReveal({
   parallax = 0,
   priority = false,
   fetchPriority,
+  disableOnMobile = false,
   trigger = "scroll",
   className = "",
+  imageClassName = "",
 }: ImageRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
+  const [revealEnabled, setRevealEnabled] = useState(true);
+
+  useEffect(() => {
+    if (!disableOnMobile) return;
+    const media = window.matchMedia("(pointer: fine) and (hover: hover)");
+    const update = () => setRevealEnabled(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, [disableOnMobile]);
+
+  useEffect(() => {
+    if (!disableOnMobile || revealEnabled) return;
+    const container = containerRef.current;
+    const image = imageRef.current;
+    if (!container || !image) return;
+    gsap.set(container, { clipPath: "inset(0 0 0 0)" });
+    gsap.set(image, { scale: parallax ? 1 + Math.abs(parallax) / 100 + 0.06 : 1 });
+  }, [disableOnMobile, revealEnabled, parallax]);
 
   useGSAP(
     () => {
@@ -52,34 +75,27 @@ export function ImageReveal({
       } as const;
 
       const finalScale = parallax ? 1 + Math.abs(parallax) / 100 + 0.06 : 1;
-      gsap.set(container, { clipPath: clipPathStart[direction] });
-      gsap.set(image, { scale: 1.3 });
+      gsap.set(image, { scale: finalScale });
 
-      const tl = gsap.timeline(
-        trigger === "scroll"
-          ? {
-              scrollTrigger: {
-                trigger: container,
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-            }
-          : {}
-      );
-
-      tl.to(container, {
-        clipPath: "inset(0 0% 0 0)",
-        duration: 1.2,
-        ease: "power4.inOut",
-      }).to(
-        image,
-        {
-          scale: finalScale,
-          duration: 1.5,
-          ease: "power3.out",
-        },
-        "-=0.8"
-      );
+      if (!disableOnMobile || revealEnabled) {
+        gsap.set(container, { clipPath: clipPathStart[direction] });
+        gsap.to(container, {
+          clipPath: "inset(0 0% 0 0)",
+          duration: 1.2,
+          ease: "power4.inOut",
+          ...(trigger === "scroll"
+            ? {
+                scrollTrigger: {
+                  trigger: container,
+                  start: "top 80%",
+                  toggleActions: "play none none none",
+                },
+              }
+            : {}),
+        });
+      } else {
+        gsap.set(container, { clipPath: "inset(0 0 0 0)" });
+      }
 
       if (parallax) {
         gsap.to(image, {
@@ -94,12 +110,22 @@ export function ImageReveal({
         });
       }
     },
-    { scope: containerRef, dependencies: [direction, reducedMotion, parallax, trigger] }
+    {
+      scope: containerRef,
+      dependencies: [
+        direction,
+        reducedMotion,
+        parallax,
+        trigger,
+        disableOnMobile,
+        revealEnabled,
+      ],
+    }
   );
 
   return (
     <div ref={containerRef} className={`relative overflow-hidden ${className}`}>
-      <div ref={imageRef} className="h-full w-full">
+      <div ref={imageRef} className={`h-full w-full ${imageClassName}`}>
         {fill ? (
           <Image
             src={src}

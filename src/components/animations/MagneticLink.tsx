@@ -1,6 +1,12 @@
 "use client";
 
-import { useRef, type AnchorHTMLAttributes, type MouseEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type AnchorHTMLAttributes,
+  type MouseEvent,
+} from "react";
 import { gsap } from "@/lib/gsap";
 
 type MagneticLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -14,6 +20,15 @@ export function MagneticLink({
   ...props
 }: MagneticLinkProps) {
   const linkRef = useRef<HTMLAnchorElement>(null);
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(pointer: fine) and (hover: hover)");
+    const update = () => setEnabled(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   const handleMouseMove = (event: MouseEvent<HTMLAnchorElement>) => {
     const link = linkRef.current;
@@ -66,8 +81,8 @@ export function MagneticLink({
   return (
     <a
       ref={linkRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={enabled ? handleMouseMove : undefined}
+      onMouseLeave={enabled ? handleMouseLeave : undefined}
       className={className}
       {...props}
     >

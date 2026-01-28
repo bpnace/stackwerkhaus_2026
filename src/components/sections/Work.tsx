@@ -55,6 +55,8 @@ export async function Work() {
                     direction="left"
                     parallax={10}
                     trigger="load"
+                    disableOnMobile
+                    imageClassName="scale-[1.08]"
                     className="h-full w-full"
                   />
                 </LazyAnimation>

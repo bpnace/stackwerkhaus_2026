@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, type MouseEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import { CountUp } from "@/components/animations/CountUp";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { FadeIn } from "@/components/animations/FadeIn";
@@ -36,15 +36,24 @@ const pillSizes = competencies.map((_, index) => (index % 4 === 0 ? "lg" : "md")
 
 export function About() {
   const reducedMotion = useReducedMotion();
+  const [motionEnabled, setMotionEnabled] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
   const pillsRef = useRef<HTMLButtonElement[]>([]);
   const basePositions = useRef<Array<{ x: number; y: number }>>([]);
   const repelRef = useRef({ x: 0, y: 0, active: false });
   const quickToRef = useRef<Array<{ x: gsap.QuickToFunc; y: gsap.QuickToFunc }>>([]);
 
+  useEffect(() => {
+    const media = window.matchMedia("(pointer: fine) and (hover: hover)");
+    const update = () => setMotionEnabled(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
   useGSAP(
     () => {
-      if (reducedMotion) return;
+      if (reducedMotion || !motionEnabled) return;
 
       const container = sectionRef.current;
       if (!container) return;
@@ -113,11 +122,12 @@ export function About() {
         quickToRef.current = [];
       };
     },
-    { dependencies: [reducedMotion] }
+    { dependencies: [reducedMotion, motionEnabled] }
   );
 
   const handleMouseMove = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {
+      if (!motionEnabled) return;
       const container = sectionRef.current;
       if (!container) return;
       const rect = container.getBoundingClientRect();
@@ -127,12 +137,13 @@ export function About() {
         active: true,
       };
     },
-    []
+    [motionEnabled]
   );
 
   const handleMouseLeave = useCallback(() => {
+    if (!motionEnabled) return;
     repelRef.current.active = false;
-  }, []);
+  }, [motionEnabled]);
 
   return (
     <section id="about" className="mx-auto w-full max-w-6xl px-6 pb-8 pt-24 md:px-10">
@@ -193,7 +204,7 @@ export function About() {
             </div>
           </div>
         </FadeIn>
-        <FadeIn direction="up" className="space-y-4 lg:col-span-2">
+        <FadeIn direction="up" className="hidden space-y-4 lg:col-span-2 md:block">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Kompetenzen
           </p>

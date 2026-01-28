@@ -8,6 +8,7 @@ import { useResponsiveAnimation } from "@/hooks/useResponsiveAnimation";
 interface MarqueeProps {
   children: React.ReactNode;
   speed?: number;
+  mobileSpeed?: number;
   direction?: "left" | "right";
   pauseOnHover?: boolean;
   className?: string;
@@ -16,6 +17,7 @@ interface MarqueeProps {
 export function Marquee({
   children,
   speed = 30,
+  mobileSpeed,
   direction = "left",
   pauseOnHover = true,
   className = "",
@@ -49,6 +51,8 @@ export function Marquee({
 
       const viewportWidth = root.offsetWidth;
       const cloneSets = Math.max(2, Math.ceil(viewportWidth / totalWidth) + 1);
+      const effectiveSpeed =
+        mobileSpeed && width < 640 ? mobileSpeed : speed;
 
       for (let i = 0; i < cloneSets; i += 1) {
         items.forEach((item) => {
@@ -65,7 +69,7 @@ export function Marquee({
 
       tweenRef.current = gsap.to(container, {
         x: endX,
-        duration: totalWidth / speed,
+        duration: totalWidth / effectiveSpeed,
         ease: "none",
         repeat: -1,
       });
@@ -96,7 +100,17 @@ export function Marquee({
           .forEach((node) => node.remove());
       };
     },
-    { scope: containerRef, dependencies: [direction, pauseOnHover, reducedMotion, speed, width] }
+    {
+      scope: containerRef,
+      dependencies: [
+        direction,
+        pauseOnHover,
+        reducedMotion,
+        speed,
+        mobileSpeed,
+        width,
+      ],
+    }
   );
 
   return (
