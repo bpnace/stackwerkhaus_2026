@@ -134,6 +134,8 @@ export function ImageReveal({
             sizes={sizes || "100vw"}
             priority={priority}
             fetchPriority={fetchPriority}
+            loading={priority ? "eager" : "lazy"}
+            decoding="async"
             className="h-full w-full object-cover"
           />
         ) : (
@@ -144,6 +146,8 @@ export function ImageReveal({
             height={height ?? 900}
             priority={priority}
             fetchPriority={fetchPriority}
+            loading={priority ? "eager" : "lazy"}
+            decoding="async"
             className="h-full w-full object-cover"
           />
         )}

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { createContext, useContext, useRef, type ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { gsap } from "@/lib/gsap";
@@ -21,6 +22,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const triggerTransition = (href: string) => {
     if (href === pathname || isTransitioning.current) return;
     const overlay = overlayRef.current;
+    const logo = overlay?.querySelector("[data-transition-logo]");
 
     if (reducedMotion || !overlay) {
       router.push(href);
@@ -41,6 +43,15 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       duration: 0.5,
       ease: "power4.inOut",
     })
+      .to(
+        logo,
+        {
+          autoAlpha: 1,
+          duration: 0.25,
+          ease: "power2.out",
+        },
+        "-=0.2"
+      )
       .call(() => {
         router.push(href);
       })
@@ -51,6 +62,15 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         ease: "power4.inOut",
         delay: 0.3,
       });
+    tl.to(
+      logo,
+      {
+        autoAlpha: 0,
+        duration: 0.2,
+        ease: "power2.inOut",
+      },
+      "<"
+    );
   };
 
   return (
@@ -61,7 +81,19 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         className="fixed inset-0 z-[9998] pointer-events-none bg-black"
         style={{ transform: "scaleY(0)", transformOrigin: "bottom" }}
         aria-hidden="true"
-      />
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Image
+            src="/images/logos/skwkhs.svg"
+            alt=""
+            data-transition-logo
+            width={176}
+            height={99}
+            priority
+            className="w-36 opacity-0 invert md:w-44"
+          />
+        </div>
+      </div>
     </TransitionContext.Provider>
   );
 }

@@ -105,7 +105,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Uncloud",
     client: "Uncloud",
     slug: "uncloud",
-    year: "2023",
+    year: "2025",
     services: ["Strategie", "Webdesign", "Entwicklung"],
     summary:
       "Eine App, die mentale Gesundheit stärkt: KI-gestützte Gewohnheiten, regelmäßige Check-ins und klare Impulse helfen, den Kopf zu entlasten und negative Gedankenspiralen zu lösen.",
