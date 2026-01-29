@@ -64,3 +64,33 @@ body {
 .border-metal {
   border-color: rgba(138, 127, 116, 0.4);
 }
+
+@keyframes skills-pill-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(var(--drift-x, 0px), var(--drift-y, 0px), 0)
+      rotate(var(--drift-rot, 0deg));
+  }
+  100% {
+    transform: translate3d(
+      calc(var(--drift-x, 0px) * -0.6),
+      calc(var(--drift-y, 0px) * -0.6),
+      0
+    )
+      rotate(calc(var(--drift-rot, 0deg) * -0.7));
+  }
+}
+
+.skills-pill {
+  animation: skills-pill-drift var(--drift-duration, 18s) ease-in-out
+    var(--drift-delay, 0s) infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-pill {
+    animation: none;
+  }
+}
