@@ -64,7 +64,7 @@ const buildNarrative = (project: PortfolioProject) => {
     },
     {
       label: "Zeitrahmen",
-      value: "4–6 Wochen",
+      value: "4-6 Wochen",
     },
     {
       label: "Launch",
@@ -83,18 +83,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!project) {
     return {
-      title: "Projekt nicht gefunden - STACKWERKHAUS",
+      title: "Case Study nicht gefunden - STACKWERKHAUS",
     };
   }
 
-  const projectType = project.type ?? "Projekt";
-  const title = `${project.title} – STACKWERKHAUS`;
+  const title = `${project.title} - STACKWERKHAUS`;
   const description =
     project.summary ||
     project.body ||
-    `${
-      projectType === "Case Study" ? "Case Study" : "Projekt"
-    }-Detailansicht aus dem Portfolio von STACKWERKHAUS.`;
+    "Case Study-Detailansicht aus dem Portfolio von STACKWERKHAUS.";
 
   return {
     title,
@@ -149,11 +146,11 @@ export default async function WorkDetailPage({ params }: PageProps) {
           <div className="flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft">
             <TransitionLink
               href="/#work"
-              className="inline-flex items-center gap-2 border border-black/20 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-ink-soft transition-colors hover:bg-black hover:text-white"
+              className="flex items-center gap-2 text-ink-soft hover:text-foreground"
               data-cursor-text="Zurück"
             >
               <span>↙</span>
-              Zurück zur Übersicht
+              Zurück
             </TransitionLink>
             <span>{projectType}</span>
             <span className="font-bold text-foreground">

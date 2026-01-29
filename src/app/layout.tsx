@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://stackwerkhaus.de"),
   title: {
     default: "STACKWERKHAUS - Webdesign für Startups und Selbstständige",
-    template: "%s – STACKWERKHAUS",
+    template: "STACKWERKHAUS",
   },
   description:
     "Webdesign, Branding, Full-Stack Lösungen und KI-Integration aus Berlin. STACKWERKHAUS baut moderne Websites für Startups und Selbstständige.",
@@ -90,6 +90,10 @@ export default function RootLayout({
   return (
     <html lang="de">
       <head>
+        <link
+          href="https://assets.calendly.com/assets/external/widget.css"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

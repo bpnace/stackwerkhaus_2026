@@ -1,16 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import Script from "next/script";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MagneticLink } from "@/components/animations/MagneticLink";
-import { TransitionLink } from "@/components/ui/TransitionLink";
 
-const calendlyUrl = "https://calendly.com/stackwerkhaus/briefing";
+const calendlyUrl = "https://calendly.com/kontakt-codariq/30min";
+const calendlyPopupUrl =
+  "https://calendly.com/kontakt-codariq/30min?hide_event_type_details=1&hide_gdpr_banner=1";
 const faqItems = [
   {
     question: "Was kostet eine Website bei STACKWERKHAUS?",
     answer:
-      "Basis-Websites starten ab 999€ inklusive Konzeption und Umsetzung. Der finale Preis hängt von Umfang, Seitenanzahl und Funktionen ab – nach dem Erstgespräch bekommst du ein klares Angebot.",
+      "Basis-Websites starten ab 999€ inklusive Konzeption und Umsetzung. Der finale Preis hängt von Umfang, Seitenanzahl und Funktionen ab - nach dem Erstgespräch bekommst du ein klares Angebot.",
   },
   {
     question: "Wie lange dauert ein Projekt?",
@@ -25,7 +26,7 @@ const faqItems = [
   {
     question: "Bietet ihr auch Branding an?",
     answer:
-      "Ja – von Logo und Look & Feel bis hin zu einer klaren Markenlinie, die sich durch die Website zieht.",
+      "Ja. Von Logo und Look & Feel bis hin zu einer klaren Markenlinie, die sich durch die Website zieht.",
   },
   {
     question: "Was bedeutet Full-Stack Lösungen bei euch?",
@@ -35,7 +36,7 @@ const faqItems = [
   {
     question: "Wie hilft KI-Integration meinem Business?",
     answer:
-      "KI kann Inhalte oder Prozesse automatisieren – je nach Bedarf mit klar messbarem Nutzen.",
+      "KI kann Inhalte oder Prozesse automatisieren je nach Bedarf mit klar messbarem Nutzen.",
   },
 ];
 
@@ -52,80 +53,74 @@ const faqJsonLd = {
   })),
 };
 
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
+  }
+}
+
 export function Contact() {
-  const [consent, setConsent] = useState(false);
-  const ctaDisabled = !consent;
+  const handleCalendlyClick = (
+    event: React.MouseEvent<HTMLAnchorElement>
+  ) => {
+    if (window.Calendly?.initPopupWidget) {
+      event.preventDefault();
+      window.Calendly.initPopupWidget({ url: calendlyPopupUrl });
+    }
+  };
 
   return (
-    <section id="contact" className="border-t border-black/10 bg-white/60">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:py-24">
-        <FadeIn direction="up" className="space-y-6">
-          <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            Kontakt
-          </p>
-          <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
-            Bereit für den nächsten Schritt?
-          </h2>
-          <p className="max-w-lg text-base text-ink-soft">
-            Dann lass uns gemeinsam deine Website an den Start bringen –
-            einfach, schnell und ohne Technikstress.
-          </p>
-        </FadeIn>
+    <>
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="afterInteractive"
+      />
+      <section id="contact" className="border-t border-black/10 bg-white/60">
+        <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:py-24">
+          <FadeIn direction="up" className="space-y-6">
+            <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+              Kontakt
+            </p>
+            <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
+              Bereit für den nächsten Schritt?
+            </h2>
+            <p className="max-w-lg text-base text-ink-soft">
+              Dann lass uns gemeinsam deine Website an den Start bringen! Ganz
+              einfach, schnell und ohne Technikstress.
+            </p>
+          </FadeIn>
 
-        <FadeIn direction="up">
-          <div className="flex flex-col gap-6 border border-black/10 bg-white/80 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] md:p-8">
-            <div className="space-y-3">
-              <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                Direkt starten
-              </p>
-              <a
-                href="mailto:info@stackwerkhaus.de"
-                className="break-all font-display text-xl font-bold uppercase tracking-[0.18em] md:text-2xl md:tracking-[0.2em]"
-                data-cursor-text="Mail"
-              >
-                info@stackwerkhaus.de
-              </a>
-            </div>
+          <FadeIn direction="up">
+            <div className="flex flex-col gap-6 border border-black/10 bg-white/80 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] md:p-8">
+              <div className="space-y-3">
+                <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                  Direkt starten
+                </p>
+                <a
+                  href="mailto:info@stackwerkhaus.de"
+                  className="break-all font-display text-xl font-bold uppercase tracking-[0.18em] md:text-2xl md:tracking-[0.2em]"
+                  data-cursor-text="Mail"
+                >
+                  info@stackwerkhaus.de
+                </a>
+              </div>
 
-            <div className="flex flex-col gap-3 text-[11px] uppercase tracking-[0.28em] text-ink-soft md:text-xs md:tracking-[0.35em]">
-              <MagneticLink
-                href={calendlyUrl}
-                className={`w-full border border-black/20 px-5 py-4 text-center text-[11px] uppercase tracking-[0.28em] transition-colors md:text-xs md:tracking-[0.35em] ${
-                  ctaDisabled
-                    ? "cursor-not-allowed text-ink-soft/60"
-                    : "text-ink-soft hover:bg-black hover:text-white"
-                }`}
-                data-cursor-text="Termin"
-                data-cursor-ignore={ctaDisabled ? "true" : undefined}
-                target="_blank"
-                rel="noreferrer"
-                aria-disabled={ctaDisabled}
-                tabIndex={ctaDisabled ? -1 : undefined}
-                onClick={(event) => {
-                  if (ctaDisabled) event.preventDefault();
-                }}
-              >
-                Jetzt kostenlosen Termin vereinbaren
-              </MagneticLink>
-              <label className="flex items-start gap-3 text-[10px] uppercase tracking-[0.28em] text-ink-soft md:text-[11px] md:tracking-[0.3em]">
-                <input
-                  type="checkbox"
-                  checked={consent}
-                  onChange={(event) => setConsent(event.target.checked)}
-                  className="mt-0.5 h-4 w-4 border border-black/30 accent-black"
-                />
-                <span>
-                  Ich stimme der{" "}
-                  <TransitionLink href="/datenschutz" className="underline underline-offset-4">
-                    Datenschutzerklärung
-                  </TransitionLink>{" "}
-                  zu
-                </span>
-              </label>
+              <div className="flex flex-col gap-3 text-[11px] uppercase tracking-[0.28em] text-ink-soft md:text-xs md:tracking-[0.35em]">
+                <MagneticLink
+                  href={calendlyUrl}
+                  className="inline-flex w-full items-center justify-center border border-black/20 px-5 py-4 text-center text-[11px] uppercase tracking-[0.28em] text-ink-soft transition-colors transition-shadow hover:bg-black hover:text-white hover:!text-white hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] focus-visible:text-white focus-visible:shadow-[0_12px_30px_rgba(0,0,0,0.12)] md:text-xs md:tracking-[0.35em]"
+                  data-cursor-text="Termin"
+                  onClick={handleCalendlyClick}
+                  rel="noreferrer"
+                >
+                  Jetzt kostenlosen Termin vereinbaren
+                </MagneticLink>
+              </div>
             </div>
-          </div>
-        </FadeIn>
-      </div>
+          </FadeIn>
+        </div>
 
       <div id="faq" className="mx-auto w-full max-w-6xl px-6 pb-20 md:px-10 md:pb-24">
         <FadeIn direction="up" className="space-y-8">
@@ -139,7 +134,7 @@ export function Contact() {
               </h3>
             </div>
             <p className="max-w-md text-sm text-ink-soft">
-              Kurz, klar und ohne Technikstress – die wichtigsten Antworten auf
+              Kurz, klar und ohne Technikstress. Die wichtigsten Antworten auf
               einen Blick.
             </p>
           </div>
@@ -163,10 +158,11 @@ export function Contact() {
         </FadeIn>
       </div>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-    </section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      </section>
+    </>
   );
 }
