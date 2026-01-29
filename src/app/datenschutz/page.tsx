@@ -25,9 +25,9 @@ export default function DatenschutzPage() {
 
         <section className="space-y-8 text-sm text-ink-soft">
           <p>
-            Diese Datenschutzerklärung informiert Sie über die Art, den Umfang
-            und Zweck der Verarbeitung von personenbezogenen Daten auf unserer
-            Website und in unserem Dienstleistungsgeschäft.
+            Diese Datenschutzerklärung informiert über die Art, den Umfang und
+            Zweck der Verarbeitung personenbezogener Daten auf dieser Website
+            sowie im Rahmen der Kontaktaufnahme und Terminbuchung.
           </p>
 
           <div>
@@ -52,28 +52,32 @@ export default function DatenschutzPage() {
               <strong>Kontakt:</strong>{" "}
               <a href="mailto:info@stackwerkhaus.de">info@stackwerkhaus.de</a>
             </p>
+            <p className="mt-2">
+              Ein Datenschutzbeauftragter ist nicht benannt, da keine gesetzliche
+              Verpflichtung besteht.
+            </p>
           </div>
 
           <div>
             <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
-              2. Datenerfassung auf dieser Website
+              2. Hosting und Server-Log-Dateien
             </h2>
-            <h3 className="mt-3 text-base font-bold uppercase tracking-[0.2em] text-foreground">
-              2.1 Server-Log-Dateien
-            </h3>
-            <p className="mt-2">
-              Beim Besuch unserer Website werden automatisch Informationen
-              (sogenannte Server-Logfiles) wie IP-Adresse, Zeitpunkt des
-              Zugriffs, Browsertyp usw. erhoben. Diese Daten dienen ausschließlich
-              der Sicherstellung eines störungsfreien Betriebs und werden nicht
-              zur Identifikation deiner Person verwendet.
+            <p className="mt-3">
+              Die Website wird bei der STRATO AG, Otto-Ostrowski-Straße 7, 10249
+              Berlin, Deutschland gehostet. Beim Zugriff auf die Website
+              verarbeitet der Hosting-Provider Server-Log-Daten (z. B.
+              IP-Adresse, Datum und Uhrzeit, angefragte Seite, Statuscode,
+              User-Agent), um die Stabilität und Sicherheit der Website zu
+              gewährleisten.
             </p>
             <p className="mt-2">
               <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO
               <br />
-              <strong>Zweck:</strong> Sicherstellung eines störungsfreien Betriebs
+              <strong>Zweck:</strong> Sicherstellung eines störungsfreien
+              Betriebs und Abwehr von Missbrauch
               <br />
-              <strong>Speicherdauer:</strong> 7 Tage
+              <strong>Speicherdauer:</strong> Für einen begrenzten Zeitraum gemäß
+              den Vorgaben des Hosting-Providers
             </p>
           </div>
 
@@ -82,43 +86,88 @@ export default function DatenschutzPage() {
               3. Kontaktaufnahme
             </h2>
             <p className="mt-3">
-              Bei der Nutzung unseres Kontaktformulars werden folgende Daten
-              verarbeitet: Name, E-Mail-Adresse, Telefonnummer (optional),
-              Nachricht und angehängte Dateien (optional).
+              Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir
+              die von Ihnen mitgeteilten Daten (z. B. Name, E-Mail-Adresse,
+              Telefonnummer und Nachricht), um Ihre Anfrage zu beantworten.
             </p>
             <p className="mt-2">
               <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO
+              (vorvertragliche Maßnahmen) oder Art. 6 Abs. 1 lit. f DSGVO
+              (allgemeine Anfragen)
               <br />
               <strong>Zweck:</strong> Bearbeitung Ihrer Anfrage
               <br />
-              <strong>Speicherdauer:</strong> Bis zu 3 Jahre nach Abschluss der
-              Geschäftsbeziehung
+              <strong>Speicherdauer:</strong> Bis zum Abschluss der Bearbeitung
+              und im Rahmen gesetzlicher Aufbewahrungspflichten
             </p>
           </div>
 
           <div>
             <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
-              4. Externe Dienste
+              4. Cookies und Einwilligungsmanagement (Cookiebot)
             </h2>
             <p className="mt-3">
-              <strong>Calendly:</strong> Für Terminbuchungen nutzen wir Calendly,
-              Inc. (USA). Datenübertragung: Name, E-Mail-Adresse, Terminwünsche.
+              Wir verwenden Cookiebot, um Ihre Einwilligungen in das Setzen von
+              Cookies und den Einsatz vergleichbarer Technologien zu verwalten.
+              Cookiebot speichert Ihre Auswahl und ermöglicht Ihnen, diese
+              jederzeit anzupassen.
             </p>
             <p className="mt-2">
-              <strong>Kontaktformular-Webhook:</strong> Für die Kontaktformular-
-              Verarbeitung nutzen wir einen Webhook unter
-              automation.codariq.de.
+              <strong>Anbieter:</strong> Usercentrics A/S (Cookiebot), Havnegade
+              39, 1058 Kopenhagen, Dänemark.
             </p>
             <p className="mt-2">
-              <strong>Social-Media-Präsenzen:</strong> Wir unterhalten Profile
-              auf Instagram und LinkedIn. Beim Besuch dieser Profile gelten die
-              Datenschutzrichtlinien der jeweiligen Betreiber.
+              <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. c DSGVO
+              (Erfüllung rechtlicher Verpflichtungen) und Art. 6 Abs. 1 lit. f
+              DSGVO (Nachweis der Einwilligungen); für das Setzen von Cookies
+              § 25 Abs. 1 TDDDG
+              <br />
+              <strong>Zweck:</strong> Einwilligungsmanagement und Compliance
+              <br />
+              <strong>Speicherdauer:</strong> Gemäß den Einstellungen des
+              Consent-Tools
             </p>
           </div>
 
           <div>
             <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
-              5. Ihre Rechte
+              5. Terminbuchung über Calendly
+            </h2>
+            <p className="mt-3">
+              Für die Terminbuchung verwenden wir den Dienst Calendly. Bei der
+              Nutzung werden die von Ihnen eingegebenen Daten (z. B. Name,
+              E-Mail-Adresse, gewünschter Termin und optionale Hinweise)
+              verarbeitet, um den Termin zu organisieren.
+            </p>
+            <p className="mt-2">
+              <strong>Anbieter:</strong> Calendly LLC, 115 E Main St, Ste A1B,
+              Buford, GA 30518, USA.
+            </p>
+            <p className="mt-2">
+              <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO
+              (Terminvereinbarung); Cookies bzw. vergleichbare Technologien nur
+              nach Einwilligung gemäß § 25 Abs. 1 TDDDG
+              <br />
+              <strong>Datenübermittlung:</strong> Bei Calendly kann eine
+              Verarbeitung in Drittländern (z. B. USA) stattfinden. Es gelten die
+              von Calendly bereitgestellten geeigneten Garantien (z. B. SCCs).
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
+              6. Social-Media-Links
+            </h2>
+            <p className="mt-3">
+              Auf der Website sind nur Links zu Instagram und LinkedIn
+              eingebunden. Beim Anklicken gelten die Datenschutzrichtlinien der
+              jeweiligen Anbieter.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
+              7. Ihre Rechte
             </h2>
             <p className="mt-3">
               Sie haben das Recht auf Auskunft, Berichtigung, Löschung,
@@ -129,7 +178,7 @@ export default function DatenschutzPage() {
 
           <div>
             <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
-              6. Beschwerderecht
+              8. Beschwerderecht
             </h2>
             <p className="mt-3">
               <strong>
@@ -148,7 +197,7 @@ export default function DatenschutzPage() {
           </div>
 
           <p>
-            <strong>Stand:</strong> Dezember 2024
+            <strong>Stand:</strong> Januar 2026
           </p>
         </section>
       </div>

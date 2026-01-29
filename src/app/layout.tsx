@@ -4,6 +4,7 @@ import {
   IBM_Plex_Mono,
   IBM_Plex_Sans,
 } from "next/font/google";
+import Script from "next/script";
 import { CustomCursor } from "@/components/animations/CustomCursor";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
@@ -35,11 +36,12 @@ const monoFont = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://stackwerkhaus.de"),
   title: {
-    default: "STACKWERKHAUS - Webdesign für Startups und Selbstständige",
-    template: "STACKWERKHAUS",
+    default:
+      "Günstige Website für Startups – sicher & ohne Outsourcing | STACKWERKHAUS",
+    template: "%s | STACKWERKHAUS",
   },
   description:
-    "Webdesign, Branding, Full-Stack Lösungen und KI-Integration aus Berlin. STACKWERKHAUS baut moderne Websites für Startups und Selbstständige.",
+    "Website ohne Programmierung: günstige, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
   alternates: {
     canonical: "/",
   },
@@ -48,9 +50,10 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: "/",
     siteName: "STACKWERKHAUS",
-    title: "STACKWERKHAUS - Webdesign für Startups und Selbstständige",
+    title:
+      "Günstige Website für Startups – sicher & ohne Outsourcing | STACKWERKHAUS",
     description:
-      "Webdesign, Branding, Full-Stack Lösungen und KI-Integration aus Berlin. STACKWERKHAUS baut moderne Websites für Startups und Selbstständige.",
+      "Website ohne Programmierung: günstige, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
     images: [
       {
         url: "/images/og_image.webp",
@@ -60,9 +63,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "STACKWERKHAUS - Webdesign für Startups und Selbstständige",
+    title:
+      "Günstige Website für Startups – sicher & ohne Outsourcing | STACKWERKHAUS",
     description:
-      "Webdesign, Branding, Full-Stack Lösungen und KI-Integration aus Berlin. STACKWERKHAUS baut moderne Websites für Startups und Selbstständige.",
+      "Website ohne Programmierung: günstige, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
     images: ["/images/og_image.webp"],
   },
   robots: {
@@ -102,6 +106,13 @@ export default function RootLayout({
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} antialiased`}
       >
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="f656ec61-fa34-4784-8702-a8e18483fd69"
+          data-blockingmode="auto"
+          strategy="beforeInteractive"
+        />
         <SmoothScrollProvider>
           <TransitionProvider>
             <CustomCursor />

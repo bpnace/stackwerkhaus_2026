@@ -1,42 +1,43 @@
 "use client";
 
 import Script from "next/script";
+import type { MouseEvent } from "react";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MagneticLink } from "@/components/animations/MagneticLink";
 
-const calendlyUrl = "https://calendly.com/kontakt-codariq/30min";
 const calendlyPopupUrl =
   "https://calendly.com/kontakt-codariq/30min?hide_event_type_details=1&hide_gdpr_banner=1";
+const calendlyUrl = calendlyPopupUrl;
 const faqItems = [
   {
-    question: "Was kostet eine Website bei STACKWERKHAUS?",
+    question: "Was kostet eine günstige Website für Startups?",
     answer:
-      "Basis-Websites starten ab 999€ inklusive Konzeption und Umsetzung. Der finale Preis hängt von Umfang, Seitenanzahl und Funktionen ab - nach dem Erstgespräch bekommst du ein klares Angebot.",
+      "Der Einstieg beginnt ab 999€ inklusive Konzeption, Design und Umsetzung. Der finale Preis hängt vom Umfang und den Funktionen ab - du bekommst ein klares Angebot nach dem Erstgespräch.",
   },
   {
-    question: "Wie lange dauert ein Projekt?",
+    question: "Wie schnell kann ich eine Website erstellen lassen?",
     answer:
-      "Der Zeitrahmen richtet sich nach Umfang und Feedback. Nach dem Kick-off erhältst du einen realistischen Zeitplan.",
+      "Je nach Umfang geht deine Website in wenigen Wochen live. Nach dem Kick-off bekommst du einen konkreten Zeitplan.",
   },
   {
-    question: "Was ist im Webdesign enthalten?",
+    question: "Kann ich eine Website ohne Programmierung bekommen?",
     answer:
-      "Konzept, Struktur, Design, Umsetzung, responsive Optimierung und ein sauberer Launch.",
+      "Ja. Du bekommst eine komplette Website ohne eigene Programmierung - inklusive Struktur, Design, Umsetzung und Launch.",
   },
   {
-    question: "Bietet ihr auch Branding an?",
+    question: "Was ist im Website-Paket enthalten?",
     answer:
-      "Ja. Von Logo und Look & Feel bis hin zu einer klaren Markenlinie, die sich durch die Website zieht.",
+      "Konzept, Struktur, Design, Umsetzung, responsive Optimierung, SEO-Basis und ein sauberer Launch.",
   },
   {
-    question: "Was bedeutet Full-Stack Lösungen bei euch?",
+    question: "Ist die Website sicher und DSGVO-konform?",
     answer:
-      "Neben der Oberfläche entsteht eine stabile technische Basis: Performance, Content-Struktur, Integrationen und eine saubere Übergabe.",
+      "Ja. Ich achte auf sichere Umsetzung, DSGVO-Basis und saubere technische Struktur.",
   },
   {
-    question: "Wie hilft KI-Integration meinem Business?",
+    question: "Kann ich selbst Inhalte ändern lassen?",
     answer:
-      "KI kann Inhalte oder Prozesse automatisieren je nach Bedarf mit klar messbarem Nutzen.",
+      "Ja. Auf Wunsch bekommst du eine einfache Content-Struktur und klare Übergabe, damit Updates schnell möglich sind.",
   },
 ];
 
@@ -62,9 +63,7 @@ declare global {
 }
 
 export function Contact() {
-  const handleCalendlyClick = (
-    event: React.MouseEvent<HTMLAnchorElement>
-  ) => {
+  const handleCalendlyClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (window.Calendly?.initPopupWidget) {
       event.preventDefault();
       window.Calendly.initPopupWidget({ url: calendlyPopupUrl });
@@ -84,11 +83,11 @@ export function Contact() {
               Kontakt
             </p>
             <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
-              Bereit für den nächsten Schritt?
+              Website erstellen ohne Agentur?
             </h2>
             <p className="max-w-lg text-base text-ink-soft">
-              Dann lass uns gemeinsam deine Website an den Start bringen! Ganz
-              einfach, schnell und ohne Technikstress.
+              Eine günstige, sichere Website für dein Startup - schnell online,
+              klar strukturiert und ohne Outsourcing.
             </p>
           </FadeIn>
 
@@ -96,7 +95,7 @@ export function Contact() {
             <div className="flex flex-col gap-6 border border-black/10 bg-white/80 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] md:p-8">
               <div className="space-y-3">
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                  Direkt starten
+                  Direkt Termin sichern
                 </p>
                 <a
                   href="mailto:info@stackwerkhaus.de"
@@ -134,8 +133,8 @@ export function Contact() {
               </h3>
             </div>
             <p className="max-w-md text-sm text-ink-soft">
-              Kurz, klar und ohne Technikstress. Die wichtigsten Antworten auf
-              einen Blick.
+              Kurz, klar und suchfreundlich. Antworten auf die wichtigsten
+              Fragen zur Website-Erstellung.
             </p>
           </div>
 

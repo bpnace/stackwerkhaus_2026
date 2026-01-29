@@ -26,7 +26,7 @@ export default function ImpressumPage() {
         <section className="space-y-6 text-sm text-ink-soft">
           <div>
             <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
-              Angaben gemäß § 5 TMG
+              Angaben gemäß § 5 DDG
             </h2>
             <p className="mt-3">
               Tarik Marshall
@@ -60,7 +60,7 @@ export default function ImpressumPage() {
 
           <div>
             <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
-              Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+              Verantwortlich i. S. d. § 18 Abs. 2 MStV
             </h2>
             <p className="mt-3">
               Tarik Marshall
@@ -84,6 +84,8 @@ export default function ImpressumPage() {
               wird keine Umsatzsteuer berechnet.
               <br />
               <strong>Finanzamt:</strong> Finanzamt Berlin Wilmersdorf
+              <br />
+              <strong>USt-IdNr.:</strong> Keine vorhanden.
             </p>
           </div>
 
@@ -102,14 +104,9 @@ export default function ImpressumPage() {
               EU-Streitschlichtung
             </h2>
             <p className="mt-3">
-              Die Europäische Kommission stellt eine Plattform zur
-              Online-Streitbeilegung (OS) bereit:{" "}
-              <a href="https://ec.europa.eu/consumers/odr/">
-                https://ec.europa.eu/consumers/odr/
-              </a>
-            </p>
-            <p className="mt-2">
-              Unsere E-Mail-Adresse finden Sie oben im Impressum.
+              Die Plattform der EU zur Online-Streitbeilegung (OS) wurde
+              eingestellt. Wir nehmen nicht an einem Streitbeilegungsverfahren
+              vor einer Verbraucherschlichtungsstelle teil.
             </p>
           </div>
 

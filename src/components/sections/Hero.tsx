@@ -8,10 +8,10 @@ export function Hero() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-20">
         <FadeIn direction="up" className="flex flex-wrap items-center gap-4">
           <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            Webdesign ohne Technikstress
+            Günstige Website für Startups
           </span>
           <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            <b>Klar. Schnell. Fair.</b>
+            <b>Sicher. Schnell. Ohne Outsourcing.</b>
           </span>
         </FadeIn>
 
@@ -21,13 +21,14 @@ export function Hero() {
               as="h1"
               className="font-display font-bold text-[12vw] leading-[0.82] tracking-[-0.02em] md:text-[6.5vw]"
             >
-              Deine Webseite? Ganz einfach!
+              Website ohne Outsourcing erstellen
             </MaskedTextReveal>
             <FadeIn direction="up">
               <p className="max-w-xl text-lg text-ink-soft md:text-xl">
-                Webdesign, das sich jeder leisten kann. Ich übernehme Konzeption,
-                Design und Umsetzung, dafür bekommst du eine moderne Website, ganz
-                ohne Aufwand und zum fairen Preis.
+                Webdesign für Startups, Selbstständige und kleine Unternehmen:
+                günstig, sicher und ohne Programmierung. Du bekommst eine
+                professionelle Website mit klarem Aufbau, SEO‑Basis und DSGVO‑
+                Fokus in kurzer Zeit.
               </p>
             </FadeIn>
           </div>
@@ -40,26 +41,26 @@ export function Hero() {
                     Ablauf
                   </p>
                   <p className="text-2xl uppercase tracking-[0.2em]">
-                    In 5 Schritten live
+                    In 5 Schritten online
                   </p>
                 </div>
                 <span className="text-xs font-bold uppercase tracking-[0.3em]">
-                  STWKHS
+                  STARTUP
                 </span>
               </div>
               <div className="space-y-3 text-sm text-ink-soft">
-                <p>⚎ Beratung</p>
-                <p>⚎ Konzept</p>
-                <p>⚎ Design</p>
-                <p>⚎ Entwicklung</p>
-                <p>⚎ Launch</p>
+                <p>⚎ Ziel & Konzept</p>
+                <p>⚎ Struktur & Inhalte</p>
+                <p>⚎ Design & UI</p>
+                <p>⚎ Entwicklung & SEO</p>
+                <p>⚎ Launch & Support</p>
               </div>
               <MagneticLink
                 href="#work"
                 className="inline-flex items-center justify-between border border-black/20 px-5 py-4 text-xs uppercase tracking-[0.3em] transition-colors transition-shadow hover:bg-black hover:text-white hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] focus-visible:shadow-[0_12px_30px_rgba(0,0,0,0.12)]"
                 data-cursor-ignore
               >
-                Projekte ansehen
+                Projekte & Beispiele
                 <span className="text-lg">↘</span>
               </MagneticLink>
             </div>

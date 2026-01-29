@@ -13,18 +13,18 @@ export async function Work() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="space-y-3">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            Projekte
+            Referenzen
           </p>
           <MaskedTextReveal
             as="h2"
             className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
-            Ausgewählte Arbeiten
+            Startup Websites mit Wirkung
           </MaskedTextReveal>
         </div>
         <p className="max-w-md text-sm text-ink-soft">
-          Branding, Webdesign und digitale Auftritte mit klarer Struktur,
-          starker Wirkung und einer sauberen technischen Basis.
+          Günstige Website‑Pakete, schnelle Umsetzung und messbare Ergebnisse.
+          Beispiele zeigen, wie sichere, klare Websites für Startups entstehen.
         </p>
       </div>
 

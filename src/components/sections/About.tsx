@@ -8,28 +8,28 @@ import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const competencies = [
-  "Web & App Entwicklung ",
-  "KI-Integration",
+  "Website ohne Programmierung",
+  "Günstige Startup Website",
+  "No-Code & Low-Code",
+  "SEO-Optimierung 2026",
+  "Sichere Website (DSGVO)",
+  "Performance & Core Web Vitals",
   "UI/UX Design",
-  "Projektmanagement",
   "Content-Strategie",
-  "SEO optimierung",
-  "Performance-Optimierung",
-  "Sicherheit und Datenschutz",
-  "Responsive Design",
-  "Wartung & Support",
   "Barrierefreiheit",
-  "Datenanalyse & Reporting",
+  "Wartung & Support",
+  "KI-Integration",
+  "Conversion-Optimierung",
 ];
 
 const principles = [
-  "Tech trifft Business: Digitale Produkte, die konvertieren.",
-  "KI als Multiplikator: Mehr Wirkung in kürzerer Zeit.",
-  "Transparenz & Partnerschaft: Klare Kommunikation auf Augenhöhe.",
-  "Berliner Innovation: Frische Perspektiven aus der Tech-Szene.",
-  "Nachhaltigkeit: Langfristige Werte statt kurzfristiger Lösungen.",
-  "Kundenzentrierung: Deine Ziele im Fokus jeder Entscheidung.",
-  "Benutzererlebnis: Intuitive Designs, die begeistern.",
+  "Website ohne Outsourcing: Direkt, transparent, effizient.",
+  "Sicher & günstig: DSGVO‑Fokus und klare Pakete.",
+  "Schneller Launch: Von 0 auf Website in wenigen Wochen.",
+  "E‑E‑A‑T: Klare Struktur, echte Referenzen, messbare Wirkung.",
+  "SEO & AEO: Inhalte für Suche und AI Overviews optimiert.",
+  "Conversion‑Fokus: Nutzerführung, Vertrauen, klare CTAs.",
+  "Startups zuerst: Pragmatismus statt Agentur‑Overhead.",
 ];
 
 const pillSizes = competencies.map((_, index) => (index % 4 === 0 ? "lg" : "md"));
@@ -156,22 +156,21 @@ export function About() {
             as="h2"
             className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
-            Arthur Marshall
+            Website‑Builder für Startups
           </MaskedTextReveal>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
-              Hey, ich bin Arthur aus Berlin, Gründer von STACKWERKHAUS und dein
-              Ansprechpartner für deine erste Website. Ich mach’s dir einfach: Du
-              sagst mir, was du brauchst, und ich kümmere mich um den Rest.
-              Keine Fachbegriffe, kein Technikstress nur überzeugende Ergebnisse.
+              Ich bin Arthur aus Berlin und entwickle günstige, sichere Websites
+              für Startups und kleine Unternehmen - ohne Outsourcing. Du bekommst
+              eine professionelle Website, die schnell online geht, verständlich
+              bleibt und Vertrauen schafft.
             </p>
           </FadeIn>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
-              Ich verbinde langjährige B2B/B2C-Erfahrung mit technischer
-              Expertise und KI-Wissen, um digitale Produkte zu schaffen, die
-              nicht nur ästhetisch überzeugen sondern nachhaltige Werte für
-              dein Unternehmen generieren.
+              Ob Website ohne Programmierung, Relaunch oder MVP‑Seite: Ich
+              kombiniere klares Design, SEO‑Basics und DSGVO‑Sicherheit, damit
+              du sichtbar wirst und Anfragen bekommst.
             </p>
           </FadeIn>
           <div className="flex flex-wrap items-center gap-4 border border-black/10 bg-white/70 px-4 py-4">
