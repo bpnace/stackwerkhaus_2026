@@ -28,16 +28,16 @@ const competencies = [
 const principles = [
   "Direkt von uns: günstig, schnell, zuverlässig.",
   "Neuste Technologien: modern & zukunftssicher.",
-  "Auf Startup fokussiert: Lösungen für Gründer.",
+  "Blitzschnlle Ladezeiten: optimiert für alle Geräte.",
   "Übersichtliche Preise: keine versteckten Kosten.",
-  "Ohne Outsourcing: Qualität aus einer Hand.",
-  "Sicher & DSGVO‑konform: Vertrauen als Basis.",
-  "SEO/AEO‑Vorsprung: Sichtbarkeit in Suche & AI Overviews.",
+  "Automationen & KI: Effizienz durch smarte Tools.",
+  "Sicher & DSGVO-konform: Vertrauen als Basis.",
+  "SEO/AEO-Vorsprung: Sichtbarkeit in Suche & AI Overviews.",
   "Klarer Aufbau: verständliche Inhalte, starke Nutzerführung.",
   "Schnell online: zügige Umsetzung ohne Kompromisse.",
   "Visuell ansprechend: modernes Design, das wirkt.",
-  "Performance‑Fokus: schnelle Ladezeiten & saubere Technik.",
-  "Startup‑Mindset: pragmatisch, effizient, ergebnisorientiert.",
+  "Begleiung & Support: wir sind für dich da.",
+  "Integration: nahtlose Einbindung in bestehende Systeme und Tools.",
 ];
 
 const pillSizes = competencies.map((_, index) => (index % 4 === 0 ? "lg" : "md"));

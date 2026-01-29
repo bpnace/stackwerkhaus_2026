@@ -19,15 +19,16 @@ export function Hero() {
           <div className="space-y-6">
             <MaskedTextReveal
               as="h1"
-              className="font-display font-bold text-[12vw] leading-[0.82] tracking-[-0.02em] md:text-[6.5vw]"
+              className="relative z-10 font-display font-bold text-[12vw] leading-[0.82] tracking-[-0.02em] md:text-[6.5vw]"
+              lastLinePaddingEm={0.23}
             >
-              Deine Website einfach erstellt.
+              Verkaufsstarke Webseiten, die deine Kunden überzeugen.
             </MaskedTextReveal>
-            <FadeIn direction="up">
+            <FadeIn direction="up" className="relative z-0 mt-2">
               <p className="max-w-xl text-lg text-ink-soft md:text-xl">
                 Webdesign für Startups, Selbstständige und kleine Unternehmen:
                 bezahlbar, sicher und ohne viel Aufwand. Du bekommst eine
-                professionelle Website mit klarem Aufbau, SEO‑Basis und DSGVO‑
+                professionelle Website mit klarem Aufbau, SEO-Basis und DSGVO-
                 Fokus in kurzer Zeit.
               </p>
             </FadeIn>

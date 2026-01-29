@@ -21,7 +21,7 @@ const skills = [
   "Sicherheit",
   "Analytics",
   "Conversion Optimierung",
-  "Social Media Integration",
+  "Ki-Automation Integration",
 ];
 
 export function Skills() {
