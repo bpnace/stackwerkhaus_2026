@@ -1,12 +1,21 @@
+import { TransitionLink } from "@/components/ui/TransitionLink";
+
 export default function ImpressumPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-6 py-16 md:px-10">
       <div className="space-y-10">
         <div className="space-y-3">
+          <TransitionLink
+            href="/#top"
+            className="inline-flex items-center gap-2 border border-black/20 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-ink-soft transition-colors hover:bg-black hover:text-white"
+          >
+            <span>↙</span>
+            Zurück zur Startseite
+          </TransitionLink>
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Rechtliches
           </p>
-          <h1 className="font-display text-4xl uppercase tracking-[0.2em] md:text-5xl">
+          <h1 className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl">
             Impressum
           </h1>
           <p className="text-ink-soft">
@@ -16,7 +25,7 @@ export default function ImpressumPage() {
 
         <section className="space-y-6 text-sm text-ink-soft">
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Angaben gemäß § 5 TMG
             </h2>
             <p className="mt-3">
@@ -35,7 +44,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Kontakt
             </h2>
             <p className="mt-3">
@@ -50,7 +59,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
             </h2>
             <p className="mt-3">
@@ -65,7 +74,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Steuerliche Angaben
             </h2>
             <p className="mt-3">
@@ -79,7 +88,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Berufshaftpflichtversicherung
             </h2>
             <p className="mt-3">
@@ -89,7 +98,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               EU-Streitschlichtung
             </h2>
             <p className="mt-3">
@@ -105,7 +114,7 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl uppercase tracking-[0.2em]">
+            <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
               Verbraucherstreitbeilegung
             </h2>
             <p className="mt-3">

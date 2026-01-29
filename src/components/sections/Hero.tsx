@@ -1,19 +1,17 @@
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
+import { MagneticLink } from "@/components/animations/MagneticLink";
 
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-24">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-24 pt-16 md:px-10 md:pb-32 md:pt-20">
         <FadeIn direction="up" className="flex flex-wrap items-center gap-4">
-          <span className="rounded-full border border-black/20 px-4 py-2 text-xs uppercase tracking-[0.35em] text-ink-soft">
-            Dein Berliner Design Studio
-          </span>
           <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Webdesign ohne Technikstress
           </span>
           <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            Klar. Schnell. Fair.
+            <b>Klar. Schnell. Fair.</b>
           </span>
         </FadeIn>
 
@@ -21,14 +19,14 @@ export function Hero() {
           <div className="space-y-6">
             <MaskedTextReveal
               as="h1"
-              className="font-display text-[12vw] leading-[0.82] tracking-[-0.02em] md:text-[6.5vw]"
+              className="font-display font-bold text-[12vw] leading-[0.82] tracking-[-0.02em] md:text-[6.5vw]"
             >
               Deine Webseite? Ganz einfach!
             </MaskedTextReveal>
             <FadeIn direction="up">
               <p className="max-w-xl text-lg text-ink-soft md:text-xl">
                 Webdesign, das sich jeder leisten kann. Ich übernehme Konzeption,
-                Design und Umsetzung – du bekommst eine moderne Website, ganz
+                Design und Umsetzung, dafür bekommst du eine moderne Website, ganz
                 ohne Aufwand und zum fairen Preis.
               </p>
             </FadeIn>
@@ -41,45 +39,45 @@ export function Hero() {
                   <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                     Ablauf
                   </p>
-                  <p className="font-display text-2xl uppercase tracking-[0.2em]">
+                  <p className="text-2xl uppercase tracking-[0.2em]">
                     In 5 Schritten live
                   </p>
                 </div>
-                <span className="text-xs uppercase tracking-[0.3em]">
+                <span className="text-xs font-bold uppercase tracking-[0.3em]">
                   STWKHS
                 </span>
               </div>
               <div className="space-y-3 text-sm text-ink-soft">
-                <p>Beratung</p>
-                <p>Konzept</p>
-                <p>Design</p>
-                <p>Entwicklung</p>
-                <p>Launch</p>
+                <p>⚎ Beratung</p>
+                <p>⚎ Konzept</p>
+                <p>⚎ Design</p>
+                <p>⚎ Entwicklung</p>
+                <p>⚎ Launch</p>
               </div>
-              <a
+              <MagneticLink
                 href="#work"
-                className="inline-flex items-center justify-between border border-black/20 px-5 py-4 text-xs uppercase tracking-[0.3em] transition-colors hover:bg-black hover:text-white"
-                data-cursor-text="Start"
+                className="inline-flex items-center justify-between border border-black/20 px-5 py-4 text-xs uppercase tracking-[0.3em] transition-colors transition-shadow hover:bg-black hover:text-white hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] focus-visible:shadow-[0_12px_30px_rgba(0,0,0,0.12)]"
+                data-cursor-ignore
               >
                 Projekte ansehen
                 <span className="text-lg">↘</span>
-              </a>
+              </MagneticLink>
             </div>
           </FadeIn>
         </div>
 
         <FadeIn
           direction="up"
-          className="flex flex-wrap items-center justify-between gap-6 border-t border-black/10 pt-10 text-xs uppercase tracking-[0.35em] text-ink-soft"
+          trigger="load"
+          delay={0.95}
+          className="hidden flex-wrap items-center justify-between gap-6 border-t border-black/10 pt-10 text-xs uppercase tracking-[0.35em] text-ink-soft md:flex"
         >
           <span>Berlin / Remote</span>
-          <span>Websites für Freelancer & kleine Businesses</span>
+          <span>Websites für Startups & junge Businesses</span>
           <span>Scroll</span>
         </FadeIn>
       </div>
 
-      <div className="pointer-events-none absolute -right-24 top-24 hidden h-64 w-64 rounded-full border border-black/10 lg:block" />
-      <div className="pointer-events-none absolute -left-12 bottom-10 hidden h-40 w-40 rounded-full border border-black/10 lg:block" />
     </section>
   );
 }

@@ -2,10 +2,13 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useResponsiveAnimation } from "@/hooks/useResponsiveAnimation";
 
 interface MarqueeProps {
   children: React.ReactNode;
   speed?: number;
+  mobileSpeed?: number;
   direction?: "left" | "right";
   pauseOnHover?: boolean;
   className?: string;
@@ -14,17 +17,27 @@ interface MarqueeProps {
 export function Marquee({
   children,
   speed = 30,
+  mobileSpeed,
   direction = "left",
   pauseOnHover = true,
   className = "",
 }: MarqueeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const tweenRef = useRef<gsap.core.Tween | null>(null);
+  const reducedMotion = useReducedMotion();
+  const { width } = useResponsiveAnimation({ minWidth: 0 });
 
   useGSAP(
     () => {
       const container = containerRef.current;
-      if (!container) return;
+      if (!container || reducedMotion) return;
+
+      const root = container.parentElement;
+      if (!root) return;
+
+      container
+        .querySelectorAll<HTMLElement>("[data-marquee-clone='true']")
+        .forEach((node) => node.remove());
 
       const items = Array.from(container.children) as HTMLElement[];
       if (items.length === 0) return;
@@ -34,13 +47,29 @@ export function Marquee({
         0
       );
 
-      items.forEach((item) => {
-        container.appendChild(item.cloneNode(true));
-      });
+      if (!totalWidth) return;
+
+      const viewportWidth = root.offsetWidth;
+      const cloneSets = Math.max(2, Math.ceil(viewportWidth / totalWidth) + 1);
+      const effectiveSpeed =
+        mobileSpeed && width < 640 ? mobileSpeed : speed;
+
+      for (let i = 0; i < cloneSets; i += 1) {
+        items.forEach((item) => {
+          const clone = item.cloneNode(true) as HTMLElement;
+          clone.setAttribute("data-marquee-clone", "true");
+          container.appendChild(clone);
+        });
+      }
+
+      const startX = direction === "left" ? 0 : -totalWidth;
+      const endX = direction === "left" ? -totalWidth : 0;
+
+      gsap.set(container, { x: startX });
 
       tweenRef.current = gsap.to(container, {
-        x: direction === "left" ? -totalWidth : totalWidth,
-        duration: totalWidth / speed,
+        x: endX,
+        duration: totalWidth / effectiveSpeed,
         ease: "none",
         repeat: -1,
       });
@@ -64,9 +93,24 @@ export function Marquee({
           container.removeEventListener("mouseleave", handleLeave);
         }
         tweenRef.current?.kill();
+        tweenRef.current = null;
+        gsap.set(container, { x: 0 });
+        container
+          .querySelectorAll<HTMLElement>("[data-marquee-clone='true']")
+          .forEach((node) => node.remove());
       };
     },
-    { scope: containerRef }
+    {
+      scope: containerRef,
+      dependencies: [
+        direction,
+        pauseOnHover,
+        reducedMotion,
+        speed,
+        mobileSpeed,
+        width,
+      ],
+    }
   );
 
   return (

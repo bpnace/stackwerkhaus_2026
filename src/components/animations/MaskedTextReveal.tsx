@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import SplitType from "split-type";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface MaskedTextRevealProps {
   children: string;
@@ -16,10 +17,11 @@ export function MaskedTextReveal({
   className = "",
 }: MaskedTextRevealProps) {
   const containerRef = useRef<HTMLElement | null>(null);
+  const reducedMotion = useReducedMotion();
 
   useGSAP(
     () => {
-      if (!containerRef.current) return;
+      if (!containerRef.current || reducedMotion) return;
 
       const split = new SplitType(containerRef.current, {
         types: "lines,words",
@@ -52,7 +54,7 @@ export function MaskedTextReveal({
 
       return () => split.revert();
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [reducedMotion] }
   );
 
   return (
