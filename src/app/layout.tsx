@@ -37,23 +37,20 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://stackwerkhaus.de"),
   title: {
     default:
-      "Günstige Website für Startups – sicher & ohne Outsourcing | STACKWERKHAUS",
+      "Bezahlbare Website für Startups – sicher & direkt | STACKWERKHAUS",
     template: "%s | STACKWERKHAUS",
   },
   description:
-    "Website ohne Programmierung: günstige, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
-  alternates: {
-    canonical: "/",
-  },
+    "Bezahlbare, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: "/",
     siteName: "STACKWERKHAUS",
     title:
-      "Günstige Website für Startups – sicher & ohne Outsourcing | STACKWERKHAUS",
+      "Bezahlbare Website für Startups – sicher & direkt | STACKWERKHAUS",
     description:
-      "Website ohne Programmierung: günstige, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
+      "Bezahlbare, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
     images: [
       {
         url: "/images/og_image.webp",
@@ -64,9 +61,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Günstige Website für Startups – sicher & ohne Outsourcing | STACKWERKHAUS",
+      "Bezahlbare Website für Startups – sicher & direkt | STACKWERKHAUS",
     description:
-      "Website ohne Programmierung: günstige, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
+      "Bezahlbare, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
     images: ["/images/og_image.webp"],
   },
   robots: {

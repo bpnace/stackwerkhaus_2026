@@ -1,4 +1,29 @@
+import type { Metadata } from "next";
 import { TransitionLink } from "@/components/ui/TransitionLink";
+
+export const metadata: Metadata = {
+  title: "Impressum",
+  description:
+    "Impressum und Anbieterkennzeichnung von STACKWERKHAUS in Berlin.",
+  alternates: {
+    canonical: "/impressum",
+  },
+  openGraph: {
+    title: "Impressum | STACKWERKHAUS",
+    description:
+      "Impressum und Anbieterkennzeichnung von STACKWERKHAUS in Berlin.",
+    url: "/impressum",
+    siteName: "STACKWERKHAUS",
+    locale: "de_DE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Impressum | STACKWERKHAUS",
+    description:
+      "Impressum und Anbieterkennzeichnung von STACKWERKHAUS in Berlin.",
+  },
+};
 
 export default function ImpressumPage() {
   return (

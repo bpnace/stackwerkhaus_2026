@@ -42,8 +42,10 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       transformOrigin: "bottom",
       duration: 0.5,
       ease: "power4.inOut",
-    })
-      .to(
+    });
+
+    if (logo) {
+      tl.to(
         logo,
         {
           autoAlpha: 1,
@@ -51,26 +53,32 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
           ease: "power2.out",
         },
         "-=0.2"
-      )
-      .call(() => {
-        router.push(href);
-      })
-      .to(overlay, {
-        scaleY: 0,
-        transformOrigin: "top",
-        duration: 0.5,
-        ease: "power4.inOut",
-        delay: 0.3,
-      });
-    tl.to(
-      logo,
-      {
-        autoAlpha: 0,
-        duration: 0.2,
-        ease: "power2.inOut",
-      },
-      "<"
-    );
+      );
+    }
+
+    tl.call(() => {
+      router.push(href);
+    });
+
+    tl.to(overlay, {
+      scaleY: 0,
+      transformOrigin: "top",
+      duration: 0.5,
+      ease: "power4.inOut",
+      delay: 0.3,
+    });
+
+    if (logo) {
+      tl.to(
+        logo,
+        {
+          autoAlpha: 0,
+          duration: 0.2,
+          ease: "power2.inOut",
+        },
+        "<"
+      );
+    }
   };
 
   return (

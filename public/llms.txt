@@ -1,0 +1,6 @@
+# STACKWERKHAUS
+
+User-agent: *
+Allow: /
+
+Sitemap: https://stackwerkhaus.de/sitemap.xml

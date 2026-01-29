@@ -1,4 +1,29 @@
+import type { Metadata } from "next";
 import { TransitionLink } from "@/components/ui/TransitionLink";
+
+export const metadata: Metadata = {
+  title: "Cookie-Richtlinien",
+  description:
+    "Cookie-Richtlinien von STACKWERKHAUS mit Übersicht zu eingesetzten Cookies und Einwilligungen.",
+  alternates: {
+    canonical: "/cookie-richtlinien",
+  },
+  openGraph: {
+    title: "Cookie-Richtlinien | STACKWERKHAUS",
+    description:
+      "Cookie-Richtlinien von STACKWERKHAUS mit Übersicht zu eingesetzten Cookies und Einwilligungen.",
+    url: "/cookie-richtlinien",
+    siteName: "STACKWERKHAUS",
+    locale: "de_DE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Cookie-Richtlinien | STACKWERKHAUS",
+    description:
+      "Cookie-Richtlinien von STACKWERKHAUS mit Übersicht zu eingesetzten Cookies und Einwilligungen.",
+  },
+};
 
 export default function CookieRichtlinienPage() {
   return (

@@ -8,9 +8,12 @@ import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const competencies = [
-  "Website ohne Programmierung",
-  "Günstige Startup Website",
-  "No-Code & Low-Code",
+  "Individuelle Webentwicklung",
+  "Bezahlbare Startup Website",
+  "Günstige Webentwicklung",
+  "DSGVO-konforme Websites",
+  "Mobile-Optimierung",
+  "CMS-Integration",
   "SEO-Optimierung 2026",
   "Sichere Website (DSGVO)",
   "Performance & Core Web Vitals",
@@ -23,13 +26,18 @@ const competencies = [
 ];
 
 const principles = [
-  "Website ohne Outsourcing: Direkt, transparent, effizient.",
-  "Sicher & günstig: DSGVO‑Fokus und klare Pakete.",
-  "Schneller Launch: Von 0 auf Website in wenigen Wochen.",
-  "E‑E‑A‑T: Klare Struktur, echte Referenzen, messbare Wirkung.",
-  "SEO & AEO: Inhalte für Suche und AI Overviews optimiert.",
-  "Conversion‑Fokus: Nutzerführung, Vertrauen, klare CTAs.",
-  "Startups zuerst: Pragmatismus statt Agentur‑Overhead.",
+  "Direkt von uns: günstig, schnell, zuverlässig.",
+  "Neuste Technologien: modern & zukunftssicher.",
+  "Auf Startup fokussiert: Lösungen für Gründer.",
+  "Übersichtliche Preise: keine versteckten Kosten.",
+  "Ohne Outsourcing: Qualität aus einer Hand.",
+  "Sicher & DSGVO‑konform: Vertrauen als Basis.",
+  "SEO/AEO‑Vorsprung: Sichtbarkeit in Suche & AI Overviews.",
+  "Klarer Aufbau: verständliche Inhalte, starke Nutzerführung.",
+  "Schnell online: zügige Umsetzung ohne Kompromisse.",
+  "Visuell ansprechend: modernes Design, das wirkt.",
+  "Performance‑Fokus: schnelle Ladezeiten & saubere Technik.",
+  "Startup‑Mindset: pragmatisch, effizient, ergebnisorientiert.",
 ];
 
 const pillSizes = competencies.map((_, index) => (index % 4 === 0 ? "lg" : "md"));
@@ -148,32 +156,40 @@ export function About() {
   return (
     <section id="about" className="mx-auto w-full max-w-6xl px-6 pb-8 pt-24 md:px-10">
       <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="space-y-6">
+        <div className="flex flex-col gap-6">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            Über mich
+            Über uns
           </p>
           <MaskedTextReveal
             as="h2"
             className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
-            Website‑Builder für Startups
+            STACKWERKHAUS für Startups
           </MaskedTextReveal>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
-              Ich bin Arthur aus Berlin und entwickle günstige, sichere Websites
-              für Startups und kleine Unternehmen - ohne Outsourcing. Du bekommst
-              eine professionelle Website, die schnell online geht, verständlich
-              bleibt und Vertrauen schafft.
+              Wir sind STACKWERKHAUS aus Berlin - ein Kollektiv für bezahlbare,
+              sichere Websites. Für Startups und kleine Unternehmen gestalten
+              wir moderne, visuell attraktive Websites, die schnell online gehen
+              und klar strukturiert sind. Wenn du eine günstige Website für ein
+              Startup suchst, eine sichere Website für kleine Unternehmen
+              brauchst oder eine professionelle Website in kurzer Zeit
+              realisieren willst, bist du bei uns richtig. Unsere SEO/AEO-
+              Optimierung sorgt für bessere Sichtbarkeit in der Suche und echte
+              Vorsprünge bei relevanten Anfragen.
             </p>
           </FadeIn>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
-              Ob Website ohne Programmierung, Relaunch oder MVP‑Seite: Ich
-              kombiniere klares Design, SEO‑Basics und DSGVO‑Sicherheit, damit
-              du sichtbar wirst und Anfragen bekommst.
+              Ob komplette Website, Relaunch oder MVP-Seite: Wir kombinieren
+              klares Design, SEO-Basics und DSGVO-Sicherheit mit Performance-
+              Optimierung, damit du sichtbar wirst und Anfragen bekommst. Ideal
+              für Startups, die eine schnelle Website mit klarer Struktur
+              brauchen, und für kleine Unternehmen, die ihre Website modern
+              gestalten und langfristig gut gefunden werden wollen.
             </p>
           </FadeIn>
-          <div className="flex flex-wrap items-center gap-4 border border-black/10 bg-white/70 px-4 py-4">
+          <div className="mt-auto flex flex-wrap items-center gap-4 border border-black/10 bg-white/70 px-4 py-4">
             <span className="font-display text-4xl font-bold uppercase tracking-[0.18em]">
               <CountUp value={8} suffix="+" />
             </span>
@@ -187,8 +203,8 @@ export function About() {
             </div>
           </div>
         </div>
-        <FadeIn direction="up" className="space-y-6">
-          <div className="space-y-6 border border-black/10 bg-white/70 p-6">
+        <FadeIn direction="up" className="h-full">
+          <div className="flex h-full flex-col gap-6 border border-black/10 bg-white/70 p-6">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               Leitprinzipien & Werte
             </p>
@@ -197,7 +213,7 @@ export function About() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <div className="flex items-center justify-between border-t border-black/10 pt-6 text-xs uppercase tracking-[0.35em]">
+            <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-6 text-xs uppercase tracking-[0.35em]">
               <span>Berlin</span>
               <span><b>STACKWERKHAUS</b></span>
             </div>

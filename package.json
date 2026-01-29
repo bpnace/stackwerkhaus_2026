@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "pnpm run sitemap",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "sitemap": "node scripts/generate-sitemap.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },

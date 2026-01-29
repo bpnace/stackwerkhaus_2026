@@ -11,7 +11,7 @@ export function Hero() {
             Günstige Website für Startups
           </span>
           <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            <b>Sicher. Schnell. Ohne Outsourcing.</b>
+            <b>Sicher. Schnell. Direkt.</b>
           </span>
         </FadeIn>
 
@@ -21,12 +21,12 @@ export function Hero() {
               as="h1"
               className="font-display font-bold text-[12vw] leading-[0.82] tracking-[-0.02em] md:text-[6.5vw]"
             >
-              Website ohne Outsourcing erstellen
+              Deine Website einfach erstellt.
             </MaskedTextReveal>
             <FadeIn direction="up">
               <p className="max-w-xl text-lg text-ink-soft md:text-xl">
                 Webdesign für Startups, Selbstständige und kleine Unternehmen:
-                günstig, sicher und ohne Programmierung. Du bekommst eine
+                bezahlbar, sicher und ohne viel Aufwand. Du bekommst eine
                 professionelle Website mit klarem Aufbau, SEO‑Basis und DSGVO‑
                 Fokus in kurzer Zeit.
               </p>

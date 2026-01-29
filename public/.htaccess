@@ -2,13 +2,10 @@ Options -MultiViews
 
 RewriteEngine On
 
-# Force non-www (canonical host)
+# Canonical host + HTTPS (single rule to avoid double redirects)
+RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
-
-# Force HTTPS
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule ^ https://stackwerkhaus.de%{REQUEST_URI} [L,R=301]
 
 # Extensionless URLs -> .html
 RewriteCond %{REQUEST_FILENAME} !-f

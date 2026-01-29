@@ -1,4 +1,29 @@
+import type { Metadata } from "next";
 import { TransitionLink } from "@/components/ui/TransitionLink";
+
+export const metadata: Metadata = {
+  title: "Datenschutz",
+  description:
+    "Datenschutzerklärung von STACKWERKHAUS mit Informationen zu Cookies, Hosting und Terminbuchung.",
+  alternates: {
+    canonical: "/datenschutz",
+  },
+  openGraph: {
+    title: "Datenschutz | STACKWERKHAUS",
+    description:
+      "Datenschutzerklärung von STACKWERKHAUS mit Informationen zu Cookies, Hosting und Terminbuchung.",
+    url: "/datenschutz",
+    siteName: "STACKWERKHAUS",
+    locale: "de_DE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Datenschutz | STACKWERKHAUS",
+    description:
+      "Datenschutzerklärung von STACKWERKHAUS mit Informationen zu Cookies, Hosting und Terminbuchung.",
+  },
+};
 
 export default function DatenschutzPage() {
   return (
