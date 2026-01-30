@@ -16,6 +16,7 @@
 # next.js
 /.next/
 /out/
+public/*
 
 # production
 /build
@@ -23,6 +24,13 @@ docs/
 
 # misc
 .DS_Store
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.local
+*.log
 *.pem
 
 # debug
