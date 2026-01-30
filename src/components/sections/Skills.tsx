@@ -1,5 +1,3 @@
-import type { CSSProperties } from "react";
-
 import { Marquee } from "@/components/animations/Marquee";
 
 const skills = [
@@ -26,31 +24,14 @@ const skills = [
   "Ki-Automation Integration",
 ];
 
-const getDriftStyle = (index: number): CSSProperties => {
-  const driftX = ((index % 9) - 4) * 10;
-  const driftY = ((index % 11) - 5) * 7;
-  const rotate = ((index % 5) - 2) * 0.6;
-  const duration = 16 + (index % 6) * 1.8;
-  const delay = -(index % 9) * 1.1;
-
-  return {
-    ["--drift-x" as string]: `${driftX}px`,
-    ["--drift-y" as string]: `${driftY}px`,
-    ["--drift-rot" as string]: `${rotate}deg`,
-    ["--drift-duration" as string]: `${duration}s`,
-    ["--drift-delay" as string]: `${delay}s`,
-  };
-};
-
 export function Skills() {
   return (
     <section id="skills" className="border-y border-black/10 bg-white/60">
       <Marquee speed={32} mobileSpeed={20} direction="left" className="py-6">
-        {skills.map((skill, index) => (
+        {skills.map((skill) => (
           <span
             key={skill}
-            style={getDriftStyle(index)}
-            className="marquee-item skills-pill mx-6 font-display text-2xl uppercase tracking-[0.2em] text-ink-soft/70 sm:mx-8 sm:text-2xl sm:tracking-[0.25em] md:mx-10 md:text-3xl md:tracking-[0.3em]"
+            className="marquee-item mx-6 font-display text-2xl uppercase tracking-[0.2em] text-ink-soft/70 sm:mx-8 sm:text-2xl sm:tracking-[0.25em] md:mx-10 md:text-3xl md:tracking-[0.3em]"
           >
             {skill}
           </span>
@@ -64,11 +45,10 @@ export function Skills() {
       </div>
 
       <Marquee speed={32} mobileSpeed={20} direction="right" className="py-6">
-        {skills.map((skill, index) => (
+        {skills.map((skill) => (
           <span
             key={skill}
-            style={getDriftStyle(index)}
-            className="marquee-item skills-pill mx-6 font-display text-2xl uppercase tracking-[0.2em] text-ink-soft/70 sm:mx-8 sm:text-2xl sm:tracking-[0.25em] md:mx-10 md:text-3xl md:tracking-[0.3em]"
+            className="marquee-item mx-6 font-display text-2xl uppercase tracking-[0.2em] text-ink-soft/70 sm:mx-8 sm:text-2xl sm:tracking-[0.25em] md:mx-10 md:text-3xl md:tracking-[0.3em]"
           >
             {skill}
           </span>

@@ -46,7 +46,7 @@ export function About() {
   const reducedMotion = useReducedMotion();
   const [motionEnabled, setMotionEnabled] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const pillsRef = useRef<HTMLButtonElement[]>([]);
+  const pillsRef = useRef<HTMLDivElement[]>([]);
   const basePositions = useRef<Array<{ x: number; y: number }>>([]);
   const repelRef = useRef({ x: 0, y: 0, active: false });
   const quickToRef = useRef<Array<{ x: gsap.QuickToFunc; y: gsap.QuickToFunc }>>([]);
@@ -66,20 +66,20 @@ export function About() {
       const container = sectionRef.current;
       if (!container) return;
 
-      const buttons = pillsRef.current.filter(Boolean);
-      if (buttons.length === 0) return;
+      const pills = pillsRef.current.filter(Boolean);
+      if (pills.length === 0) return;
 
       const measure = () => {
-        basePositions.current = buttons.map((button) => ({
-          x: button.offsetLeft + button.offsetWidth / 2,
-          y: button.offsetTop + button.offsetHeight / 2,
+        basePositions.current = pills.map((pill) => ({
+          x: pill.offsetLeft + pill.offsetWidth / 2,
+          y: pill.offsetTop + pill.offsetHeight / 2,
         }));
       };
 
       measure();
       window.addEventListener("resize", measure);
 
-      gsap.from(buttons, {
+      gsap.from(pills, {
         y: -220,
         x: () => gsap.utils.random(-30, 30),
         opacity: 0,
@@ -89,19 +89,16 @@ export function About() {
         ease: "bounce.out",
       });
 
-      quickToRef.current = buttons.map((button) => ({
-        x: gsap.quickTo(button, "x", { duration: 0.1, ease: "power3.out" }),
-        y: gsap.quickTo(button, "y", { duration: 0.1, ease: "power3.out" }),
+      quickToRef.current = pills.map((pill) => ({
+        x: gsap.quickTo(pill, "x", { duration: 0.1, ease: "power3.out" }),
+        y: gsap.quickTo(pill, "y", { duration: 0.1, ease: "power3.out" }),
       }));
 
-      const tick = (time: number) => {
-        buttons.forEach((_, index) => {
+      const tick = () => {
+        pills.forEach((_, index) => {
           const base = basePositions.current[index];
           const quick = quickToRef.current[index];
           if (!quick || !base) return;
-
-          const floatX = Math.sin(time * 0.0012 + index) * 6;
-          const floatY = Math.cos(time * 0.0014 + index * 0.7) * 5;
 
           let repelX = 0;
           let repelY = 0;
@@ -117,8 +114,8 @@ export function About() {
             repelY = dist === 0 ? 0 : (dy / dist) * push;
           }
 
-          quick.x(floatX + repelX);
-          quick.y(floatY + repelY);
+          quick.x(repelX);
+          quick.y(repelY);
         });
       };
 
@@ -155,7 +152,7 @@ export function About() {
 
   return (
     <section id="about" className="mx-auto w-full max-w-6xl px-6 pb-8 pt-24 md:px-10">
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="grid items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col gap-6">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Über uns
@@ -164,7 +161,7 @@ export function About() {
             as="h2"
             className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
-            STACKWERKHAUS für Startups
+            Wer ist STACKWERKHAUS?
           </MaskedTextReveal>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
@@ -232,19 +229,22 @@ export function About() {
           >
             <div className="relative flex h-full -translate-y-4 flex-wrap content-center items-center justify-center gap-3">
               {competencies.map((item, index) => (
-                <button
+                <div
                   key={item}
                   ref={(el) => {
                     if (el) pillsRef.current[index] = el;
                   }}
-                  className={`relative whitespace-nowrap rounded-full border border-black/15 bg-white/90 px-4 py-2 text-xs uppercase tracking-[0.28em] text-ink-soft shadow-[0_10px_22px_rgba(0,0,0,0.08)] ${
-                    pillSizes[index] === "lg"
-                      ? "md:px-6 md:py-3 md:text-sm"
-                      : "md:text-xs"
-                  }`}
                 >
-                  <span className="relative z-10">{item}</span>
-                </button>
+                  <button
+                    className={`relative whitespace-nowrap rounded-full border border-black/15 bg-white/90 px-4 py-2 text-xs uppercase tracking-[0.28em] text-ink-soft shadow-[0_10px_22px_rgba(0,0,0,0.08)] ${
+                      pillSizes[index] === "lg"
+                        ? "md:px-6 md:py-3 md:text-sm"
+                        : "md:text-xs"
+                    }`}
+                  >
+                    <span className="relative z-10">{item}</span>
+                  </button>
+                </div>
               ))}
             </div>
           </div>
