@@ -9,7 +9,7 @@ export async function Work() {
   const projects = await getPortfolioProjects();
 
   return (
-    <section id="work" className="mx-auto w-full max-w-6xl px-6 py-24 md:px-10">
+    <section id="work" className="mx-auto w-full max-w-6xl px-6 md:px-10">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="space-y-3">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
