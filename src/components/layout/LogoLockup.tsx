@@ -136,8 +136,8 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
   );
 
   const letters = [
-    { glyph: "H", width: 121, height: 154 },
-    { glyph: "K", width: 88, height: 154 },
+    { glyph: "K", width: 121, height: 154 },
+    { glyph: "H", width: 88, height: 154 },
     { glyph: "S", width: 88, height: 154 },
   ];
 
