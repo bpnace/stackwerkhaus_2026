@@ -125,8 +125,8 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
         };
       };
 
-      mm.add("(min-width: 768px)", () => setPositions(4, 5));
-      mm.add("(max-width: 767px)", () => setPositions(3, 4));
+      mm.add("(min-width: 768px)", () => setPositions(-3, -3));
+      mm.add("(max-width: 767px)", () => setPositions(-3, -3));
 
       return () => {
         mm.revert();
@@ -178,7 +178,7 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
             alt={letter.glyph}
             width={letter.width}
             height={letter.height}
-            className="h-7 w-auto md:h-7.5"
+            className="h-7 w-auto md:h-7"
             priority
           />
         </div>
