@@ -1,6 +1,7 @@
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { MagneticLink } from "@/components/animations/MagneticLink";
+import { ScrollHint } from "@/components/animations/ScrollHint";
 
 export function Hero() {
   return (
@@ -76,7 +77,7 @@ export function Hero() {
         >
           <span>Berlin / Remote</span>
           <span>Websites für Startups & junge Businesses</span>
-          <span className="font-bold">Scroll</span>
+          <ScrollHint className="font-bold tracking-[0.35em]" />
         </FadeIn>
       </div>
     </section>
