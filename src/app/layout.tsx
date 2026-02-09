@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://stackwerkhaus.de"),
   title: {
     default:
-      "Bezahlbare Website für Startups – sicher & direkt | STACKWERKHAUS",
+      "Bezahlbare Website für Startups - sicher & direkt | STACKWERKHAUS",
     template: "%s | STACKWERKHAUS",
   },
   description:
