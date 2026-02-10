@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { ImageReveal } from "@/components/animations/ImageReveal";
@@ -15,7 +16,7 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const projects = await getPortfolioProjects();
@@ -146,7 +147,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
           <div className="flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft">
             <TransitionLink
               href="/#work"
-              className="flex items-center gap-2 text-ink-soft hover:text-foreground"
+              className="flex items-center gap-2 text-ink-soft hover:text-foreground font-bold"
               data-cursor-text="Zurück"
             >
               <span>↙</span>
@@ -268,6 +269,28 @@ export default async function WorkDetailPage({ params }: PageProps) {
           </div>
         </div>
 
+        <div className="mx-auto w-full max-w-6xl px-6 pb-10 md:px-10">
+          <FadeIn direction="up" className="grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
+            <div className="space-y-4">
+              <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                Projektfokus
+              </p>
+              <MaskedTextReveal
+                as="h2"
+                className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-4xl"
+              >
+                Schneller Start, klare Wirkung
+              </MaskedTextReveal>
+              <p className="text-sm text-ink-soft">
+                Das Projekt wurde so aufgebaut, dass Entscheidungen schnell
+                getroffen werden können und die Website ohne unnötige Schleifen
+                live geht. Struktur, Inhalte und visuelle Hierarchie sorgen für
+                klare Wege zu Anfrage und Kontakt.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+
         <div className="mx-auto w-full max-w-6xl px-6 pb-24 md:px-10">
           <FadeIn direction="up" trigger="load">
             <div className="relative aspect-[16/9] overflow-hidden border border-black/10 bg-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
@@ -280,8 +303,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
                   className="h-full w-full"
                   direction="up"
                   trigger="load"
-                  priority
-                  fetchPriority="high"
+                  fetchPriority="low"
                 />
               ) : (
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(198,90,46,0.3),rgba(21,21,20,0.15))]" />
@@ -333,25 +355,18 @@ export default async function WorkDetailPage({ params }: PageProps) {
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-6 py-24 md:px-10">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-6">
           <div className="space-y-3">
-            <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-              {projectType === "Case Study"
-                ? "Weitere Case Studies"
-                : "Weitere Projekte"}
-            </p>
             <MaskedTextReveal
               as="h2"
               className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
             >
-              {projectType === "Case Study"
-                ? "Nächste Case Studies"
-                : "Nächste Projekte"}
+              Weitere Projekte
             </MaskedTextReveal>
           </div>
           <TransitionLink
             href="/#work"
-            className="text-xs uppercase tracking-[0.35em] text-ink-soft hover:text-foreground"
+            className="text-xs font-bold uppercase tracking-[0.35em] text-ink-soft hover:text-foreground"
             data-cursor-text="Übersicht"
           >
             Zur Übersicht
@@ -367,7 +382,18 @@ export default async function WorkDetailPage({ params }: PageProps) {
               data-cursor-text="Ansehen"
             >
               <div className="space-y-4">
-                <div className="h-28 w-full border border-black/10 bg-[linear-gradient(135deg,rgba(198,90,46,0.2),rgba(21,21,20,0.08))]" />
+                <div className="relative h-28 w-full overflow-hidden border border-black/10 bg-[linear-gradient(135deg,rgba(198,90,46,0.2),rgba(21,21,20,0.08))]">
+                  {item.cover?.url && (
+                    <Image
+                      src={item.cover.url}
+                      alt={item.cover.alt || item.title}
+                      fill
+                      sizes="(min-width: 768px) 20vw, 80vw"
+                      className="object-cover blur-sm"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-black/10" />
+                </div>
                 <div>
                   <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                     {item.client ||

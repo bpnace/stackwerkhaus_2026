@@ -1,55 +1,45 @@
+import Image from "next/image";
+
 import { TransitionLink } from "@/components/ui/TransitionLink";
+
+
+const legalLinks = [
+  { href: "/impressum", label: "Impressum" },
+  { href: "/datenschutz", label: "Datenschutz" },
+  { href: "/cookie-richtlinien", label: "Cookie-Richtlinien" },
+];
 
 const socialLinks = [
   {
     href: "https://www.instagram.com/stackwerkhaus",
     label: "Instagram",
     icon: (
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 24 24"
-        className="h-5 w-5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <rect x="4" y="4" width="16" height="16" rx="4" />
-        <circle cx="12" cy="12" r="4.2" />
-        <circle cx="17.3" cy="6.7" r="1" fill="currentColor" />
-      </svg>
+      <Image
+        src="/images/logos/instagram_icon.svg"
+        alt=""
+        width={20}
+        height={20}
+      />
     ),
   },
   {
     href: "https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239",
     label: "LinkedIn",
     icon: (
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 24 24"
-        className="h-5 w-5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <rect x="4" y="4" width="16" height="16" rx="2" />
-        <path d="M8 10v6" />
-        <path d="M8 8v.01" />
-        <path d="M12 16v-3a2 2 0 0 1 4 0v3" />
-        <path d="M12 10v6" />
-      </svg>
+      <Image
+        src="/images/logos/LinkedIn_icon.svg"
+        alt=""
+        width={20}
+        height={20}
+      />
     ),
   },
-];
-
-const legalLinks = [
-  { href: "/impressum", label: "Impressum" },
-  { href: "/datenschutz", label: "Datenschutz" },
 ];
 
 export function Footer() {
   return (
     <footer className="border-t border-black/10 bg-[rgba(243,239,230,0.85)]">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-10 text-sm md:flex-row md:items-center md:justify-between md:px-10">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-10 text-sm md:flex-row md:items-start md:justify-between md:px-10">
         <div className="space-y-2">
           <p className="font-display font-bold text-xl uppercase tracking-[0.2em]">
             STACKWERKHAUS
@@ -66,20 +56,6 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-6 text-xs uppercase tracking-[0.3em]">
-          <div className="flex items-center gap-4">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                aria-label={link.label}
-                target="_blank"
-                rel="noreferrer"
-                className="text-ink-soft transition-colors hover:text-foreground"
-              >
-                {link.icon}
-              </a>
-            ))}
-          </div>
           <div className="flex items-center gap-6">
             {legalLinks.map((link) => (
               <TransitionLink
@@ -90,6 +66,38 @@ export function Footer() {
                 {link.label}
               </TransitionLink>
             ))}
+          </div>
+          <div className="flex items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  aria-label={link.label}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-ink-soft transition-colors hover:text-foreground"
+                >
+                  {link.icon}
+                </a>
+              ))}
+            </div>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/eu_lock.svg"
+                alt="EU Lock"
+                width={54}
+                height={64}
+                className="opacity-80"
+              />
+              <Image
+                src="/images/logos/eu_hoster.png"
+                alt="EU Hoster"
+                width={76}
+                height={86}
+                className="opacity-80"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -9,12 +9,14 @@ interface MaskedTextRevealProps {
   children: string;
   as?: "h1" | "h2" | "h3" | "p" | "span";
   className?: string;
+  lastLinePaddingEm?: number;
 }
 
 export function MaskedTextReveal({
   children,
   as: Component = "h1",
   className = "",
+  lastLinePaddingEm,
 }: MaskedTextRevealProps) {
   const containerRef = useRef<HTMLElement | null>(null);
   const reducedMotion = useReducedMotion();
@@ -28,10 +30,15 @@ export function MaskedTextReveal({
         tagName: "span",
       });
 
-      split.lines?.forEach((line) => {
+      const lines = split.lines ?? [];
+      lines.forEach((line, index) => {
         const wrapper = document.createElement("div");
         wrapper.style.overflow = "hidden";
         wrapper.style.display = "block";
+        if (lastLinePaddingEm && index === lines.length - 1) {
+          wrapper.style.paddingBottom = `${lastLinePaddingEm}em`;
+          wrapper.style.marginBottom = `-${lastLinePaddingEm}em`;
+        }
         line.parentNode?.insertBefore(wrapper, line);
         wrapper.appendChild(line);
       });
@@ -54,7 +61,7 @@ export function MaskedTextReveal({
 
       return () => split.revert();
     },
-    { scope: containerRef, dependencies: [reducedMotion] }
+    { scope: containerRef, dependencies: [reducedMotion, lastLinePaddingEm] }
   );
 
   return (

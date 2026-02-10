@@ -8,28 +8,36 @@ import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const competencies = [
-  "Web & App Entwicklung ",
-  "KI-Integration",
+  "Individuelle Webentwicklung",
+  "Bezahlbare Startup Website",
+  "Günstige Webentwicklung",
+  "DSGVO-konforme Websites",
+  "Mobile-Optimierung",
+  "CMS-Integration",
+  "SEO-Optimierung 2026",
+  "Sichere Website (DSGVO)",
+  "Performance & Core Web Vitals",
   "UI/UX Design",
-  "Projektmanagement",
   "Content-Strategie",
-  "SEO optimierung",
-  "Performance-Optimierung",
-  "Sicherheit und Datenschutz",
-  "Responsive Design",
-  "Wartung & Support",
   "Barrierefreiheit",
-  "Datenanalyse & Reporting",
+  "Wartung & Support",
+  "KI-Integration",
+  "Conversion-Optimierung",
 ];
 
 const principles = [
-  "Tech trifft Business: Digitale Produkte, die konvertieren.",
-  "KI als Multiplikator: Mehr Wirkung in kürzerer Zeit.",
-  "Transparenz & Partnerschaft: Klare Kommunikation auf Augenhöhe.",
-  "Berliner Innovation: Frische Perspektiven aus der Tech-Szene.",
-  "Nachhaltigkeit: Langfristige Werte statt kurzfristiger Lösungen.",
-  "Kundenzentrierung: Deine Ziele im Fokus jeder Entscheidung.",
-  "Benutzererlebnis: Intuitive Designs, die begeistern.",
+  "Direkt von uns: günstig, schnell, zuverlässig.",
+  "Neuste Technologien: modern & zukunftssicher.",
+  "Blitzschnlle Ladezeiten: optimiert für alle Geräte.",
+  "Übersichtliche Preise: keine versteckten Kosten.",
+  "Automationen & KI: Effizienz durch smarte Tools.",
+  "Sicher & DSGVO-konform: Vertrauen als Basis.",
+  "SEO/AEO-Vorsprung: Sichtbarkeit in Suche & AI Overviews.",
+  "Klarer Aufbau: verständliche Inhalte, starke Nutzerführung.",
+  "Schnell online: zügige Umsetzung ohne Kompromisse.",
+  "Visuell ansprechend: modernes Design, das wirkt.",
+  "Begleiung & Support: wir sind für dich da.",
+  "Integration: nahtlose Einbindung in bestehende Systeme und Tools.",
 ];
 
 const pillSizes = competencies.map((_, index) => (index % 4 === 0 ? "lg" : "md"));
@@ -38,7 +46,7 @@ export function About() {
   const reducedMotion = useReducedMotion();
   const [motionEnabled, setMotionEnabled] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const pillsRef = useRef<HTMLButtonElement[]>([]);
+  const pillsRef = useRef<HTMLDivElement[]>([]);
   const basePositions = useRef<Array<{ x: number; y: number }>>([]);
   const repelRef = useRef({ x: 0, y: 0, active: false });
   const quickToRef = useRef<Array<{ x: gsap.QuickToFunc; y: gsap.QuickToFunc }>>([]);
@@ -58,20 +66,20 @@ export function About() {
       const container = sectionRef.current;
       if (!container) return;
 
-      const buttons = pillsRef.current.filter(Boolean);
-      if (buttons.length === 0) return;
+      const pills = pillsRef.current.filter(Boolean);
+      if (pills.length === 0) return;
 
       const measure = () => {
-        basePositions.current = buttons.map((button) => ({
-          x: button.offsetLeft + button.offsetWidth / 2,
-          y: button.offsetTop + button.offsetHeight / 2,
+        basePositions.current = pills.map((pill) => ({
+          x: pill.offsetLeft + pill.offsetWidth / 2,
+          y: pill.offsetTop + pill.offsetHeight / 2,
         }));
       };
 
       measure();
       window.addEventListener("resize", measure);
 
-      gsap.from(buttons, {
+      gsap.from(pills, {
         y: -220,
         x: () => gsap.utils.random(-30, 30),
         opacity: 0,
@@ -81,19 +89,16 @@ export function About() {
         ease: "bounce.out",
       });
 
-      quickToRef.current = buttons.map((button) => ({
-        x: gsap.quickTo(button, "x", { duration: 0.1, ease: "power3.out" }),
-        y: gsap.quickTo(button, "y", { duration: 0.1, ease: "power3.out" }),
+      quickToRef.current = pills.map((pill) => ({
+        x: gsap.quickTo(pill, "x", { duration: 0.1, ease: "power3.out" }),
+        y: gsap.quickTo(pill, "y", { duration: 0.1, ease: "power3.out" }),
       }));
 
-      const tick = (time: number) => {
-        buttons.forEach((_, index) => {
+      const tick = () => {
+        pills.forEach((_, index) => {
           const base = basePositions.current[index];
           const quick = quickToRef.current[index];
           if (!quick || !base) return;
-
-          const floatX = Math.sin(time * 0.0012 + index) * 6;
-          const floatY = Math.cos(time * 0.0014 + index * 0.7) * 5;
 
           let repelX = 0;
           let repelY = 0;
@@ -109,8 +114,8 @@ export function About() {
             repelY = dist === 0 ? 0 : (dy / dist) * push;
           }
 
-          quick.x(floatX + repelX);
-          quick.y(floatY + repelY);
+          quick.x(repelX);
+          quick.y(repelY);
         });
       };
 
@@ -147,34 +152,41 @@ export function About() {
 
   return (
     <section id="about" className="mx-auto w-full max-w-6xl px-6 pb-8 pt-24 md:px-10">
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="space-y-6">
+      <div className="grid items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="flex flex-col gap-6">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            Über mich
+            Über uns
           </p>
           <MaskedTextReveal
             as="h2"
             className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
-            Arthur Marshall
+            Wer ist STACKWERKHAUS?
           </MaskedTextReveal>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
-              Hey, ich bin Arthur aus Berlin, Gründer von STACKWERKHAUS und dein
-              Ansprechpartner für deine erste Website. Ich mach’s dir einfach: Du
-              sagst mir, was du brauchst, und ich kümmere mich um den Rest.
-              Keine Fachbegriffe, kein Technikstress nur überzeugende Ergebnisse.
+              Wir sind STACKWERKHAUS aus Berlin - ein Kollektiv für bezahlbare,
+              sichere Websites. Für Startups und kleine Unternehmen gestalten
+              wir moderne, visuell attraktive Websites, die schnell online gehen
+              und klar strukturiert sind. Wenn du eine günstige Website für ein
+              Startup suchst, eine sichere Website für kleine Unternehmen
+              brauchst oder eine professionelle Website in kurzer Zeit
+              realisieren willst, bist du bei uns richtig. Unsere SEO/AEO-
+              Optimierung sorgt für bessere Sichtbarkeit in der Suche und echte
+              Vorsprünge bei relevanten Anfragen.
             </p>
           </FadeIn>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
-              Ich verbinde langjährige B2B/B2C-Erfahrung mit technischer
-              Expertise und KI-Wissen, um digitale Produkte zu schaffen, die
-              nicht nur ästhetisch überzeugen sondern nachhaltige Werte für
-              dein Unternehmen generieren.
+              Ob komplette Website, Relaunch oder MVP-Seite: Wir kombinieren
+              klares Design, SEO-Basics und DSGVO-Sicherheit mit Performance-
+              Optimierung, damit du sichtbar wirst und Anfragen bekommst. Ideal
+              für Startups, die eine schnelle Website mit klarer Struktur
+              brauchen, und für kleine Unternehmen, die ihre Website modern
+              gestalten und langfristig gut gefunden werden wollen.
             </p>
           </FadeIn>
-          <div className="flex flex-wrap items-center gap-4 border border-black/10 bg-white/70 px-4 py-4">
+          <div className="mt-auto flex flex-wrap items-center gap-4 border border-black/10 bg-white/70 px-4 py-4">
             <span className="font-display text-4xl font-bold uppercase tracking-[0.18em]">
               <CountUp value={8} suffix="+" />
             </span>
@@ -188,8 +200,8 @@ export function About() {
             </div>
           </div>
         </div>
-        <FadeIn direction="up" className="space-y-6">
-          <div className="space-y-6 border border-black/10 bg-white/70 p-6">
+        <FadeIn direction="up" className="h-full">
+          <div className="flex h-full flex-col gap-6 border border-black/10 bg-white/70 p-6">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               Leitprinzipien & Werte
             </p>
@@ -198,7 +210,7 @@ export function About() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <div className="flex items-center justify-between border-t border-black/10 pt-6 text-xs uppercase tracking-[0.35em]">
+            <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-6 text-xs uppercase tracking-[0.35em]">
               <span>Berlin</span>
               <span><b>STACKWERKHAUS</b></span>
             </div>
@@ -217,19 +229,22 @@ export function About() {
           >
             <div className="relative flex h-full -translate-y-4 flex-wrap content-center items-center justify-center gap-3">
               {competencies.map((item, index) => (
-                <button
+                <div
                   key={item}
                   ref={(el) => {
                     if (el) pillsRef.current[index] = el;
                   }}
-                  className={`relative whitespace-nowrap rounded-full border border-black/15 bg-white/90 px-4 py-2 text-xs uppercase tracking-[0.28em] text-ink-soft shadow-[0_10px_22px_rgba(0,0,0,0.08)] ${
-                    pillSizes[index] === "lg"
-                      ? "md:px-6 md:py-3 md:text-sm"
-                      : "md:text-xs"
-                  }`}
                 >
-                  <span className="relative z-10">{item}</span>
-                </button>
+                  <button
+                    className={`relative whitespace-nowrap rounded-full border border-black/15 bg-white/90 px-4 py-2 text-xs uppercase tracking-[0.28em] text-ink-soft shadow-[0_10px_22px_rgba(0,0,0,0.08)] ${
+                      pillSizes[index] === "lg"
+                        ? "md:px-6 md:py-3 md:text-sm"
+                        : "md:text-xs"
+                    }`}
+                  >
+                    <span className="relative z-10">{item}</span>
+                  </button>
+                </div>
               ))}
             </div>
           </div>

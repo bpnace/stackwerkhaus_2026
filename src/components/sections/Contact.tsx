@@ -1,58 +1,13 @@
 "use client";
 
 import Script from "next/script";
+import type { MouseEvent } from "react";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { MagneticLink } from "@/components/animations/MagneticLink";
 
-const calendlyUrl = "https://calendly.com/kontakt-codariq/30min";
 const calendlyPopupUrl =
   "https://calendly.com/kontakt-codariq/30min?hide_event_type_details=1&hide_gdpr_banner=1";
-const faqItems = [
-  {
-    question: "Was kostet eine Website bei STACKWERKHAUS?",
-    answer:
-      "Basis-Websites starten ab 999€ inklusive Konzeption und Umsetzung. Der finale Preis hängt von Umfang, Seitenanzahl und Funktionen ab - nach dem Erstgespräch bekommst du ein klares Angebot.",
-  },
-  {
-    question: "Wie lange dauert ein Projekt?",
-    answer:
-      "Der Zeitrahmen richtet sich nach Umfang und Feedback. Nach dem Kick-off erhältst du einen realistischen Zeitplan.",
-  },
-  {
-    question: "Was ist im Webdesign enthalten?",
-    answer:
-      "Konzept, Struktur, Design, Umsetzung, responsive Optimierung und ein sauberer Launch.",
-  },
-  {
-    question: "Bietet ihr auch Branding an?",
-    answer:
-      "Ja. Von Logo und Look & Feel bis hin zu einer klaren Markenlinie, die sich durch die Website zieht.",
-  },
-  {
-    question: "Was bedeutet Full-Stack Lösungen bei euch?",
-    answer:
-      "Neben der Oberfläche entsteht eine stabile technische Basis: Performance, Content-Struktur, Integrationen und eine saubere Übergabe.",
-  },
-  {
-    question: "Wie hilft KI-Integration meinem Business?",
-    answer:
-      "KI kann Inhalte oder Prozesse automatisieren je nach Bedarf mit klar messbarem Nutzen.",
-  },
-];
-
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-};
-
+const calendlyUrl = calendlyPopupUrl;
 declare global {
   interface Window {
     Calendly?: {
@@ -62,9 +17,7 @@ declare global {
 }
 
 export function Contact() {
-  const handleCalendlyClick = (
-    event: React.MouseEvent<HTMLAnchorElement>
-  ) => {
+  const handleCalendlyClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (window.Calendly?.initPopupWidget) {
       event.preventDefault();
       window.Calendly.initPopupWidget({ url: calendlyPopupUrl });
@@ -84,19 +37,19 @@ export function Contact() {
               Kontakt
             </p>
             <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
-              Bereit für den nächsten Schritt?
+              Überzeugt? Lass uns sprechen!
             </h2>
             <p className="max-w-lg text-base text-ink-soft">
-              Dann lass uns gemeinsam deine Website an den Start bringen! Ganz
-              einfach, schnell und ohne Technikstress.
+              Jetzt einen Termin vereinbaren um eine beeindruckenden Online-Auftritt zu erhalten, der Ihren Umsatz
+              steigert und Ihre Marke stärkt. Schnell online, klar strukturiert, Einzigartig und professionell nur für dich erstellt.
             </p>
           </FadeIn>
 
-          <FadeIn direction="up">
+          <FadeIn direction="up" className="md:mt-8 lg:mt-10">
             <div className="flex flex-col gap-6 border border-black/10 bg-white/80 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] md:p-8">
               <div className="space-y-3">
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                  Direkt starten
+                  Direkt Termin sichern
                 </p>
                 <a
                   href="mailto:info@stackwerkhaus.de"
@@ -122,47 +75,8 @@ export function Contact() {
           </FadeIn>
         </div>
 
-      <div id="faq" className="mx-auto w-full max-w-6xl px-6 pb-20 md:px-10 md:pb-24">
-        <FadeIn direction="up" className="space-y-8">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div className="space-y-3">
-              <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                FAQ
-              </p>
-              <h3 className="font-display font-bold text-2xl uppercase tracking-[0.2em] md:text-4xl">
-                Häufige Fragen
-              </h3>
-            </div>
-            <p className="max-w-md text-sm text-ink-soft">
-              Kurz, klar und ohne Technikstress. Die wichtigsten Antworten auf
-              einen Blick.
-            </p>
-          </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {faqItems.map((item) => (
-              <div
-                key={item.question}
-                className="space-y-3 border border-black/10 bg-white/80 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.06)]"
-              >
-                <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                  Frage
-                </p>
-                <h4 className="font-display text-xl font-bold uppercase tracking-[0.16em]">
-                  {item.question}
-                </h4>
-                <p className="text-sm text-ink-soft">{item.answer}</p>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
-      </div>
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-      </section>
+    </section>
     </>
   );
 }

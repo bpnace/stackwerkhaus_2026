@@ -26,7 +26,7 @@ export const portfolioProjects: PortfolioProject[] = [
     type: "Projekt",
     website: "https://www.immo-pal.de",
     summary:
-      "Ihr vertrauensvoller Partner für Immobilien in Deutschland - mit persönlicher Beratung, kostenloser Bewertung und einem klaren digitalen Auftritt. Klare Wege zu Bewertung, Verkauf und Immobiliensuche sowie ein direkter Kontaktfokus sorgen für Vertrauen und schnelle Anfragen.",
+      "Dein vertrauensvoller Partner für Immobilien in Deutschland - mit persönlicher Beratung, kostenloser Bewertung und einem klaren digitalen Auftritt. Klare Wege zu Bewertung, Verkauf und Immobiliensuche sowie ein direkter Kontaktfokus sorgen für Vertrauen und schnelle Anfragen.",
     body: "Für immo-pal entstand eine Plattform, die Verkauf, Bewertung und Immobiliensuche klar strukturiert. Der Fokus liegt auf Vertrauen, transparenter Beratung und einer reibungslosen Lead-Generierung für Verkäufe und Suchaufträge.",
     cover: {
       url: "/images/projekte/immopal.webp",
@@ -105,7 +105,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: "Uncloud",
     client: "Uncloud",
     slug: "uncloud",
-    year: "2023",
+    year: "2025",
     services: ["Strategie", "Webdesign", "Entwicklung"],
     summary:
       "Eine App, die mentale Gesundheit stärkt: KI-gestützte Gewohnheiten, regelmäßige Check-ins und klare Impulse helfen, den Kopf zu entlasten und negative Gedankenspiralen zu lösen.",
