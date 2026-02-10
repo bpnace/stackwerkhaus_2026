@@ -4,6 +4,7 @@ import { TransitionLink } from "@/components/ui/TransitionLink";
 
 
 const legalLinks = [
+  { href: "/work", label: "Projekte" },
   { href: "/impressum", label: "Impressum" },
   { href: "/datenschutz", label: "Datenschutz" },
   { href: "/cookie-richtlinien", label: "Cookie-Richtlinien" },

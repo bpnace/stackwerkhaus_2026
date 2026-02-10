@@ -35,6 +35,9 @@ const monoFont = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://stackwerkhaus.de"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default:
       "Bezahlbare Website für Startups - sicher & direkt | STACKWERKHAUS",

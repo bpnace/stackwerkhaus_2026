@@ -23,7 +23,7 @@ export async function Work() {
           </MaskedTextReveal>
         </div>
         <p className="max-w-md text-sm text-ink-soft">
-          Bezahlbare Website-Pakete, schnelle Umsetzung und messbare Ergebnisse.
+          Personalisierte Website-Pakete, schnelle Umsetzung und messbare Ergebnisse.
           Beispiele zeigen, wie sichere, klare Websites für Startups entstehen.
         </p>
       </div>

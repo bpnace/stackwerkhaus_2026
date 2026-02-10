@@ -9,7 +9,7 @@ export function Hero() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pt-16 md:px-10 md:pb-32">
         <FadeIn direction="up" className="flex flex-wrap items-center gap-4">
           <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            Überzeugende Websites für Startups
+            Überzeugende Websites
           </span>
           <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             <b>Sicher. Schnell. Direkt.</b>
