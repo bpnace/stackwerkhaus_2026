@@ -9,7 +9,7 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const competencies = [
   "Individuelle Webentwicklung",
-  "Bezahlbare Startup Website",
+  "Moderne Startup Websites",
   "Günstige Webentwicklung",
   "DSGVO-konforme Websites",
   "Mobile-Optimierung",
@@ -165,7 +165,7 @@ export function About() {
           </MaskedTextReveal>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
-              Wir sind STACKWERKHAUS aus Berlin - ein Kollektiv für bezahlbare,
+              Wir sind STACKWERKHAUS aus Berlin - ein Kollektiv für moderne, ästhetische und
               sichere Websites. Für Startups und kleine Unternehmen gestalten
               wir moderne, visuell attraktive Websites, die schnell online gehen
               und klar strukturiert sind. Wenn du eine günstige Website für ein

@@ -32,7 +32,7 @@ export const faqItems = [
   {
     question: "Wie erstelle ich eine Website für mein Startup mit wenig Budget?",
     answer:
-      "Wir definieren gemeinsam den Fokus, priorisieren Inhalte und liefern eine bezahlbare Startup-Website mit klarer Struktur, schneller Umsetzung und sauberem Launch.",
+      "Wir definieren gemeinsam den Fokus, priorisieren Inhalte und liefern eine moderne Startup-Website mit klarer Struktur, schneller Umsetzung und sauberem Launch.",
   },
   {
     question: "Gibt es eine sichere Website für kleine Unternehmen mit DSGVO-Basis?",

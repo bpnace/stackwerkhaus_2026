@@ -28,7 +28,7 @@ export function Hero() {
             <FadeIn direction="up" className="relative z-0 mt-20">
               <p className="max-w-l text-lg text-ink-soft md:text-l">
                 Webdesign für Startups, Selbstständige und KMU:
-                Bezahlbar, sicher und ohne viel Aufwand. Du bekommst eine
+                Modern, sicher und ohne viel Aufwand. Du bekommst eine
                 professionelle Website mit klarem Aufbau, SEO-Basis und DSGVO-
                 Fokus in kürzester Zeit.
               </p>
