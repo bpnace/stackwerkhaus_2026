@@ -35,22 +35,25 @@ const monoFont = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://stackwerkhaus.de"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default:
-      "Bezahlbare Website für Startups - sicher & direkt | STACKWERKHAUS",
+      "STACKWERKHAUS | Dein Webauftritt mit Statik. Für mehr Sichtbarkeit und Wachstum",
     template: "%s | STACKWERKHAUS",
   },
   description:
-    "Bezahlbare, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
+    "Moderne, sichere Websites in kurzer Zeit. Klarer Aufbau, SEO optimiert, DSGVO fokussiert, direkt aus Berlin. Schlüsselfertige Lösungen für dein Unternehmen.",
   openGraph: {
     type: "website",
     locale: "de_DE",
     url: "/",
     siteName: "STACKWERKHAUS",
     title:
-      "Bezahlbare Website für Startups – sicher & direkt | STACKWERKHAUS",
+      "STACKWERKHAUS | Webauftritte mit Statik, für mehr Sichtbarkeit und Wachstum",
     description:
-      "Bezahlbare, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
+      "Moderne, sichere Websites in kurzer Zeit. Klarer Aufbau, SEO optimiert, DSGVO fokussiert, direkt aus Berlin. Schlüsselfertige Lösungen für dein Unternehmen.",
     images: [
       {
         url: "/images/og_image.webp",
@@ -61,9 +64,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Bezahlbare Website für Startups – sicher & direkt | STACKWERKHAUS",
+      "STACKWERKHAUS | Webauftritte mit Statik, für mehr Sichtbarkeit und Wachstum",
     description:
-      "Bezahlbare, sichere Startup-Websites in kurzer Zeit. Klarer Aufbau, SEO-Basis, DSGVO-Fokus – direkt aus Berlin.",
+      "Moderne, sichere Websites in kurzer Zeit. Klarer Aufbau, SEO optimiert, DSGVO fokussiert, direkt aus Berlin. Schlüsselfertige Lösungen für dein Unternehmen.",
     images: ["/images/og_image.webp"],
   },
   robots: {
@@ -79,7 +82,7 @@ const organizationJsonLd = {
   url: "https://stackwerkhaus.de",
   sameAs: [
     "https://www.instagram.com/stackwerkhaus",
-    "https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239",
+    "https://www.linkedin.com/in/tarik-arthur-marshall",
   ],
 };
 

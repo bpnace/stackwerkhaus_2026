@@ -1,9 +1,15 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
 
 import { TransitionLink } from "@/components/ui/TransitionLink";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 
 const legalLinks = [
+  { href: "/work", label: "Projekte" },
   { href: "/impressum", label: "Impressum" },
   { href: "/datenschutz", label: "Datenschutz" },
   { href: "/cookie-richtlinien", label: "Cookie-Richtlinien" },
@@ -37,12 +43,56 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+  const iconRef = useRef<HTMLSpanElement>(null);
+  const reducedMotion = useReducedMotion();
+
+  useGSAP(
+    () => {
+      const footer = footerRef.current;
+      const icon = iconRef.current;
+      if (!footer || !icon || reducedMotion) return;
+
+      gsap.set(icon, { transformOrigin: "50% 50%" });
+
+      const tween = gsap.to(icon, {
+        rotate: 180,
+        ease: "none",
+        scrollTrigger: {
+          trigger: footer,
+          start: "top bottom",
+          end: "bottom bottom",
+          scrub: 0.35,
+        },
+      });
+
+      return () => {
+        tween.scrollTrigger?.kill();
+        tween.kill();
+      };
+    },
+    { scope: footerRef, dependencies: [reducedMotion] }
+  );
+
   return (
-    <footer className="border-t border-black/10 bg-[rgba(243,239,230,0.85)]">
+    <footer
+      ref={footerRef}
+      className="border-t border-black/10 bg-[rgba(243,239,230,0.85)]"
+    >
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-10 text-sm md:flex-row md:items-start md:justify-between md:px-10">
         <div className="space-y-2">
-          <p className="font-display font-bold text-xl uppercase tracking-[0.2em]">
-            STACKWERKHAUS
+          <p className="flex items-center gap-3 font-display font-bold text-xl uppercase tracking-[0.2em]">
+            <span ref={iconRef} className="inline-flex h-7 w-7 shrink-0 items-center justify-center">
+              <Image
+                src="/images/logos/icon.png"
+                alt=""
+                width={28}
+                height={28}
+                className="h-7 w-7"
+                aria-hidden="true"
+              />
+            </span>
+            <span>STACKWERKHAUS</span>
           </p>
           <p className="text-ink-soft">
             Webdesign aus Berlin // klar, schnell und ohne Technikstress.

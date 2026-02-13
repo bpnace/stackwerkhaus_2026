@@ -10,6 +10,13 @@ interface LogoLockupProps {
   className?: string;
 }
 
+interface LockupSpacingConfig {
+  stackedLetterGap: number;
+  inlineLetterGap: number;
+  inlineGroupGap: number;
+  rowGap: number;
+}
+
 export function LogoLockup({ className = "" }: LogoLockupProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const letterRefs = useRef<Array<HTMLDivElement | null>>([]);
@@ -23,51 +30,77 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
       const letters = letterRefs.current.filter(
         (node): node is HTMLDivElement => Boolean(node)
       );
+      const sLetter = letters[2];
       const skw = skwRef.current;
       if (!letters.length || !skw) return;
 
       const rowTop = [0];
       const rowBottom = [1, 2, 3];
 
-      const getRowPositions = (indices: number[], gap: number, boxes: DOMRect[]) => {
+      const getRowPositions = (
+        indices: number[],
+        boxes: DOMRect[],
+        getGap: number | ((leftIndex: number, rightIndex: number) => number)
+      ) => {
         const totalWidth =
           indices.reduce((sum, idx) => sum + boxes[idx].width, 0) +
-          gap * (indices.length - 1);
+          indices
+            .slice(0, -1)
+            .reduce((sum, _, index) => {
+              const leftIndex = indices[index];
+              const rightIndex = indices[index + 1];
+              const gap =
+                typeof getGap === "number" ? getGap : getGap(leftIndex, rightIndex);
+              return sum + gap;
+            }, 0);
         let cursor = -totalWidth / 2;
         const positions: number[] = [];
 
-        indices.forEach((idx) => {
+        indices.forEach((idx, index) => {
           const width = boxes[idx].width;
           positions[idx] = cursor + width / 2;
+          if (index === indices.length - 1) return;
+          const leftIndex = indices[index];
+          const rightIndex = indices[index + 1];
+          const gap =
+            typeof getGap === "number" ? getGap : getGap(leftIndex, rightIndex);
           cursor += width + gap;
         });
 
         return positions;
       };
 
-      const setPositions = (gap: number, gapY: number) => {
+      const setPositions = ({
+        stackedLetterGap,
+        inlineLetterGap,
+        inlineGroupGap,
+        rowGap,
+      }: LockupSpacingConfig) => {
         const boxes = [skw, ...letters].map((node) => node.getBoundingClientRect());
         const maxHeight = Math.max(...boxes.map((box) => box.height));
-        const rowOffset = (maxHeight + gapY) / 2;
+        const rowOffset = (maxHeight + rowGap) / 2;
         const inlinePositions = getRowPositions(
           boxes.map((_, index) => index),
-          gap,
-          boxes
+          boxes,
+          (leftIndex, rightIndex) =>
+            leftIndex === 0 && rightIndex === 1 ? inlineGroupGap : inlineLetterGap
         );
-        const rowTopPositions = getRowPositions(rowTop, gap, boxes);
-        const rowBottomPositions = getRowPositions(rowBottom, gap, boxes);
+        const rowTopPositions = getRowPositions(rowTop, boxes, stackedLetterGap);
+        const rowBottomPositions = getRowPositions(rowBottom, boxes, stackedLetterGap);
 
         const setStacked = () => {
           rowTop.forEach((index) => {
             gsap.set(index === 0 ? skw : letters[index - 1], {
               x: rowTopPositions[index],
               y: -rowOffset,
+              rotation: 0,
             });
           });
           rowBottom.forEach((index) => {
             gsap.set(letters[index - 1], {
               x: rowBottomPositions[index],
               y: rowOffset,
+              rotation: 0,
             });
           });
         };
@@ -75,7 +108,11 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
         const setInline = () => {
           gsap.set(skw, { x: inlinePositions[0], y: 0 });
           letters.forEach((letter, index) => {
-            gsap.set(letter, { x: inlinePositions[index + 1], y: 0 });
+            gsap.set(letter, {
+              x: inlinePositions[index + 1],
+              y: 0,
+              rotation: 0,
+            });
           });
         };
 
@@ -90,11 +127,22 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
           return;
         }
 
+        const transitionDuration = 0.4;
+        const transitionEase = "sine.inOut";
+        const lettersStartDelay = 0.23;
+        const letterStagger = 0.1;
+        const sRotationDuration = 0.58;
+        const sRotationEase = "power2.inOut";
+
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: hero,
             start: "25% top",
             toggleActions: "play none none reverse",
+          },
+          defaults: {
+            duration: transitionDuration,
+            ease: transitionEase,
           },
         });
 
@@ -103,8 +151,6 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
           {
             x: inlinePositions[0],
             y: 0,
-            duration: 0.35,
-            ease: "power3.out",
           },
           0
         ).to(
@@ -112,12 +158,25 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
           {
             x: (index) => inlinePositions[index + 1],
             y: 0,
-            duration: 0.35,
-            ease: "power3.out",
-            stagger: 0.05,
+            stagger: {
+              each: letterStagger,
+              ease: transitionEase,
+            },
           },
-          0.06
+          lettersStartDelay
         );
+
+        if (sLetter) {
+          tl.to(
+            sLetter,
+            {
+              rotation: "+=360",
+              duration: sRotationDuration,
+              ease: sRotationEase,
+            },
+            lettersStartDelay
+          );
+        }
 
         return () => {
           tl.scrollTrigger?.kill();
@@ -125,8 +184,24 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
         };
       };
 
-      mm.add("(min-width: 768px)", () => setPositions(-3, -3));
-      mm.add("(max-width: 767px)", () => setPositions(-3, -3));
+      // Tweak desktop spacing here.
+      const desktopSpacing: LockupSpacingConfig = {
+        stackedLetterGap: 3.5,
+        inlineLetterGap: 3.5,
+        inlineGroupGap: 3.7,
+        rowGap: 3,
+      };
+
+      // Tweak mobile spacing here.
+      const mobileSpacing: LockupSpacingConfig = {
+        stackedLetterGap: 3.5,
+        inlineLetterGap: 3.5,
+        inlineGroupGap: 3.7,
+        rowGap: 3,
+      };
+
+      mm.add("(min-width: 768px)", () => setPositions(desktopSpacing));
+      mm.add("(max-width: 767px)", () => setPositions(mobileSpacing));
 
       return () => {
         mm.revert();
@@ -136,7 +211,7 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
   );
 
   const letters = [
-    { glyph: "K", width: 121, height: 154 },
+    { glyph: "K", width: 88, height: 154 },
     { glyph: "H", width: 88, height: 154 },
     { glyph: "S", width: 88, height: 154 },
   ];

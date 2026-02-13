@@ -67,11 +67,8 @@ export function Header() {
         <Link href="/#top" className="flex items-center gap-4" onClick={handleLogoClick}>
           <LogoLockup className="shrink-0" />
           <div className="hidden md:block">
-            <p className="font-display font-bold text-lg uppercase tracking-[0.2em]">
-              STACKWERKHAUS
-            </p>
             <p className="text-[11px] uppercase tracking-[0.35em] text-ink-soft">
-              Dein Berliner Design Studio
+              Deine digitalen Architekten.
             </p>
           </div>
         </Link>
