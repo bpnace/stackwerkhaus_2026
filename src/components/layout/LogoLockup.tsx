@@ -30,6 +30,7 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
       const letters = letterRefs.current.filter(
         (node): node is HTMLDivElement => Boolean(node)
       );
+      const sLetter = letters[2];
       const skw = skwRef.current;
       if (!letters.length || !skw) return;
 
@@ -92,12 +93,14 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
             gsap.set(index === 0 ? skw : letters[index - 1], {
               x: rowTopPositions[index],
               y: -rowOffset,
+              rotation: 0,
             });
           });
           rowBottom.forEach((index) => {
             gsap.set(letters[index - 1], {
               x: rowBottomPositions[index],
               y: rowOffset,
+              rotation: 0,
             });
           });
         };
@@ -105,7 +108,11 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
         const setInline = () => {
           gsap.set(skw, { x: inlinePositions[0], y: 0 });
           letters.forEach((letter, index) => {
-            gsap.set(letter, { x: inlinePositions[index + 1], y: 0 });
+            gsap.set(letter, {
+              x: inlinePositions[index + 1],
+              y: 0,
+              rotation: 0,
+            });
           });
         };
 
@@ -120,10 +127,12 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
           return;
         }
 
-        const transitionDuration = 0.62;
+        const transitionDuration = 0.4;
         const transitionEase = "sine.inOut";
-        const lettersStartDelay = 0.03;
-        const letterStagger = 0.025;
+        const lettersStartDelay = 0.23;
+        const letterStagger = 0.1;
+        const sRotationDuration = 0.58;
+        const sRotationEase = "power2.inOut";
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -156,6 +165,18 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
           },
           lettersStartDelay
         );
+
+        if (sLetter) {
+          tl.to(
+            sLetter,
+            {
+              rotation: "+=360",
+              duration: sRotationDuration,
+              ease: sRotationEase,
+            },
+            lettersStartDelay
+          );
+        }
 
         return () => {
           tl.scrollTrigger?.kill();
