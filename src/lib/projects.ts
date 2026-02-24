@@ -13,6 +13,10 @@ export type PortfolioProject = {
     url: string;
     alt: string;
   };
+  coverSmall?: {
+    url: string;
+    alt: string;
+  };
 };
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -32,6 +36,10 @@ export const portfolioProjects: PortfolioProject[] = [
       url: "/images/projekte/immopal.webp",
       alt: "Immo Pal Website",
     },
+    coverSmall: {
+      url: "/images/projekte/small/immopalSmall.webp",
+      alt: "Immo Pal Website",
+    },
   },
   {
     id: "bloom",
@@ -47,6 +55,10 @@ export const portfolioProjects: PortfolioProject[] = [
     body: "Für Bloom entstand ein Auftritt, der Arbeitsmedizin und Arbeitssicherheit verständlich und digital greifbar macht. Im Fokus stehen ein klarer Schritt-für-Schritt-Ansatz, smarte Automationen und ein All-in-One-Paket, das Zeit und Koordinationsaufwand spürbar reduziert.",
     cover: {
       url: "/images/projekte/bloom.webp",
+      alt: "Bloom Website",
+    },
+    coverSmall: {
+      url: "/images/projekte/small/bloomSmall.webp",
       alt: "Bloom Website",
     },
   },
@@ -66,6 +78,10 @@ export const portfolioProjects: PortfolioProject[] = [
       url: "/images/projekte/codariq.webp",
       alt: "Codariq Website",
     },
+    coverSmall: {
+      url: "/images/projekte/small/codariqSmall.webp",
+      alt: "Codariq Website",
+    },
   },
   {
     id: "atelier-heimat",
@@ -80,6 +96,10 @@ export const portfolioProjects: PortfolioProject[] = [
     body: "Für Atelier Heimat entstand eine ruhige, taktile Markenwelt mit starkem Fokus auf Materialität. Die Website bringt Werkstatt-Ästhetik und moderne Klarheit zusammen und führt Nutzer:innen intuitiv durch Kollektion, Story und Kontakt.",
     cover: {
       url: "/images/projekte/heimat.webp",
+      alt: "Atelier Heimat Website",
+    },
+    coverSmall: {
+      url: "/images/projekte/small/heimatSmall.webp",
       alt: "Atelier Heimat Website",
     },
   },
@@ -99,6 +119,10 @@ export const portfolioProjects: PortfolioProject[] = [
       url: "/images/projekte/nordlicht.webp",
       alt: "Nordlicht Coffee Website",
     },
+    coverSmall: {
+      url: "/images/projekte/small/nordlichtSmall.webp",
+      alt: "Nordlicht Coffee Website",
+    },
   },
   {
     id: "uncloud",
@@ -112,6 +136,10 @@ export const portfolioProjects: PortfolioProject[] = [
     body: "Uncloud ist eine digitale Gesundheits-App mit KI-gestützten Habit-Routinen, kurzen Tages-Check-ins und sanfter Begleitung, die Nutzer:innen hilft, Belastungen abzubauen und den Fokus auf positive, stabile Gewohnheiten zu lenken.",
     cover: {
       url: "/images/projekte/uncloud.webp",
+      alt: "Uncloud Mental Health App",
+    },
+    coverSmall: {
+      url: "/images/projekte/small/uncloudSmall.webp",
       alt: "Uncloud Mental Health App",
     },
   },
@@ -128,6 +156,10 @@ export const portfolioProjects: PortfolioProject[] = [
     body: "Die neue Präsenz bündelt Services wie Botendienst, Öffnungszeiten und Gesundheitsaktionen. Ein vereinfachter Aufbau sorgt für schnelle Orientierung, besonders auf Mobile.",
     cover: {
       url: "/images/projekte/apotheke.webp",
+      alt: "Kiez Apotheke Case Study",
+    },
+    coverSmall: {
+      url: "/images/projekte/small/apothekeSmall.webp",
       alt: "Kiez Apotheke Case Study",
     },
   },

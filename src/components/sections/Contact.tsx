@@ -65,8 +65,8 @@ export function Contact() {
               Überzeugt? Lass uns sprechen!
             </h2>
             <p className="max-w-lg text-base text-ink-soft">
-              Jetzt einen Termin vereinbaren um eine beeindruckenden Online-Auftritt zu erhalten, der Ihren Umsatz
-              steigert und Ihre Marke stärkt. Schnell online, klar strukturiert, Einzigartig und professionell nur für dich erstellt.
+              Jetzt einen Termin vereinbaren um einen beeindruckenden Online-Auftritt zu erhalten, der deinen Umsatz
+              steigert und deine Marke stärkt. Schnell online, klar strukturiert, Einzigartig und professionell nur für dich erstellt.
             </p>
           </FadeIn>
 
@@ -74,7 +74,7 @@ export function Contact() {
             <div className="flex flex-col gap-6 border border-black/10 bg-white/80 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] md:p-8">
               <div className="space-y-3">
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                  Direkt Termin sichern
+                  Jetzt Termin sichern
                 </p>
                 <a
                   href="mailto:info@stackwerkhaus.de"
@@ -93,7 +93,7 @@ export function Contact() {
                   onClick={handleCalendlyClick}
                   rel="noreferrer"
                 >
-                  Jetzt kostenlosen Termin vereinbaren
+                  Oder kostenlosen Termin vorausplanen
                 </MagneticLink>
               </div>
             </div>

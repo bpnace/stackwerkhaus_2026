@@ -9,6 +9,7 @@ interface LazyAnimationProps {
   className?: string;
   rootMargin?: string;
   threshold?: number;
+  eagerOnMobile?: boolean;
 }
 
 export function LazyAnimation({
@@ -17,14 +18,23 @@ export function LazyAnimation({
   className = "",
   rootMargin = "0px 0px -15% 0px",
   threshold = 0.1,
+  eagerOnMobile = false,
 }: LazyAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const reducedMotion = useReducedMotion();
-  const isActive = reducedMotion || isIntersecting;
+  const isActive = reducedMotion || isIntersecting || (eagerOnMobile && isMobile);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (eagerOnMobile) {
+      const media = window.matchMedia("(pointer: coarse)");
+      setIsMobile(media.matches);
+    }
+  }, [eagerOnMobile]);
+
+  useEffect(() => {
+    if (reducedMotion || (eagerOnMobile && isMobile)) return;
 
     const element = containerRef.current;
     if (!element) return;
@@ -41,7 +51,7 @@ export function LazyAnimation({
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [reducedMotion, rootMargin, threshold]);
+  }, [reducedMotion, rootMargin, threshold, eagerOnMobile, isMobile]);
 
   return (
     <div ref={containerRef} className={className}>

@@ -20,7 +20,7 @@ export function Faq() {
             </h3>
           </div>
           <p className="max-w-md text-sm text-ink-soft">
-            Kurz, klar und suchfreundlich. Antworten auf die wichtigsten Fragen
+            Kurz, klar und aufklärend. Antworten auf die wichtigsten Fragen
             zur Website-Erstellung.
           </p>
         </div>

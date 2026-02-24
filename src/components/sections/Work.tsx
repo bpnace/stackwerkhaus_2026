@@ -40,16 +40,17 @@ export async function Work() {
             href={`/work/${project.slug}`}
           >
             <div className="absolute inset-0">
-              {project.cover?.url ? (
+              {(project.coverSmall?.url || project.cover?.url) ? (
                 <LazyAnimation
                   className="h-full w-full"
+                  eagerOnMobile
                   fallback={
                     <div className="h-full w-full bg-[linear-gradient(135deg,rgba(198,90,46,0.25),rgba(21,21,20,0.1))]" />
                   }
                 >
                   <ImageReveal
-                    src={project.cover.url}
-                    alt={project.cover.alt || project.title}
+                    src={project.coverSmall?.url || project.cover!.url}
+                    alt={project.coverSmall?.alt || project.cover?.alt || project.title}
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
                     direction="left"
