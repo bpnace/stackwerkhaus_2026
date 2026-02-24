@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Script from "next/script";
 import type { MouseEvent } from "react";
 import { FadeIn } from "@/components/animations/FadeIn";
@@ -17,6 +18,30 @@ declare global {
 }
 
 export function Contact() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href =
+            "https://assets.calendly.com/assets/external/widget.css";
+          document.head.appendChild(link);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const handleCalendlyClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (window.Calendly?.initPopupWidget) {
       event.preventDefault();
@@ -30,7 +55,7 @@ export function Contact() {
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="afterInteractive"
       />
-      <section id="contact" className="border-t border-black/10 bg-white/60">
+      <section ref={sectionRef} id="contact" className="border-t border-black/10 bg-white/60">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:py-24">
           <FadeIn direction="up" className="space-y-6">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">

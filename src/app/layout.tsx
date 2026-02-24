@@ -4,8 +4,13 @@ import {
   IBM_Plex_Mono,
   IBM_Plex_Sans,
 } from "next/font/google";
-import Script from "next/script";
-import { CustomCursor } from "@/components/animations/CustomCursor";
+import dynamic from "next/dynamic";
+
+const CustomCursor = dynamic(() =>
+  import("@/components/animations/CustomCursor").then((m) => ({
+    default: m.CustomCursor,
+  })),
+);
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SmoothScrollProvider } from "@/providers/SmoothScrollProvider";
@@ -94,9 +99,11 @@ export default function RootLayout({
   return (
     <html lang="de">
       <head>
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
+        <script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="f656ec61-fa34-4784-8702-a8e18483fd69"
+          type="text/javascript"
         />
         <script
           type="application/ld+json"
@@ -106,13 +113,6 @@ export default function RootLayout({
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} antialiased`}
       >
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="f656ec61-fa34-4784-8702-a8e18483fd69"
-          data-blockingmode="auto"
-          strategy="beforeInteractive"
-        />
         <SmoothScrollProvider>
           <TransitionProvider>
             <CustomCursor />

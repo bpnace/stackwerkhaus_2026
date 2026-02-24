@@ -1,10 +1,22 @@
-import { About } from "@/components/sections/About";
-import { Contact } from "@/components/sections/Contact";
-import { Faq } from "@/components/sections/Faq";
+import dynamic from "next/dynamic";
 import { Hero } from "@/components/sections/Hero";
-import { Skills } from "@/components/sections/Skills";
 import { Work } from "@/components/sections/Work";
 import { faqJsonLd } from "@/lib/faq";
+
+const Skills = dynamic(() =>
+  import("@/components/sections/Skills").then((m) => ({ default: m.Skills })),
+);
+const About = dynamic(() =>
+  import("@/components/sections/About").then((m) => ({ default: m.About })),
+);
+const Contact = dynamic(() =>
+  import("@/components/sections/Contact").then((m) => ({
+    default: m.Contact,
+  })),
+);
+const Faq = dynamic(() =>
+  import("@/components/sections/Faq").then((m) => ({ default: m.Faq })),
+);
 
 export default function Home() {
   return (
