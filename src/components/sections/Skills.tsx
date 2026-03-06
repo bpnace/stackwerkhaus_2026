@@ -1,5 +1,17 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import { Marquee } from "@/components/animations/Marquee";
-import { DottedSurface } from "@/components/ui/dotted-surface";
+
+const SkillsWarpBackground = dynamic(
+  () =>
+    import("@/components/ui/skills-warp-background").then((m) => ({
+      default: m.SkillsWarpBackground,
+    })),
+  {
+    ssr: false,
+  },
+);
 
 const skills = [
   "Website-Strategie",
@@ -25,8 +37,8 @@ export function Skills() {
       id="skills"
       className="relative overflow-hidden border-y border-white/15 bg-black text-white"
     >
-      <DottedSurface className="absolute inset-0 z-0 opacity-45 [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)]" />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(950px_450px_at_12%_0%,rgba(198,90,46,0.2),transparent_60%),radial-gradient(950px_450px_at_88%_100%,rgba(255,255,255,0.08),transparent_65%)]" />
+      <SkillsWarpBackground className="[mask-image:linear-gradient(to_bottom,transparent,black_14%,black_86%,transparent)]" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(920px_430px_at_14%_0%,rgba(198,90,46,0.1),transparent_60%),radial-gradient(980px_460px_at_86%_100%,rgba(255,255,255,0.04),transparent_66%)]" />
 
       <div className="relative z-10">
         <Marquee speed={32} mobileSpeed={20} direction="left" className="py-6">
