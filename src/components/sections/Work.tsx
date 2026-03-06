@@ -9,7 +9,10 @@ export async function Work() {
   const projects = await getPortfolioProjects();
 
   return (
-    <section id="work" className="mx-auto w-full max-w-6xl px-6 md:px-10">
+    <section
+      id="work"
+      className="mx-auto w-full max-w-6xl scroll-mt-24 pb-15 px-6 md:px-10"
+    >
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="space-y-3">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
@@ -19,12 +22,13 @@ export async function Work() {
             as="h2"
             className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
-            Startup Websites mit Wirkung
+            Unsere digitalen Bauwerke
           </MaskedTextReveal>
         </div>
         <p className="max-w-md text-sm text-ink-soft">
-          Personalisierte Website-Pakete, schnelle Umsetzung und messbare Ergebnisse.
-          Beispiele zeigen, wie sichere, klare Websites für Startups entstehen.
+          Unsere Projekte zeigen, wie wir aus unklaren Leistungen verständliche
+          Nutzerführung erstellen. Nicht nur als als Beispiele, sondern als Beweis für
+          Struktur, Vertrauen und saubere Kontaktpfade.
         </p>
       </div>
 
@@ -40,16 +44,17 @@ export async function Work() {
             href={`/work/${project.slug}`}
           >
             <div className="absolute inset-0">
-              {project.cover?.url ? (
+              {(project.coverSmall?.url || project.cover?.url) ? (
                 <LazyAnimation
                   className="h-full w-full"
+                  eagerOnMobile
                   fallback={
                     <div className="h-full w-full bg-[linear-gradient(135deg,rgba(198,90,46,0.25),rgba(21,21,20,0.1))]" />
                   }
                 >
                   <ImageReveal
-                    src={project.cover.url}
-                    alt={project.cover.alt || project.title}
+                    src={project.coverSmall?.url || project.cover!.url}
+                    alt={project.coverSmall?.alt || project.cover?.alt || project.title}
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
                     direction="left"

@@ -1,29 +1,14 @@
 import type { Metadata } from "next";
 import { TransitionLink } from "@/components/ui/TransitionLink";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Datenschutz",
   description:
     "Datenschutzerklärung von STACKWERKHAUS mit Informationen zu Cookies, Hosting und Terminbuchung.",
-  alternates: {
-    canonical: "/datenschutz",
-  },
-  openGraph: {
-    title: "Datenschutz | STACKWERKHAUS",
-    description:
-      "Datenschutzerklärung von STACKWERKHAUS mit Informationen zu Cookies, Hosting und Terminbuchung.",
-    url: "/datenschutz",
-    siteName: "STACKWERKHAUS",
-    locale: "de_DE",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Datenschutz | STACKWERKHAUS",
-    description:
-      "Datenschutzerklärung von STACKWERKHAUS mit Informationen zu Cookies, Hosting und Terminbuchung.",
-  },
-};
+  path: "/datenschutz",
+  noindex: true,
+});
 
 export default function DatenschutzPage() {
   return (
@@ -44,7 +29,7 @@ export default function DatenschutzPage() {
             Datenschutzerklärung
           </h1>
           <p className="text-ink-soft">
-            Informationen zum Umgang mit Ihren Daten bei STACKWERKHAUS
+            Informationen zum Umgang mit deinen Daten bei STACKWERKHAUS
           </p>
         </div>
 
@@ -111,16 +96,16 @@ export default function DatenschutzPage() {
               3. Kontaktaufnahme
             </h2>
             <p className="mt-3">
-              Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir
-              die von Ihnen mitgeteilten Daten (z. B. Name, E-Mail-Adresse,
-              Telefonnummer und Nachricht), um Ihre Anfrage zu beantworten.
+              Wenn du uns per E-Mail oder Telefon kontaktierst, verarbeiten wir
+              die von dir mitgeteilten Daten (z. B. Name, E-Mail-Adresse,
+              Telefonnummer und Nachricht), um deine Anfrage zu beantworten.
             </p>
             <p className="mt-2">
               <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO
               (vorvertragliche Maßnahmen) oder Art. 6 Abs. 1 lit. f DSGVO
               (allgemeine Anfragen)
               <br />
-              <strong>Zweck:</strong> Bearbeitung Ihrer Anfrage
+              <strong>Zweck:</strong> Bearbeitung deiner Anfrage
               <br />
               <strong>Speicherdauer:</strong> Bis zum Abschluss der Bearbeitung
               und im Rahmen gesetzlicher Aufbewahrungspflichten
@@ -132,9 +117,9 @@ export default function DatenschutzPage() {
               4. Cookies und Einwilligungsmanagement (Cookiebot)
             </h2>
             <p className="mt-3">
-              Wir verwenden Cookiebot, um Ihre Einwilligungen in das Setzen von
+              Wir verwenden Cookiebot, um deine Einwilligungen in das Setzen von
               Cookies und den Einsatz vergleichbarer Technologien zu verwalten.
-              Cookiebot speichert Ihre Auswahl und ermöglicht Ihnen, diese
+              Cookiebot speichert deine Auswahl und ermöglicht dir, diese
               jederzeit anzupassen.
             </p>
             <p className="mt-2">
@@ -160,7 +145,7 @@ export default function DatenschutzPage() {
             </h2>
             <p className="mt-3">
               Für die Terminbuchung verwenden wir den Dienst Calendly. Bei der
-              Nutzung werden die von Ihnen eingegebenen Daten (z. B. Name,
+              Nutzung werden die von dir eingegebenen Daten (z. B. Name,
               E-Mail-Adresse, gewünschter Termin und optionale Hinweise)
               verarbeitet, um den Termin zu organisieren.
             </p>
@@ -192,12 +177,12 @@ export default function DatenschutzPage() {
 
           <div>
             <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
-              7. Ihre Rechte
+              7. Deine Rechte
             </h2>
             <p className="mt-3">
-              Sie haben das Recht auf Auskunft, Berichtigung, Löschung,
+              Du hast das Recht auf Auskunft, Berichtigung, Löschung,
               Einschränkung der Verarbeitung sowie Datenübertragbarkeit. Zudem
-              können Sie jederzeit Widerspruch gegen die Verarbeitung einlegen.
+              kannst du jederzeit Widerspruch gegen die Verarbeitung einlegen.
             </p>
           </div>
 

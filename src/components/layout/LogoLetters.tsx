@@ -3,13 +3,11 @@ import clsx from "clsx";
 interface LogoMarkProps {
   className?: string;
   letterClassName?: string;
-  letterRefs?: Array<((el: SVGPathElement | null) => void) | undefined>;
 }
 
 export function SKWMark({
   className = "",
   letterClassName = "",
-  letterRefs = [],
 }: LogoMarkProps) {
   return (
     <svg
@@ -20,7 +18,6 @@ export function SKWMark({
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        ref={letterRefs[0]}
         data-logo="skw"
         data-letter="S"
         className={letterClassName}
@@ -28,7 +25,6 @@ export function SKWMark({
         fill="currentColor"
       />
       <path
-        ref={letterRefs[1]}
         data-logo="skw"
         data-letter="K"
         className={letterClassName}
@@ -36,7 +32,6 @@ export function SKWMark({
         fill="currentColor"
       />
       <path
-        ref={letterRefs[2]}
         data-logo="skw"
         data-letter="W"
         className={letterClassName}
@@ -50,7 +45,6 @@ export function SKWMark({
 export function KHSMark({
   className = "",
   letterClassName = "",
-  letterRefs = [],
 }: LogoMarkProps) {
   return (
     <svg
@@ -61,7 +55,6 @@ export function KHSMark({
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        ref={letterRefs[0]}
         data-logo="khs"
         data-letter="K"
         className={letterClassName}
@@ -69,7 +62,6 @@ export function KHSMark({
         fill="currentColor"
       />
       <path
-        ref={letterRefs[1]}
         data-logo="khs"
         data-letter="H"
         className={letterClassName}
@@ -77,7 +69,6 @@ export function KHSMark({
         fill="currentColor"
       />
       <path
-        ref={letterRefs[2]}
         data-logo="khs"
         data-letter="S"
         className={letterClassName}

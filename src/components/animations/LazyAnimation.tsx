@@ -9,6 +9,7 @@ interface LazyAnimationProps {
   className?: string;
   rootMargin?: string;
   threshold?: number;
+  eagerOnMobile?: boolean;
 }
 
 export function LazyAnimation({
@@ -17,14 +18,41 @@ export function LazyAnimation({
   className = "",
   rootMargin = "0px 0px -15% 0px",
   threshold = 0.1,
+  eagerOnMobile = false,
 }: LazyAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" && eagerOnMobile
+      ? window.matchMedia("(pointer: coarse)").matches
+      : false,
+  );
   const reducedMotion = useReducedMotion();
-  const isActive = reducedMotion || isIntersecting;
+  const isActive = reducedMotion || isIntersecting || (eagerOnMobile && isMobile);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (!eagerOnMobile) return;
+
+    const media = window.matchMedia("(pointer: coarse)");
+    const frameId =
+      media.matches !== isMobile
+        ? window.requestAnimationFrame(() => setIsMobile(media.matches))
+        : null;
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsMobile(event.matches);
+    };
+
+    media.addEventListener("change", handleChange);
+    return () => {
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+      media.removeEventListener("change", handleChange);
+    };
+  }, [eagerOnMobile, isMobile]);
+
+  useEffect(() => {
+    if (reducedMotion || (eagerOnMobile && isMobile)) return;
 
     const element = containerRef.current;
     if (!element) return;
@@ -41,7 +69,7 @@ export function LazyAnimation({
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [reducedMotion, rootMargin, threshold]);
+  }, [reducedMotion, rootMargin, threshold, eagerOnMobile, isMobile]);
 
   return (
     <div ref={containerRef} className={className}>

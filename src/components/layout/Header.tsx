@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSmoothScroll } from "@/providers/SmoothScrollProvider";
+import { useTransition } from "@/providers/TransitionProvider";
 import { Navigation } from "@/components/layout/Navigation";
 import { LogoLockup } from "@/components/layout/LogoLockup";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
@@ -12,14 +13,20 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 export function Header() {
   const pathname = usePathname();
   const { scrollTo } = useSmoothScroll();
+  const { triggerTransition } = useTransition();
   const [mobileOpen, setMobileOpen] = useState(false);
   const innerRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
 
   const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname !== "/") return;
+    if (pathname === "/") {
+      event.preventDefault();
+      scrollTo(0, { immediate: true });
+      return;
+    }
+
     event.preventDefault();
-    scrollTo(0, { immediate: true });
+    triggerTransition("/#top");
   };
 
   useGSAP(
@@ -62,7 +69,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-black/10 bg-[rgba(243,239,230,0.82)] backdrop-blur">
       <div
         ref={innerRef}
-        className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 md:px-10"
+        className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-5 md:px-10"
       >
         <Link href="/#top" className="flex items-center gap-4" onClick={handleLogoClick}>
           <LogoLockup className="shrink-0" />

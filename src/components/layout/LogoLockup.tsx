@@ -26,7 +26,6 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
   useGSAP(
     () => {
       const hero = document.querySelector("#top");
-      const mm = gsap.matchMedia();
       const letters = letterRefs.current.filter(
         (node): node is HTMLDivElement => Boolean(node)
       );
@@ -184,28 +183,15 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
         };
       };
 
-      // Tweak desktop spacing here.
-      const desktopSpacing: LockupSpacingConfig = {
+      // Shared spacing for all breakpoints.
+      const sharedSpacing: LockupSpacingConfig = {
         stackedLetterGap: 3.5,
         inlineLetterGap: 3.5,
         inlineGroupGap: 3.7,
         rowGap: 3,
       };
 
-      // Tweak mobile spacing here.
-      const mobileSpacing: LockupSpacingConfig = {
-        stackedLetterGap: 3.5,
-        inlineLetterGap: 3.5,
-        inlineGroupGap: 3.7,
-        rowGap: 3,
-      };
-
-      mm.add("(min-width: 768px)", () => setPositions(desktopSpacing));
-      mm.add("(max-width: 767px)", () => setPositions(mobileSpacing));
-
-      return () => {
-        mm.revert();
-      };
+      return setPositions(sharedSpacing);
     },
     { scope: containerRef, dependencies: [reducedMotion] }
   );
@@ -220,7 +206,7 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
     <div
       ref={containerRef}
       className={clsx(
-        "relative h-14 w-40 overflow-visible md:h-16 md:w-48",
+        "relative h-16 w-48 overflow-visible",
         className
       )}
       aria-label="STACKWERKHAUS"
@@ -235,7 +221,7 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
           alt="SKW"
           width={300}
           height={145}
-          className="h-6 w-auto md:h-7"
+          className="h-7 w-auto"
           priority
         />
       </div>
@@ -253,7 +239,7 @@ export function LogoLockup({ className = "" }: LogoLockupProps) {
             alt={letter.glyph}
             width={letter.width}
             height={letter.height}
-            className="h-7 w-auto md:h-7"
+            className="h-7 w-auto"
             priority
           />
         </div>

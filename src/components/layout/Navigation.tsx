@@ -5,6 +5,7 @@ import { useSmoothScroll } from "@/providers/SmoothScrollProvider";
 import { useTransition } from "@/providers/TransitionProvider";
 
 export const navigationLinks = [
+  { href: "#services", label: "Leistungen" },
   { href: "#work", label: "Projekte" },
   { href: "#about", label: "Über uns" },
   { href: "#contact", label: "Kontakt" },

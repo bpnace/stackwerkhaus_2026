@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Script from "next/script";
 import type { MouseEvent } from "react";
 import { FadeIn } from "@/components/animations/FadeIn";
@@ -17,6 +18,30 @@ declare global {
 }
 
 export function Contact() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href =
+            "https://assets.calendly.com/assets/external/widget.css";
+          document.head.appendChild(link);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const handleCalendlyClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (window.Calendly?.initPopupWidget) {
       event.preventDefault();
@@ -30,18 +55,26 @@ export function Contact() {
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="afterInteractive"
       />
-      <section id="contact" className="border-t border-black/10 bg-white/60">
-        <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:py-24">
+      <section
+        ref={sectionRef}
+        className="border-t border-black/10 bg-white/60 pt-24"
+      >
+        <div id="contact" className="scroll-mt-24" />
+        <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 pb-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:pb-24">
           <FadeIn direction="up" className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-              Kontakt
-            </p>
-            <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
-              Überzeugt? Lass uns sprechen!
-            </h2>
+            <div className="space-y-3">
+              <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                Kontakt
+              </p>
+              <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
+                Gib uns 30 Minuten, um dein Projekt zu verstehen.
+              </h2>
+            </div>
             <p className="max-w-lg text-base text-ink-soft">
-              Jetzt einen Termin vereinbaren um eine beeindruckenden Online-Auftritt zu erhalten, der Ihren Umsatz
-              steigert und Ihre Marke stärkt. Schnell online, klar strukturiert, Einzigartig und professionell nur für dich erstellt.
+              Das Erstgespräch ist dazu da, Angebot, Zielgruppe und sinnvollen
+              Projektumfang schnell einzuordnen. Du erfährst, ob ein neuer
+              Auftritt, ein Relaunch oder zunächst nur eine fokussierte
+              Leistungsseite der richtige Schritt ist.
             </p>
           </FadeIn>
 
@@ -49,7 +82,7 @@ export function Contact() {
             <div className="flex flex-col gap-6 border border-black/10 bg-white/80 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] md:p-8">
               <div className="space-y-3">
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                  Direkt Termin sichern
+                  Nächster Schritt
                 </p>
                 <a
                   href="mailto:info@stackwerkhaus.de"
@@ -63,12 +96,12 @@ export function Contact() {
               <div className="flex flex-col gap-3 text-[11px] uppercase tracking-[0.28em] text-ink-soft md:text-xs md:tracking-[0.35em]">
                 <MagneticLink
                   href={calendlyUrl}
-                  className="inline-flex w-full items-center justify-center border border-black/20 px-5 py-4 text-center text-[11px] uppercase tracking-[0.28em] text-ink-soft transition-colors transition-shadow hover:bg-black hover:text-white hover:!text-white hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] focus-visible:text-white focus-visible:shadow-[0_12px_30px_rgba(0,0,0,0.12)] md:text-xs md:tracking-[0.35em]"
+                  className="inline-flex w-full items-center justify-center border border-black bg-black px-5 py-4 text-center text-[11px] uppercase tracking-[0.28em] text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-transform transition-colors transition-shadow hover:-translate-y-0.5 hover:bg-white hover:text-black hover:!text-black hover:shadow-[0_16px_36px_rgba(0,0,0,0.16)] focus-visible:outline-none focus-visible:bg-white focus-visible:text-black focus-visible:ring-2 focus-visible:ring-black/25 md:text-xs md:tracking-[0.35em]"
                   data-cursor-text="Termin"
                   onClick={handleCalendlyClick}
                   rel="noreferrer"
                 >
-                  Jetzt kostenlosen Termin vereinbaren
+                  Kostenloses Erstgespräch buchen
                 </MagneticLink>
               </div>
             </div>

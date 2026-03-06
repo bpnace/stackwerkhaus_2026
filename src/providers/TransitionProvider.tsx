@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { createContext, useContext, useRef, type ReactNode } from "react";
+import {
+  useCallback,
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  type ReactNode,
+} from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { gsap } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -15,71 +22,111 @@ const TransitionContext = createContext<TransitionContextType | null>(null);
 export function TransitionProvider({ children }: { children: ReactNode }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const isTransitioning = useRef(false);
+  const previousPathnameRef = useRef<string | null>(null);
   const router = useRouter();
   const pathname = usePathname();
   const reducedMotion = useReducedMotion();
 
+  const playOverlay = useCallback(
+    (onMidpoint?: () => void) => {
+      const overlay = overlayRef.current;
+      const logo = overlay?.querySelector("[data-transition-logo]");
+
+      if (reducedMotion || !overlay) {
+        onMidpoint?.();
+        return;
+      }
+
+      isTransitioning.current = true;
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          isTransitioning.current = false;
+        },
+      });
+
+      tl.to(overlay, {
+        scaleY: 1,
+        transformOrigin: "bottom",
+        duration: 0.5,
+        ease: "power4.inOut",
+      });
+
+      if (logo) {
+        tl.to(
+          logo,
+          {
+            autoAlpha: 1,
+            duration: 0.25,
+            ease: "power2.out",
+          },
+          "-=0.2"
+        );
+      }
+
+      tl.call(() => onMidpoint?.());
+
+      tl.to(overlay, {
+        scaleY: 0,
+        transformOrigin: "top",
+        duration: 0.5,
+        ease: "power4.inOut",
+        delay: 0.3,
+      });
+
+      if (logo) {
+        tl.to(
+          logo,
+          {
+            autoAlpha: 0,
+            duration: 0.2,
+            ease: "power2.inOut",
+          },
+          "<"
+        );
+      }
+    },
+    [reducedMotion]
+  );
+
   const triggerTransition = (href: string) => {
     if (href === pathname || isTransitioning.current) return;
-    const overlay = overlayRef.current;
-    const logo = overlay?.querySelector("[data-transition-logo]");
 
-    if (reducedMotion || !overlay) {
+    if (reducedMotion || !overlayRef.current) {
       router.push(href);
       return;
     }
 
-    isTransitioning.current = true;
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        isTransitioning.current = false;
-      },
-    });
-
-    tl.to(overlay, {
-      scaleY: 1,
-      transformOrigin: "bottom",
-      duration: 0.5,
-      ease: "power4.inOut",
-    });
-
-    if (logo) {
-      tl.to(
-        logo,
-        {
-          autoAlpha: 1,
-          duration: 0.25,
-          ease: "power2.out",
-        },
-        "-=0.2"
-      );
-    }
-
-    tl.call(() => {
+    playOverlay(() => {
       router.push(href);
     });
-
-    tl.to(overlay, {
-      scaleY: 0,
-      transformOrigin: "top",
-      duration: 0.5,
-      ease: "power4.inOut",
-      delay: 0.3,
-    });
-
-    if (logo) {
-      tl.to(
-        logo,
-        {
-          autoAlpha: 0,
-          duration: 0.2,
-          ease: "power2.inOut",
-        },
-        "<"
-      );
-    }
   };
+
+  useEffect(() => {
+    if (previousPathnameRef.current === null) {
+      const navigationEntry = performance.getEntriesByType(
+        "navigation"
+      )[0] as PerformanceNavigationTiming | undefined;
+      const isBackForward = navigationEntry?.type === "back_forward";
+
+      if (pathname === "/" && isBackForward && !isTransitioning.current) {
+        playOverlay();
+      }
+
+      previousPathnameRef.current = pathname;
+      return;
+    }
+
+    const previous = previousPathnameRef.current;
+    const movedFromServicesToHome =
+      previous.startsWith("/leistungen") && pathname === "/";
+
+    if (movedFromServicesToHome && !isTransitioning.current) {
+      playOverlay();
+    }
+
+    previousPathnameRef.current = pathname;
+  }, [pathname, playOverlay]);
 
   return (
     <TransitionContext.Provider value={{ triggerTransition }}>
@@ -92,7 +139,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       >
         <div className="absolute inset-0 flex items-center justify-center">
           <Image
-            src="/images/logos/skwkhs.svg"
+            src="/images/logos/SKWKHS.svg"
             alt=""
             data-transition-logo
             width={176}

@@ -10,7 +10,6 @@ interface MarqueeProps {
   speed?: number;
   mobileSpeed?: number;
   direction?: "left" | "right";
-  pauseOnHover?: boolean;
   className?: string;
 }
 
@@ -19,7 +18,6 @@ export function Marquee({
   speed = 30,
   mobileSpeed,
   direction = "left",
-  pauseOnHover = true,
   className = "",
 }: MarqueeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -74,24 +72,7 @@ export function Marquee({
         repeat: -1,
       });
 
-      const handleEnter = () => {
-        gsap.to(tweenRef.current, { timeScale: 0, duration: 0.4 });
-      };
-
-      const handleLeave = () => {
-        gsap.to(tweenRef.current, { timeScale: 1, duration: 0.4 });
-      };
-
-      if (pauseOnHover) {
-        container.addEventListener("mouseenter", handleEnter);
-        container.addEventListener("mouseleave", handleLeave);
-      }
-
       return () => {
-        if (pauseOnHover) {
-          container.removeEventListener("mouseenter", handleEnter);
-          container.removeEventListener("mouseleave", handleLeave);
-        }
         tweenRef.current?.kill();
         tweenRef.current = null;
         gsap.set(container, { x: 0 });
@@ -104,7 +85,6 @@ export function Marquee({
       scope: containerRef,
       dependencies: [
         direction,
-        pauseOnHover,
         reducedMotion,
         speed,
         mobileSpeed,

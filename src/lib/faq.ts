@@ -1,65 +1,52 @@
-export const faqItems = [
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+export const faqItems: FaqItem[] = [
   {
-    question: "Was kostet eine Website für Startups?",
+    question: "Was kostet eine professionelle Website für ein kleines Unternehmen?",
     answer:
-      "Der Einstieg beginnt ab 999€ inklusive Konzeption, Design und Umsetzung. Der finale Preis hängt vom Umfang und den Funktionen ab - du bekommst ein klares Angebot nach dem Erstgespräch.",
+      "Das hängt vor allem von Umfang, Inhaltsmenge und Integrationen ab. Kleine, klar fokussierte Projekte starten meist im niedrigen vierstelligen Bereich. Nach dem Erstgespräch bekommst du ein belastbares Angebot statt einer groben Schätzung.",
   },
   {
-    question: "Wie schnell kann ich eine Website erstellen lassen?",
+    question: "Wie lange dauert ein Website-Projekt?",
     answer:
-      "Je nach Umfang geht deine Website in wenigen Wochen live. Nach dem Kick-off bekommst du einen konkreten Zeitplan.",
+      "Viele Projekte gehen in drei bis sechs Wochen live. Entscheidend sind Freigabegeschwindigkeit, vorhandene Inhalte und die Frage, ob wir bei null starten oder einen bestehenden Auftritt relaunchen.",
   },
   {
-    question: "Kann ich eine professionelle Website bekommen?",
+    question: "Für wen ist STACKWERKHAUS die richtige Wahl?",
     answer:
-      "Ja. Du bekommst eine komplette Website inklusive Struktur, Design, Umsetzung und Launch.",
+      "Besonders passend ist STACKWERKHAUS für Dienstleister, kleine Unternehmen und neue Marken, die eine klare Website mit echter Nutzerführung brauchen. Wenn Vertrauen, Übersicht und Anfragen wichtiger sind als reine Dekoration, passt die Zusammenarbeit gut.",
   },
   {
-    question: "Was ist im Website-Paket enthalten?",
+    question: "Was ist im Projekt normalerweise enthalten?",
     answer:
-      "Konzept, Struktur, Design, Umsetzung, responsive Optimierung, SEO-Basis und ein sauberer Launch.",
+      "Typischerweise enthalten sind Struktur, Copy-Führung, Design, Frontend-Umsetzung, responsive Optimierung, technisches SEO-Grundsetup und eine saubere Live-Schaltung. Je nach Projekt kommen Relaunch-Planung, Consent-Setup oder Inhaltsmigration dazu.",
   },
   {
-    question: "Ist die Website sicher und DSGVO-konform?",
+    question: "Ist die Website suchmaschinenfreundlich und AI-ready aufgebaut?",
     answer:
-      "Ja. Wir achten auf sichere Umsetzung, DSGVO-Basis und eine saubere technische Struktur.",
+      "Ja. Die Umsetzung berücksichtigt eine saubere Informationsarchitektur, Metadaten, strukturierte Inhalte, interne Verlinkung und eine technische Basis, die sowohl klassische Suche als auch AI-gestützte Antworten besser unterstützt.",
   },
   {
-    question: "Kann ich selbst Inhalte ändern lassen?",
+    question: "Übernehmt ihr auch DSGVO-Basis und Consent-Setup?",
     answer:
-      "Ja. Auf Wunsch bekommst du eine einfache Content-Struktur und klare Übergabe, damit Updates schnell möglich sind.",
+      "Ja. Wir achten auf eine datenschutzbewusste Grundstruktur und können Consent- und Drittanbieter-Setups sauber einbinden. Spezifische Rechtsfragen bleiben bei Bedarf trotzdem ein Fall für spezialisierte Beratung.",
   },
   {
-    question: "Wie erstelle ich eine Website für mein Startup mit wenig Budget?",
+    question: "Kann ich Inhalte später selbst anpassen?",
     answer:
-      "Wir definieren gemeinsam den Fokus, priorisieren Inhalte und liefern eine moderne Startup-Website mit klarer Struktur, schneller Umsetzung und sauberem Launch.",
+      "Ja. Die Seiten werden so aufgebaut, dass Inhalte nachvollziehbar organisiert bleiben. Auf Wunsch planen wir die Struktur so, dass spätere Ergänzungen schnell eingepflegt werden können.",
   },
   {
-    question: "Gibt es eine sichere Website für kleine Unternehmen mit DSGVO-Basis?",
+    question: "Übernehmt ihr auch Relaunches bestehender Websites?",
     answer:
-      "Ja. Wir setzen auf eine sichere technische Basis, DSGVO-orientierte Standards und transparente Prozesse - ideal für kleine Unternehmen.",
+      "Ja. Gerade bei Relaunches liegt oft der größte Hebel in neuer Struktur, klarerer Positionierung und einem besseren Kontaktpfad. Bestehende Inhalte werden dabei nicht pauschal ersetzt, sondern sinnvoll neu geordnet.",
   },
   {
-    question: "Kann eine professionelle Website in kurzer Zeit live gehen?",
+    question: "Was passiert im Erstgespräch?",
     answer:
-      "Ja. Abhängig vom Umfang bringen wir deine Website in wenigen Wochen live - inklusive Design, Struktur und SEO-Basics.",
-  },
-  {
-    question: "Wie hilft SEO/AEO bei einer Startup-Website konkret?",
-    answer:
-      "SEO/AEO sorgt für bessere Sichtbarkeit in der Suche und AI Overviews, damit deine Website schneller gefunden wird und mehr qualifizierte Anfragen erhält.",
+      "Im Erstgespräch klären wir Angebot, Zielgruppe, bestehenden Stand und den sinnvollsten Projektumfang. Danach kannst du einschätzen, ob ein neuer Auftritt, ein Relaunch oder zunächst nur eine fokussierte Leistungsseite der richtige Schritt ist.",
   },
 ];
-
-export const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-};
