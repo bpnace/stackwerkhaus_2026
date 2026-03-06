@@ -11,7 +11,7 @@ export async function Work() {
   return (
     <section
       id="work"
-      className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 md:px-10"
+      className="mx-auto w-full max-w-6xl scroll-mt-24 pb-15 px-6 md:px-10"
     >
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="space-y-3">
