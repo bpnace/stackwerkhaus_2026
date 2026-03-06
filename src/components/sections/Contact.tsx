@@ -57,17 +57,19 @@ export function Contact() {
       />
       <section
         ref={sectionRef}
-        id="contact"
-        className="scroll-mt-24 border-t border-black/10 bg-white/60"
+        className="border-t border-black/10 bg-white/60 pt-24"
       >
-        <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:py-24">
+        <div id="contact" className="scroll-mt-24" />
+        <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 pb-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:pb-24">
           <FadeIn direction="up" className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-              Kontakt
-            </p>
-            <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
-              In 15 Minuten klären wir, was deine Website leisten muss.
-            </h2>
+            <div className="space-y-3">
+              <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                Kontakt
+              </p>
+              <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
+                In 15 Minuten klären wir, was deine Website leisten muss.
+              </h2>
+            </div>
             <p className="max-w-lg text-base text-ink-soft">
               Das Erstgespräch ist dazu da, Angebot, Zielgruppe und sinnvollen
               Projektumfang schnell einzuordnen. Du erfährst, ob ein neuer
@@ -94,7 +96,7 @@ export function Contact() {
               <div className="flex flex-col gap-3 text-[11px] uppercase tracking-[0.28em] text-ink-soft md:text-xs md:tracking-[0.35em]">
                 <MagneticLink
                   href={calendlyUrl}
-                  className="inline-flex w-full items-center justify-center border border-black/20 px-5 py-4 text-center text-[11px] uppercase tracking-[0.28em] text-ink-soft transition-colors transition-shadow hover:bg-black hover:text-white hover:!text-white hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)] focus-visible:text-white focus-visible:shadow-[0_12px_30px_rgba(0,0,0,0.12)] md:text-xs md:tracking-[0.35em]"
+                  className="inline-flex w-full items-center justify-center border border-black bg-black px-5 py-4 text-center text-[11px] uppercase tracking-[0.28em] text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-transform transition-colors transition-shadow hover:-translate-y-0.5 hover:bg-white hover:text-black hover:!text-black hover:shadow-[0_16px_36px_rgba(0,0,0,0.16)] focus-visible:outline-none focus-visible:bg-white focus-visible:text-black focus-visible:ring-2 focus-visible:ring-black/25 md:text-xs md:tracking-[0.35em]"
                   data-cursor-text="Termin"
                   onClick={handleCalendlyClick}
                   rel="noreferrer"

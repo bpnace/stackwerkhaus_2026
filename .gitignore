@@ -17,6 +17,7 @@
 /.next/
 /out/
 public/*
+!public/favicon.ico
 
 # production
 /build

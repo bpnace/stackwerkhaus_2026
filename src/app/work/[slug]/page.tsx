@@ -392,14 +392,14 @@ export default async function WorkDetailPage({ params }: PageProps) {
             </p>
           </div>
           <div className="flex items-center">
-            <TransitionLink
+            <MagneticLink
               href="/#contact"
-              className="inline-flex items-center gap-3 border border-black/20 px-5 py-4 text-xs uppercase tracking-[0.3em] transition-colors hover:bg-black hover:text-white"
+              className="inline-flex items-center gap-3 border border-black bg-black px-5 py-4 text-xs uppercase tracking-[0.3em] text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-colors transition-shadow hover:bg-white hover:text-black hover:shadow-[0_16px_36px_rgba(0,0,0,0.16)] focus-visible:outline-none focus-visible:bg-white focus-visible:text-black focus-visible:ring-2 focus-visible:ring-black/25"
               data-cursor-text="Kontakt"
             >
               Erstgespräch buchen
               <span className="text-lg">↗</span>
-            </TransitionLink>
+            </MagneticLink>
           </div>
         </div>
       </section>

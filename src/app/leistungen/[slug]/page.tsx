@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { MagneticLink } from "@/components/animations/MagneticLink";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TransitionLink } from "@/components/ui/TransitionLink";
@@ -12,7 +13,6 @@ import {
   buildWebPageSchema,
   formatGermanDate,
 } from "@/lib/seo";
-import { getPortfolioProjects } from "@/lib/projects";
 import { getServiceBySlug, getServices } from "@/lib/services";
 
 interface PageProps {
@@ -51,10 +51,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const projects = await getPortfolioProjects();
-  const relatedProjects = projects.filter((project) =>
-    service.relatedProjectSlugs.includes(project.slug),
-  );
   const breadcrumbItems = [
     { name: "Start", path: "/" },
     { name: "Leistungen", path: "/leistungen" },
@@ -89,22 +85,23 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <section className="relative overflow-hidden border-b border-black/10">
           <div className="pointer-events-none absolute -right-20 top-12 hidden h-56 w-56 rounded-full border border-black/10 lg:block" />
           <div className="mx-auto w-full max-w-6xl px-6 pb-5 md:px-10 md:pt-5">
-            <div className="flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft">
+            <div className="grid grid-cols-3 items-center gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft">
               <TransitionLink
-                href="/leistungen"
-                className="flex items-center gap-2 font-bold text-ink-soft hover:text-foreground"
+                href="/#services"
+                className="flex items-center gap-2 justify-self-start font-bold text-ink-soft hover:text-foreground"
                 data-cursor-text="Zurück"
               >
                 <span>↙</span>
-                Zur Leistungen
+                Zurück
               </TransitionLink>
-              <span>Leistung</span>
-              <span className="font-bold text-foreground">{service.shortTitle}</span>
+              <span className="justify-self-center">Leistungen</span>
+              <span className="justify-self-end text-right">
+                Aktualisiert: {updatedLabel}
+              </span>
             </div>
             <div className="mt-6 flex flex-wrap gap-3 text-[11px] uppercase tracking-[0.3em] text-ink-soft">
               <span>{service.kicker}</span>
               <span>{service.timeline}</span>
-              <span>Aktualisiert: {updatedLabel}</span>
             </div>
 
             <div className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
@@ -178,20 +175,13 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                       </span>
                     </div>
                     <div className="flex items-center justify-between gap-6 border-b border-black/10 pb-3">
-                      <span>Investition</span>
-                      <span className="max-w-[18rem] text-right text-sm normal-case tracking-normal text-foreground">
+                      <span className=" text-center text-sm normal-case tracking-normal text-foreground">
                         {service.pricingHint}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between gap-6 border-b border-black/10 pb-3">
-                      <span>Aktualisiert</span>
-                      <span className="text-right text-sm normal-case tracking-normal text-foreground">
-                        {updatedLabel}
                       </span>
                     </div>
                   </div>
 
-                  <div className="space-y-4 border-t border-black/10 pt-6">
+                  <div className="space-y-4 pt-6">
                     <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                       Enthalten
                     </p>
@@ -209,14 +199,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                     </div>
                   </div>
 
-                  <TransitionLink
+                  <MagneticLink
                     href="/#contact"
-                    className="inline-flex w-full items-center justify-between border border-black/20 px-5 py-4 text-xs uppercase tracking-[0.3em] transition-colors hover:bg-black hover:text-white"
+                    className="inline-flex w-full items-center justify-between border border-black bg-black px-5 py-4 text-xs uppercase tracking-[0.3em] text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-colors transition-shadow hover:bg-white hover:text-black hover:shadow-[0_16px_36px_rgba(0,0,0,0.16)] focus-visible:outline-none focus-visible:bg-white focus-visible:text-black focus-visible:ring-2 focus-visible:ring-black/25"
                     data-cursor-text="Kontakt"
                   >
                     Erstgespräch buchen
                     <span className="text-lg">↗</span>
-                  </TransitionLink>
+                  </MagneticLink>
                 </aside>
               </FadeIn>
             </div>
@@ -227,7 +217,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                Entscheidungshilfe
+                Noch nicht sicher? Kein Problem.
               </p>
               <MaskedTextReveal
                 as="h2"
@@ -275,7 +265,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <div className="mx-auto w-full max-w-6xl px-6 py-20 md:px-10">
             <div className="max-w-2xl space-y-4">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                Ergebnisbild
+                Das Ergebnis
               </p>
               <h2 className="font-display text-3xl font-bold uppercase tracking-[0.18em] md:text-4xl">
                 Was du nach dem Launch konkret hast
@@ -307,12 +297,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </section>
 
         <section className="mx-auto w-full max-w-6xl px-6 py-20 md:px-10">
-          <div className="max-w-2xl space-y-4">
+          <div className="max-w-3xl space-y-4">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               Ablauf
             </p>
             <h2 className="font-display text-3xl font-bold uppercase tracking-[0.18em] md:text-4xl">
-              So läuft die Leistung ab
+              So läuft die Zusammenarbeit ab
             </h2>
           </div>
 
@@ -335,86 +325,32 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="border-y border-black/10 bg-white/60">
-          <div className="mx-auto w-full max-w-6xl px-6 py-20 md:px-10">
-            <div className="flex flex-wrap items-end justify-between gap-6">
-              <div className="space-y-3">
-                <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                  Passende Beispiele
-                </p>
-                <h2 className="font-display text-3xl font-bold uppercase tracking-[0.18em] md:text-4xl">
-                  Relevante Projekte
-                </h2>
-              </div>
-              <p className="max-w-md text-sm text-ink-soft">
-                Diese Projekte zeigen, wie ähnliche Ausgangslagen in klarere
-                Nutzerführung, bessere Vertrauenssignale und stärkere
-                Kontaktpfade übersetzt wurden.
-              </p>
-            </div>
-
-            <div
-              className={`mt-10 grid gap-6 ${
-                relatedProjects.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"
-              }`}
-            >
-              {relatedProjects.map((project) => (
-                <TransitionLink
-                  key={project.slug}
-                  href={`/work/${project.slug}`}
-                  className="group flex h-full flex-col justify-between border border-black/10 bg-white/70 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
-                  data-cursor-text="Ansehen"
-                >
-                  <div className="space-y-4">
-                    <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                      {project.sector ?? project.type ?? "Projekt"}
-                    </p>
-                    <h3 className="font-display text-2xl font-bold uppercase tracking-[0.16em]">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-ink-soft">{project.summary}</p>
-                  </div>
-                  <div className="mt-8 flex items-center justify-between text-xs uppercase tracking-[0.35em]">
-                    <span>
-                      {project.type === "Case Study" ? "Zur Case Study" : "Zum Projekt"}
-                    </span>
-                    <span>↗</span>
-                  </div>
-                </TransitionLink>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="mx-auto w-full max-w-6xl px-6 py-20 md:px-10">
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="space-y-4">
-              <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                FAQ
-              </p>
-              <h2 className="font-display text-3xl font-bold uppercase tracking-[0.18em] md:text-4xl">
-                Häufige Fragen zu dieser Leistung
-              </h2>
-              <p className="text-sm text-ink-soft">
-                Klare Antworten auf typische Fragen zu Aufwand, Fit,
-                Sichtbarkeit und Projektumfang.
-              </p>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              {service.faqs.map((faq) => (
-                <FadeIn
-                  key={faq.question}
-                  direction="up"
-                  className="border border-black/10 bg-white/70 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
-                >
-                  <h3 className="font-display text-xl font-bold uppercase tracking-[0.14em]">
-                    {faq.question}
-                  </h3>
-                  <p className="mt-4 text-sm text-ink-soft">{faq.answer}</p>
-                </FadeIn>
-              ))}
-            </div>
+          <div className="max-w-3xl space-y-4">
+            <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+              FAQ
+            </p>
+            <h2 className="font-display text-3xl font-bold uppercase tracking-[0.18em] md:text-4xl">
+              Häufige Fragen zu dieser Leistung
+            </h2>
+            <p className="text-sm text-ink-soft">
+              Klare Antworten auf typische Fragen zu Aufwand, Fit, Sichtbarkeit
+              und Projektumfang.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {service.faqs.map((faq) => (
+              <FadeIn
+                key={faq.question}
+                direction="up"
+                className="border border-black/10 bg-white/70 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
+              >
+                <h3 className="font-display text-xl font-bold uppercase tracking-[0.14em]">
+                  {faq.question}
+                </h3>
+                <p className="mt-4 text-sm text-ink-soft">{faq.answer}</p>
+              </FadeIn>
+            ))}
           </div>
         </section>
 
@@ -430,14 +366,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               <p className="max-w-2xl text-sm text-ink-soft">{service.ctaCopy}</p>
             </div>
             <div className="flex items-center">
-              <TransitionLink
+              <MagneticLink
                 href="/#contact"
-                className="inline-flex items-center gap-3 border border-black/20 px-5 py-4 text-xs uppercase tracking-[0.3em] transition-colors hover:bg-black hover:text-white"
+                className="inline-flex items-center gap-3 border border-black bg-black px-5 py-4 text-xs uppercase tracking-[0.3em] text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-colors transition-shadow hover:bg-white hover:text-black hover:shadow-[0_16px_36px_rgba(0,0,0,0.16)] focus-visible:outline-none focus-visible:bg-white focus-visible:text-black focus-visible:ring-2 focus-visible:ring-black/25"
                 data-cursor-text="Kontakt"
               >
                 Erstgespräch buchen
                 <span className="text-lg">↗</span>
-              </TransitionLink>
+              </MagneticLink>
             </div>
           </div>
         </section>

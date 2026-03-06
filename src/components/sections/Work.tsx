@@ -22,12 +22,12 @@ export async function Work() {
             as="h2"
             className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
-            Beispiele für klare digitale Auftritte
+            Unsere digitalen Bauwerke
           </MaskedTextReveal>
         </div>
         <p className="max-w-md text-sm text-ink-soft">
-          Diese Projekte zeigen, wie aus unklaren Leistungen verständliche
-          Nutzerführung wird. Nicht als Galerie, sondern als Beweis für
+          Unsere Projekte zeigen, wie wir aus unklaren Leistungen verständliche
+          Nutzerführung erstellen. Nicht nur als als Beispiele, sondern als Beweis für
           Struktur, Vertrauen und saubere Kontaktpfade.
         </p>
       </div>

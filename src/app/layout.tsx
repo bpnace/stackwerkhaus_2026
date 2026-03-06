@@ -51,6 +51,11 @@ export const metadata: Metadata = {
     template: "%s | STACKWERKHAUS",
   },
   description: siteConfig.defaultDescription,
+  icons: {
+    icon: "/images/favicon.ico",
+    shortcut: "/images/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
     locale: siteConfig.locale,

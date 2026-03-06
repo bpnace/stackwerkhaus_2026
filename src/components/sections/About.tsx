@@ -148,48 +148,51 @@ export function About() {
 
   return (
     <section
-      id="about"
-      className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 pb-8 pt-24 md:px-10"
+      className="mx-auto w-full max-w-6xl px-6 pb-8 pt-24 md:px-10"
     >
       <div className="grid items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="flex flex-col gap-6">
-          <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            Über uns
-          </p>
-          <MaskedTextReveal
-            as="h2"
-            className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
-          >
-            Wer ist STACKWERKHAUS?
-          </MaskedTextReveal>
-          <FadeIn direction="up">
-            <p className="text-base text-ink-soft">
-              STACKWERKHAUS aus Berlin entwickelt Websites für Unternehmen, die
-              online klarer wirken und offline weniger Erklärarbeit leisten
-              wollen. Wir verbinden Positionierung, Content-Führung, Design und
-              technische Umsetzung so, dass Besucher schneller verstehen, was
-              angeboten wird und wie der nächste Schritt aussieht.
+        <div className="flex flex-col gap-8">
+          <div id="about" className="scroll-mt-24 space-y-3">
+            <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+              Über uns
             </p>
-          </FadeIn>
-          <FadeIn direction="up">
-            <p className="text-base text-ink-soft">
-              Der Schwerpunkt liegt auf Dienstleistern, kleinen Unternehmen und
-              neuen Marken im DACH-Raum. Ob neuer Auftritt oder Relaunch:
-              wichtig ist, dass Struktur, Vertrauen und Anfragepfad zusammen
-              gedacht werden statt in separaten Einzelschritten zu enden.
-            </p>
-          </FadeIn>
-          <div className="mt-auto flex flex-wrap items-center gap-4 border border-black/10 bg-white/70 px-4 py-4">
-            <span className="font-display text-4xl font-bold uppercase tracking-[0.18em]">
-              <CountUp value={8} suffix="+" />
-            </span>
-            <div>
-              <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                Jahre Erfahrung
+            <MaskedTextReveal
+              as="h2"
+              className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
+            >
+              Wer ist STACKWERKHAUS?
+            </MaskedTextReveal>
+          </div>
+          <div className="space-y-6">
+            <FadeIn direction="up">
+              <p className="text-base text-ink-soft">
+                STACKWERKHAUS aus Berlin entwickelt Websites für Unternehmen, die
+                online klarer wirken und weniger Erklärarbeit leisten
+                wollen. Wir verbinden Positionierung, Content-Führung, Design und
+                technische Umsetzung so, dass Besucher schneller verstehen, was
+                angeboten wird und wie der nächste Schritt aussieht.
               </p>
-              <p className="text-sm text-ink-soft">
-                Strategie, Design und Entwicklung für serviceorientierte Marken
+            </FadeIn>
+            <FadeIn direction="up">
+              <p className="text-base text-ink-soft">
+                Der Schwerpunkt liegt auf Dienstleistern, kleinen Unternehmen und
+                neuen Marken im DACH-Raum. Ob neuer Auftritt oder Relaunch:
+                Wichtig ist, dass Struktur, Vertrauen und Anfragepfad zusammen
+                gedacht werden statt in separaten Einzelschritten zu enden.
               </p>
+            </FadeIn>
+            <div className="flex flex-wrap items-center gap-4 border border-black/10 bg-white/70 px-4 py-4">
+              <span className="font-display text-4xl font-bold uppercase tracking-[0.18em]">
+                <CountUp value={8} suffix="+" />
+              </span>
+              <div>
+                <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                  Jahre Erfahrung
+                </p>
+                <p className="text-sm text-ink-soft">
+                  Strategie, Design und Entwicklung für serviceorientierte Marken
+                </p>
+              </div>
             </div>
           </div>
         </div>

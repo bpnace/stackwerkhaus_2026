@@ -1,3 +1,4 @@
+import { MagneticLink } from "@/components/animations/MagneticLink";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { TransitionLink } from "@/components/ui/TransitionLink";
 import { getServices } from "@/lib/services";
@@ -10,7 +11,7 @@ export async function Services() {
       id="services"
       className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 pb-8 md:px-10"
     >
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,30rem)] lg:items-end">
+      <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="space-y-3">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Leistungen
@@ -19,25 +20,15 @@ export async function Services() {
             as="h2"
             className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
-            Klare Angebote für echte Anfragepfade
+            Unsere Leistungen im Detail
           </MaskedTextReveal>
         </div>
-        <div className="flex flex-col items-start gap-5 lg:items-end">
-          <p className="max-w-xl text-sm text-ink-soft lg:text-right">
-            Jede Leistung ist auf ein typisches Ausgangsproblem ausgerichtet:
-            neuer Auftritt, Relaunch oder eine datenschutzbewusste technische
-            Basis. So bleibt die Seite für Suchende klar und für Gespräche
-            sofort brauchbar.
-          </p>
-          <TransitionLink
-            href="/leistungen"
-            className="inline-flex items-center gap-3 border border-black/20 px-5 py-4 text-xs uppercase tracking-[0.3em] transition-colors hover:bg-black hover:text-white"
-            data-cursor-text="Leistungen"
-          >
-            Alle Leistungen
-            <span className="text-lg">↗</span>
-          </TransitionLink>
-        </div>
+        <p className="max-w-lg text-sm text-ink-soft">
+          Jeder Pfad ist auf ein typisches Ausgangsproblem ausgerichtet:
+          neuer Auftritt, Relaunch oder eine datenschutzbewusste technische
+          Basis. So bleibt die Seite für Suchende auffindbarer und sorgt für
+          klare nächste Schritte.
+        </p>
       </div>
 
       <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-3">

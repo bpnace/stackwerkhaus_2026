@@ -20,19 +20,19 @@ const skills = [
 
 export function Skills() {
   return (
-    <section id="skills" className="border-y border-black/10 bg-white/60">
+    <section id="skills" className="border-y border-white/15 bg-black pt-4 text-white">
       <Marquee speed={32} mobileSpeed={20} direction="left" className="py-6">
         {skills.map((skill) => (
           <span
             key={skill}
-            className="marquee-item mx-6 font-display text-2xl uppercase tracking-[0.2em] text-ink-soft/70 sm:mx-8 sm:text-2xl sm:tracking-[0.25em] md:mx-10 md:text-3xl md:tracking-[0.3em]"
+            className="marquee-item mx-6 font-display text-2xl uppercase tracking-[0.2em] text-white/55 sm:mx-8 sm:text-2xl sm:tracking-[0.25em] md:mx-10 md:text-3xl md:tracking-[0.3em]"
           >
             {skill}
           </span>
         ))}
       </Marquee>
 
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-2 px-6 py-10 text-center text-xs uppercase tracking-[0.35em] text-ink-soft md:flex-row md:justify-between md:gap-6 md:px-10">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-2 px-6 py-10 text-center text-xs uppercase tracking-[0.35em] text-white/80 md:flex-row md:justify-between md:gap-6 md:px-10">
         <span>Klare Nutzerführung auf jedem Gerät</span>
         <span>Vertrauen, Struktur und saubere Technik</span>
         <span>Design, das Leistung verständlich macht</span>
@@ -42,7 +42,7 @@ export function Skills() {
         {skills.map((skill) => (
           <span
             key={skill}
-            className="marquee-item mx-6 font-display text-2xl uppercase tracking-[0.2em] text-ink-soft/70 sm:mx-8 sm:text-2xl sm:tracking-[0.25em] md:mx-10 md:text-3xl md:tracking-[0.3em]"
+            className="marquee-item mx-6 font-display text-2xl uppercase tracking-[0.2em] text-white/55 sm:mx-8 sm:text-2xl sm:tracking-[0.25em] md:mx-10 md:text-3xl md:tracking-[0.3em]"
           >
             {skill}
           </span>

@@ -6,9 +6,9 @@ import { faqItems } from "@/lib/faq";
 export function Faq() {
   return (
     <section
-      id="faq"
-      className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 pb-20 pt-24 md:px-10 md:pb-24"
+      className="mx-auto w-full max-w-6xl px-6 pb-20 pt-24 md:px-10 md:pb-24"
     >
+      <div id="faq" className="scroll-mt-24" />
       <FadeIn direction="up" className="space-y-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="space-y-3">

@@ -80,7 +80,7 @@ export function Footer() {
       ref={footerRef}
       className="border-t border-black/10 bg-[rgba(243,239,230,0.85)]"
     >
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-7 text-sm md:flex-row md:items-start md:justify-between md:gap-8 md:px-10 md:py-10">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-7 text-sm md:flex-row md:items-start md:justify-between md:gap-8 md:px-10 md:py-10">
         <div className="space-y-1.5 md:space-y-2">
           <p className="flex items-center gap-2.5 font-display text-lg font-bold uppercase tracking-[0.14em] md:gap-3 md:text-xl md:tracking-[0.2em]">
             <span
