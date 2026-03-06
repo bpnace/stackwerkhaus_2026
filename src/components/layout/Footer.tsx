@@ -47,6 +47,7 @@ export function Footer() {
   const footerRef = useRef<HTMLElement>(null);
   const iconRef = useRef<HTMLSpanElement>(null);
   const reducedMotion = useReducedMotion();
+  const FULL_SPIN_DEGREES = 1080;
 
   useGSAP(
     () => {
@@ -57,13 +58,23 @@ export function Footer() {
       gsap.set(icon, { transformOrigin: "50% 50%" });
 
       const tween = gsap.to(icon, {
-        rotate: 180,
+        rotate: FULL_SPIN_DEGREES,
         ease: "none",
         scrollTrigger: {
           trigger: footer,
           start: "top bottom",
           end: "bottom bottom",
           scrub: 0.35,
+          onUpdate: () => {
+            const scrolledToBottom =
+              window.scrollY + window.innerHeight >=
+              document.documentElement.scrollHeight - 1;
+
+            // Lock to a full-turn angle at page bottom so the icon sits straight.
+            if (scrolledToBottom) {
+              gsap.set(icon, { rotate: FULL_SPIN_DEGREES });
+            }
+          },
         },
       });
 
