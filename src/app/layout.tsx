@@ -17,6 +17,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { buildSiteGraph, siteConfig } from "@/lib/seo";
 import { SmoothScrollProvider } from "@/providers/SmoothScrollProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import { TransitionProvider } from "@/providers/TransitionProvider";
 import "./globals.css";
 
@@ -101,14 +102,16 @@ export default function RootLayout({
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} antialiased`}
       >
-        <SmoothScrollProvider>
-          <TransitionProvider>
-            <CustomCursor />
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </TransitionProvider>
-        </SmoothScrollProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <SmoothScrollProvider>
+            <TransitionProvider>
+              <CustomCursor />
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </TransitionProvider>
+          </SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

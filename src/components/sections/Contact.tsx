@@ -67,7 +67,7 @@ export function Contact() {
                 Kontakt
               </p>
               <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
-                In 15 Minuten klären wir, was deine Website leisten muss.
+                Gib uns 30 Minuten, um dein Projekt zu verstehen.
               </h2>
             </div>
             <p className="max-w-lg text-base text-ink-soft">

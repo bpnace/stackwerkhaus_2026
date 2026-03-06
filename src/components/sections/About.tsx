@@ -166,7 +166,7 @@ export function About() {
           <div className="space-y-6">
             <FadeIn direction="up">
               <p className="text-base text-ink-soft">
-                STACKWERKHAUS aus Berlin entwickelt Websites für Unternehmen, die
+                <b>STACKWERKHAUS</b> aus Berlin entwickelt Websites für Unternehmen, die
                 online klarer wirken und weniger Erklärarbeit leisten
                 wollen. Wir verbinden Positionierung, Content-Führung, Design und
                 technische Umsetzung so, dass Besucher schneller verstehen, was
