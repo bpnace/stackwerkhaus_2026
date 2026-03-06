@@ -62,7 +62,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-black/10 bg-[rgba(243,239,230,0.82)] backdrop-blur">
       <div
         ref={innerRef}
-        className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 md:px-10"
+        className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5 md:px-10"
       >
         <Link href="/#top" className="flex items-center gap-4" onClick={handleLogoClick}>
           <LogoLockup className="shrink-0" />

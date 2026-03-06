@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { ImageReveal } from "@/components/animations/ImageReveal";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { TransitionLink } from "@/components/ui/TransitionLink";
 import { MagneticLink } from "@/components/animations/MagneticLink";
 import {
@@ -11,6 +12,13 @@ import {
   getPortfolioProjects,
   type PortfolioProject,
 } from "@/lib/projects";
+import {
+  buildBreadcrumbSchema,
+  buildPageMetadata,
+  buildWebPageSchema,
+  formatGermanDate,
+  siteConfig,
+} from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -36,29 +44,31 @@ const buildNarrative = (project: PortfolioProject) => {
     `Für ${client} entstand eine Website, die Haltung, Angebot und Persönlichkeit in eine klare digitale Struktur übersetzt.`;
 
   const challenge =
+    project.problem ||
     "Die Herausforderung lag in der Verdichtung der Inhalte und der klaren Führung zu Anfrage und Kontakt.";
 
-  const solution = `Die Lösung: ein stringenter Aufbau mit reduzierter Typografie, klaren Navigationsankern und einer visuellen Dramaturgie, die ${services
-    .slice(0, 2)
-    .join(" und ")
-    } sichtbar macht.`;
+  const solution =
+    project.approach ||
+    `Die Lösung: ein stringenter Aufbau mit reduzierter Typografie, klaren Navigationsankern und einer visuellen Dramaturgie, die ${services
+      .slice(0, 2)
+      .join(" und ")} sichtbar macht.`;
 
-  const results = [
-    {
-      title: "Schärfere Positionierung",
-      copy: "Das Markenbild wirkt präziser, ruhiger und vermittelt auf den ersten Blick die Expertise.",
-    },
-    {
-      title: "Schnelle Orientierung",
-      copy: "Besucher:innen finden Angebote, Preise und Kontakt ohne Umwege auf allen Devices.",
-    },
-    {
-      title: "Saubere Übergabe",
-      copy: "Ein schlankes System für Inhalte und Medien macht zukünftige Updates planbar.",
-    },
-  ];
+  const results = (project.outcomes ?? [
+    "Das Markenbild wirkt präziser und vermittelt auf den ersten Blick mehr Expertise.",
+    "Besucher:innen finden Angebote, Preise und Kontakt ohne Umwege auf allen Geräten.",
+    "Ein schlankes System für Inhalte und Medien macht zukünftige Updates planbar.",
+  ]).map((copy, index) => ({
+    title: ["Schärfere Positionierung", "Schnelle Orientierung", "Saubere Übergabe"][
+      index
+    ] ?? `Ergebnis ${index + 1}`,
+    copy,
+  }));
 
   const stats = [
+    {
+      label: "Branche",
+      value: project.sector ?? "Digitale Marke",
+    },
     {
       label: "Leistungen",
       value: services.join(" · "),
@@ -76,6 +86,16 @@ const buildNarrative = (project: PortfolioProject) => {
   return { overview, challenge, solution, results, stats, services };
 };
 
+const PROJECT_LAST_EDITED_AT = "2026-03-06";
+
+const getProjectDateModified = (project: PortfolioProject) => {
+  return project.updatedAt ?? PROJECT_LAST_EDITED_AT;
+};
+
+const getProjectUpdatedLabel = (project: PortfolioProject) => {
+  return formatGermanDate(project.updatedAt ?? PROJECT_LAST_EDITED_AT);
+};
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const project =
@@ -88,39 +108,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = `${project.title} - STACKWERKHAUS`;
+  const title = `Case Study: ${project.title}`;
   const description =
     project.summary ||
     project.body ||
     "Case Study-Detailansicht aus dem Portfolio von STACKWERKHAUS.";
 
-  return {
+  return buildPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `/work/${project.slug}`,
-    },
-    openGraph: {
-      type: "article",
-      locale: "de_DE",
-      url: `/work/${project.slug}`,
-      siteName: "STACKWERKHAUS",
-      title,
-      description,
-      images: [
-        {
-          url: project.cover?.url || "/images/og_image.webp",
-          alt: project.cover?.alt || project.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [project.cover?.url || "/images/og_image.webp"],
-    },
-  };
+    path: `/work/${project.slug}`,
+    type: "article",
+    image: project.cover?.url || siteConfig.ogImage,
+  });
 }
 
 export default async function WorkDetailPage({ params }: PageProps) {
@@ -138,12 +138,31 @@ export default async function WorkDetailPage({ params }: PageProps) {
 
   const { overview, challenge, solution, results, stats, services } =
     buildNarrative(project);
+  const breadcrumbItems = [
+    { name: "Start", path: "/" },
+    { name: "Projekte", path: "/work" },
+    { name: project.title, path: `/work/${project.slug}` },
+  ];
+  const pageGraph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildBreadcrumbSchema(breadcrumbItems),
+      buildWebPageSchema({
+        title: `Case Study: ${project.title}`,
+        description: project.summary || project.body || project.title,
+        path: `/work/${project.slug}`,
+        dateModified: getProjectDateModified(project),
+        breadcrumbItems,
+      }),
+    ],
+  };
 
   return (
-    <div>
+    <>
+      <div>
       <section className="relative overflow-hidden border-b border-black/10">
         <div className="pointer-events-none absolute -right-20 top-12 hidden h-56 w-56 rounded-full border border-black/10 lg:block" />
-        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-24 md:px-10">
+        <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-5 md:px-10">
           <div className="flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft">
             <TransitionLink
               href="/#work"
@@ -158,6 +177,9 @@ export default async function WorkDetailPage({ params }: PageProps) {
               {project.client ?? "STACKWERKHAUS"}
             </span>
           </div>
+          <div className="mt-6 text-[11px] uppercase tracking-[0.3em] text-ink-soft">
+            <span>Aktualisiert: {getProjectUpdatedLabel(project)}</span>
+          </div>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-6">
@@ -170,7 +192,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
               <FadeIn direction="up">
                 <p className="max-w-xl text-lg text-ink-soft md:text-xl">
                   {project.summary ||
-                    `${projectType === "Case Study" ? "Eine Case Study" : "Ein Projekt"}, das Klarheit, Geschwindigkeit und Wirkung in eine prägnante Marke übersetzt.`}
+                    `${projectType === "Case Study" ? "Eine Case Study" : "Ein Projekt"}, das Klarheit, Geschwindigkeit und Wirkung in einen digitalen Auftritt übersetzt.`}
                 </p>
               </FadeIn>
               <FadeIn direction="up" className="space-y-5 text-sm text-ink-soft">
@@ -279,13 +301,13 @@ export default async function WorkDetailPage({ params }: PageProps) {
                 as="h2"
                 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-4xl"
               >
-                Schneller Start, klare Wirkung
+                Von Positionierung bis Livegang
               </MaskedTextReveal>
               <p className="text-sm text-ink-soft">
-                Das Projekt wurde so aufgebaut, dass Entscheidungen schnell
-                getroffen werden können und die Website ohne unnötige Schleifen
-                live geht. Struktur, Inhalte und visuelle Hierarchie sorgen für
-                klare Wege zu Anfrage und Kontakt.
+                Diese Case Study zeigt nicht nur das Ergebnis, sondern den
+                strukturellen Hebel dahinter: bessere Reihenfolge,
+                verständlichere Leistungsdarstellung und ein klarerer Weg zur
+                Kontaktaufnahme.
               </p>
             </div>
           </FadeIn>
@@ -329,8 +351,8 @@ export default async function WorkDetailPage({ params }: PageProps) {
               </MaskedTextReveal>
             </div>
             <p className="max-w-md text-sm text-ink-soft">
-              Ein klares System, das Markenführung, Content und Conversion in
-              Einklang bringt.
+              Konkrete Verbesserungen, die aus der neuen Struktur, ruhigeren
+              Darstellung und einem besseren Anfragepfad entstanden sind.
             </p>
           </div>
 
@@ -350,6 +372,34 @@ export default async function WorkDetailPage({ params }: PageProps) {
                 <p className="mt-4 text-sm text-ink-soft">{item.copy}</p>
               </FadeIn>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-black/10">
+        <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-16 md:grid-cols-[1fr_auto] md:px-10">
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+              Ähnliches Projekt geplant?
+            </p>
+            <h2 className="font-display text-3xl font-bold uppercase tracking-[0.2em] md:text-4xl">
+              Wir können denselben Klarheitsgewinn auf deine Website übertragen.
+            </h2>
+            <p className="max-w-2xl text-sm text-ink-soft">
+              Im Erstgespräch klären wir, wo dein aktueller Auftritt Reibung
+              erzeugt und welche Seiten oder Leistungsblöcke den größten Hebel
+              haben.
+            </p>
+          </div>
+          <div className="flex items-center">
+            <TransitionLink
+              href="/#contact"
+              className="inline-flex items-center gap-3 border border-black/20 px-5 py-4 text-xs uppercase tracking-[0.3em] transition-colors hover:bg-black hover:text-white"
+              data-cursor-text="Kontakt"
+            >
+              Erstgespräch buchen
+              <span className="text-lg">↗</span>
+            </TransitionLink>
           </div>
         </div>
       </section>
@@ -416,6 +466,8 @@ export default async function WorkDetailPage({ params }: PageProps) {
           ))}
         </div>
       </section>
-    </div>
+      </div>
+      <JsonLd data={pageGraph} />
+    </>
   );
 }

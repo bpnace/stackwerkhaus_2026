@@ -55,18 +55,24 @@ export function Contact() {
         src="https://assets.calendly.com/assets/external/widget.js"
         strategy="afterInteractive"
       />
-      <section ref={sectionRef} id="contact" className="border-t border-black/10 bg-white/60">
+      <section
+        ref={sectionRef}
+        id="contact"
+        className="scroll-mt-24 border-t border-black/10 bg-white/60"
+      >
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:py-24">
           <FadeIn direction="up" className="space-y-6">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               Kontakt
             </p>
             <h2 className="font-display font-bold text-3xl uppercase tracking-[0.2em] md:text-5xl">
-              Überzeugt? Lass uns sprechen!
+              In 15 Minuten klären wir, was deine Website leisten muss.
             </h2>
             <p className="max-w-lg text-base text-ink-soft">
-              Jetzt einen Termin vereinbaren um einen beeindruckenden Online-Auftritt zu erhalten, der deinen Umsatz
-              steigert und deine Marke stärkt. Schnell online, klar strukturiert, Einzigartig und professionell nur für dich erstellt.
+              Das Erstgespräch ist dazu da, Angebot, Zielgruppe und sinnvollen
+              Projektumfang schnell einzuordnen. Du erfährst, ob ein neuer
+              Auftritt, ein Relaunch oder zunächst nur eine fokussierte
+              Leistungsseite der richtige Schritt ist.
             </p>
           </FadeIn>
 
@@ -74,7 +80,7 @@ export function Contact() {
             <div className="flex flex-col gap-6 border border-black/10 bg-white/80 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] md:p-8">
               <div className="space-y-3">
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                  Jetzt Termin sichern
+                  Nächster Schritt
                 </p>
                 <a
                   href="mailto:info@stackwerkhaus.de"
@@ -93,7 +99,7 @@ export function Contact() {
                   onClick={handleCalendlyClick}
                   rel="noreferrer"
                 >
-                  Oder kostenlosen Termin vorausplanen
+                  Kostenloses Erstgespräch buchen
                 </MagneticLink>
               </div>
             </div>

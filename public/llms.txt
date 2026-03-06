@@ -1,6 +1,23 @@
 # STACKWERKHAUS
 
-User-agent: *
-Allow: /
+STACKWERKHAUS entwickelt klare Websites für Dienstleister, kleine Unternehmen und neue Marken in DACH.
+Schwerpunkt: Struktur, Vertrauen, Anfragepfade, technische Sauberkeit, DSGVO-orientierte Umsetzung.
+
+Wichtige Seiten:
+- https://stackwerkhaus.de/
+- https://stackwerkhaus.de/leistungen
+- https://stackwerkhaus.de/leistungen/webdesign-dienstleister-berlin
+- https://stackwerkhaus.de/leistungen/dsgvo-website-agentur
+- https://stackwerkhaus.de/leistungen/website-relaunch-kmu
+- https://stackwerkhaus.de/work
+
+Zielgruppen:
+- Dienstleistungsunternehmen
+- Kleine und mittlere Unternehmen
+- Neue Marken mit Erklärungsbedarf
+
+Kontakt:
+- E-Mail: info@stackwerkhaus.de
+- Standort: Berlin / Remote
 
 Sitemap: https://stackwerkhaus.de/sitemap.xml

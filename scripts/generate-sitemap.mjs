@@ -4,18 +4,28 @@ import path from "node:path";
 const siteUrl = "https://stackwerkhaus.de";
 const rootDir = process.cwd();
 const projectsPath = path.join(rootDir, "src", "lib", "projects.ts");
+const servicesPath = path.join(rootDir, "src", "lib", "services.ts");
 const publicDir = path.join(rootDir, "public");
 
 const staticRoutes = [
   "/",
+  "/leistungen",
   "/work",
-  "/impressum",
-  "/datenschutz",
-  "/cookie-richtlinien",
 ];
 
 const readProjectSlugs = async () => {
   const content = await fs.readFile(projectsPath, "utf8");
+  const slugs = new Set();
+  const regex = /slug:\s*"([^"]+)"/g;
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    slugs.add(match[1]);
+  }
+  return Array.from(slugs);
+};
+
+const readServiceSlugs = async () => {
+  const content = await fs.readFile(servicesPath, "utf8");
   const slugs = new Set();
   const regex = /slug:\s*"([^"]+)"/g;
   let match;
@@ -46,8 +56,10 @@ const ensurePublicDir = async () => {
 
 const main = async () => {
   const slugs = await readProjectSlugs();
+  const serviceSlugs = await readServiceSlugs();
   const workRoutes = slugs.map((slug) => `/work/${slug}`);
-  const urls = [...staticRoutes, ...workRoutes].map(
+  const serviceRoutes = serviceSlugs.map((slug) => `/leistungen/${slug}`);
+  const urls = [...staticRoutes, ...serviceRoutes, ...workRoutes].map(
     (route) => `${siteUrl}${route}`
   );
 

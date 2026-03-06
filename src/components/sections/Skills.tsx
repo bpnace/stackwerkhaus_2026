@@ -1,27 +1,21 @@
 import { Marquee } from "@/components/animations/Marquee";
 
 const skills = [
-  "Webentwicklung",
-  "UI/UX Design",
-  "Branding",
-  "Beratung",
-  "Konzept",
-  "Design",
-  "Entwicklung",
-  "Launch",
-  "Responsive Design",
-  "SEO",
-  "Performance Optimierung",
-  "Content Management",
-  "E-Commerce",
+  "Website-Strategie",
+  "Webdesign",
+  "Content-Führung",
+  "Relaunch",
+  "Technisches SEO",
+  "Performance",
+  "DSGVO-Basis",
+  "Responsives Frontend",
+  "Launch-Begleitung",
+  "Analytics-Grundsetup",
   "Wartung & Support",
-  "KI-Integration",
-  "Full-Stack Lösungen",
-  "Accessibility",
-  "Sicherheit",
-  "Analytics",
-  "Conversion Optimierung",
-  "Ki-Automation Integration",
+  "Barrierearme Patterns",
+  "UI/UX Design",
+  "Conversion-Fokus",
+  "Struktur & Nutzerführung",
 ];
 
 export function Skills() {
@@ -38,10 +32,10 @@ export function Skills() {
         ))}
       </Marquee>
 
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-2 px-6 py-10 text-center text-xs uppercase tracking-[0.35em] text-ink-soft md:flex-row md:justify-between md:gap-6 md:text-left md:px-10">
-        <span>Moderne Websites auf jedem Gerät</span>
-        <span>Klarer Look, stimmiges Gefühl</span>
-        <span>Branding, das zu dir passt</span>
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-2 px-6 py-10 text-center text-xs uppercase tracking-[0.35em] text-ink-soft md:flex-row md:justify-between md:gap-6 md:px-10">
+        <span>Klare Nutzerführung auf jedem Gerät</span>
+        <span>Vertrauen, Struktur und saubere Technik</span>
+        <span>Design, das Leistung verständlich macht</span>
       </div>
 
       <Marquee speed={32} mobileSpeed={20} direction="right" className="py-6">

@@ -22,16 +22,34 @@ export function LazyAnimation({
 }: LazyAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" && eagerOnMobile
+      ? window.matchMedia("(pointer: coarse)").matches
+      : false,
+  );
   const reducedMotion = useReducedMotion();
   const isActive = reducedMotion || isIntersecting || (eagerOnMobile && isMobile);
 
   useEffect(() => {
-    if (eagerOnMobile) {
-      const media = window.matchMedia("(pointer: coarse)");
-      setIsMobile(media.matches);
-    }
-  }, [eagerOnMobile]);
+    if (!eagerOnMobile) return;
+
+    const media = window.matchMedia("(pointer: coarse)");
+    const frameId =
+      media.matches !== isMobile
+        ? window.requestAnimationFrame(() => setIsMobile(media.matches))
+        : null;
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsMobile(event.matches);
+    };
+
+    media.addEventListener("change", handleChange);
+    return () => {
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+      media.removeEventListener("change", handleChange);
+    };
+  }, [eagerOnMobile, isMobile]);
 
   useEffect(() => {
     if (reducedMotion || (eagerOnMobile && isMobile)) return;

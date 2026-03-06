@@ -9,6 +9,7 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 
 const legalLinks = [
+  { href: "/leistungen", label: "Leistungen" },
   { href: "/work", label: "Projekte" },
   { href: "/impressum", label: "Impressum" },
   { href: "/datenschutz", label: "Datenschutz" },
@@ -98,7 +99,8 @@ export function Footer() {
             <span>STACKWERKHAUS</span>
           </p>
           <p className="text-ink-soft">
-            Webdesign aus Berlin // klar, schnell und ohne Technikstress.
+            Klare Websites aus Berlin. Für Dienstleister, kleine Unternehmen und
+            neue Marken mit Fokus auf Vertrauen, Struktur und Anfragen.
           </p>
           <a
             href="mailto:info@stackwerkhaus.de"

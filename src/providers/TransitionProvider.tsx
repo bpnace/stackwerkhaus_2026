@@ -92,7 +92,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       >
         <div className="absolute inset-0 flex items-center justify-center">
           <Image
-            src="/images/logos/skwkhs.svg"
+            src="/images/logos/SKWKHS.svg"
             alt=""
             data-transition-logo
             width={176}

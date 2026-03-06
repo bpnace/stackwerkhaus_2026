@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useRef } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -10,6 +16,41 @@ interface SmoothScrollContextValue {
 }
 
 const SmoothScrollContext = createContext<SmoothScrollContextValue | null>(null);
+const HEADER_GAP = 5;
+const RELOAD_SCROLL_DRIFT_LIMIT = 80;
+
+function isReloadNavigation() {
+  const navigationEntry = performance.getEntriesByType(
+    "navigation"
+  )[0] as PerformanceNavigationTiming | undefined;
+
+  return navigationEntry?.type === "reload";
+}
+
+function resetSmallScrollDrift() {
+  if (window.location.hash) return;
+  if (window.scrollY <= 0 || window.scrollY >= RELOAD_SCROLL_DRIFT_LIMIT) return;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "auto",
+  });
+}
+
+function getAnchorTarget(target: string) {
+  if (!target.startsWith("#")) return null;
+
+  const element = document.querySelector<HTMLElement>(target);
+  if (!element) return null;
+
+  const headerHeight =
+    document.querySelector("header")?.getBoundingClientRect().height ?? 0;
+
+  return {
+    element,
+    offset: -(headerHeight + HEADER_GAP),
+  };
+}
 
 export function SmoothScrollProvider({
   children,
@@ -18,6 +59,21 @@ export function SmoothScrollProvider({
 }) {
   const lenisRef = useRef<Lenis | null>(null);
   const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!isReloadNavigation()) return;
+
+    const rafId = window.requestAnimationFrame(resetSmallScrollDrift);
+    const timeoutId = window.setTimeout(resetSmallScrollDrift, 160);
+
+    window.addEventListener("pageshow", resetSmallScrollDrift);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.clearTimeout(timeoutId);
+      window.removeEventListener("pageshow", resetSmallScrollDrift);
+    };
+  }, []);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -49,10 +105,21 @@ export function SmoothScrollProvider({
   const value = useMemo<SmoothScrollContextValue>(
     () => ({
       scrollTo: (target, options) => {
+        const anchorTarget =
+          typeof target === "string" ? getAnchorTarget(target) : null;
+
         if (reducedMotion || !lenisRef.current) {
           if (typeof target === "number") {
             window.scrollTo({
               top: target,
+              behavior: options?.immediate ? "auto" : "smooth",
+            });
+          } else if (anchorTarget) {
+            window.scrollTo({
+              top:
+                anchorTarget.element.getBoundingClientRect().top +
+                window.scrollY +
+                anchorTarget.offset,
               behavior: options?.immediate ? "auto" : "smooth",
             });
           } else {
@@ -62,6 +129,14 @@ export function SmoothScrollProvider({
               block: "start",
             });
           }
+          return;
+        }
+
+        if (anchorTarget) {
+          lenisRef.current.scrollTo(anchorTarget.element, {
+            immediate: options?.immediate,
+            offset: anchorTarget.offset,
+          });
           return;
         }
 

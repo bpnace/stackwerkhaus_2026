@@ -8,36 +8,32 @@ import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const competencies = [
-  "Individuelle Webentwicklung",
-  "Moderne Startup Websites",
-  "Günstige Webentwicklung",
-  "DSGVO-konforme Websites",
-  "Mobile-Optimierung",
-  "CMS-Integration",
-  "SEO-Optimierung 2026",
-  "Sichere Website (DSGVO)",
-  "Performance & Core Web Vitals",
+  "Positionierung & Angebotslogik",
+  "Website-Struktur",
+  "Webdesign",
+  "Frontend-Entwicklung",
+  "Technisches SEO",
+  "Performance",
+  "DSGVO-Basis",
+  "Content-Führung",
+  "Relaunches",
+  "Launch-Begleitung",
   "UI/UX Design",
-  "Content-Strategie",
-  "Barrierefreiheit",
+  "Analytics-Grundsetup",
+  "Barrierearme Patterns",
   "Wartung & Support",
-  "KI-Integration",
-  "Conversion-Optimierung",
+  "Conversion-Fokus",
 ];
 
 const principles = [
-  "Direkt von uns: günstig, schnell, zuverlässig.",
-  "Neuste Technologien: modern & zukunftssicher.",
-  "Blitzschnlle Ladezeiten: optimiert für alle Geräte.",
-  "Übersichtliche Preise: keine versteckten Kosten.",
-  "Automationen & KI: Effizienz durch smarte Tools.",
-  "Sicher & DSGVO-konform: Vertrauen als Basis.",
-  "SEO/AEO-Vorsprung: Sichtbarkeit in Suche & AI Overviews.",
-  "Klarer Aufbau: verständliche Inhalte, starke Nutzerführung.",
-  "Schnell online: zügige Umsetzung ohne Kompromisse.",
-  "Visuell ansprechend: modernes Design, das wirkt.",
-  "Begleiung & Support: wir sind für dich da.",
-  "Integration: nahtlose Einbindung in bestehende Systeme und Tools.",
+  "Klare Struktur vor dekorativer Überladung.",
+  "Direkte Zusammenarbeit statt Agentur-Schleifen.",
+  "Texte, die Leistung verständlich machen.",
+  "Mobile zuerst gedacht, nicht nachträglich repariert.",
+  "Technische Sauberkeit und DSGVO-Basis als Vertrauensfaktor.",
+  "SEO-Grundlage und interne Logik ab Launch mitgedacht.",
+  "Design, das Orientierung unterstützt statt sie zu verstecken.",
+  "Eine Übergabe, mit der Inhalte später pflegbar bleiben.",
 ];
 
 const pillSizes = competencies.map((_, index) => (index % 4 === 0 ? "lg" : "md"));
@@ -151,7 +147,10 @@ export function About() {
   }, [motionEnabled]);
 
   return (
-    <section id="about" className="mx-auto w-full max-w-6xl px-6 pb-8 pt-24 md:px-10">
+    <section
+      id="about"
+      className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 pb-8 pt-24 md:px-10"
+    >
       <div className="grid items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col gap-6">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
@@ -165,25 +164,19 @@ export function About() {
           </MaskedTextReveal>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
-              Wir sind STACKWERKHAUS aus Berlin - ein Kollektiv für moderne, ästhetische und
-              sichere Websites. Für Startups und kleine Unternehmen gestalten
-              wir moderne, visuell attraktive Websites, die schnell online gehen
-              und klar strukturiert sind. Wenn du eine günstige Website für ein
-              Startup suchst, eine sichere Website für kleine Unternehmen
-              brauchst oder eine professionelle Website in kurzer Zeit
-              realisieren willst, bist du bei uns richtig. Unsere SEO/AEO-
-              Optimierung sorgt für bessere Sichtbarkeit in der Suche und echte
-              Vorsprünge bei relevanten Anfragen.
+              STACKWERKHAUS aus Berlin entwickelt Websites für Unternehmen, die
+              online klarer wirken und offline weniger Erklärarbeit leisten
+              wollen. Wir verbinden Positionierung, Content-Führung, Design und
+              technische Umsetzung so, dass Besucher schneller verstehen, was
+              angeboten wird und wie der nächste Schritt aussieht.
             </p>
           </FadeIn>
           <FadeIn direction="up">
             <p className="text-base text-ink-soft">
-              Ob komplette Website, Relaunch oder MVP-Seite: Wir kombinieren
-              klares Design, SEO-Basics und DSGVO-Sicherheit mit Performance-
-              Optimierung, damit du sichtbar wirst und Anfragen bekommst. Ideal
-              für Startups, die eine schnelle Website mit klarer Struktur
-              brauchen, und für kleine Unternehmen, die ihre Website modern
-              gestalten und langfristig gut gefunden werden wollen.
+              Der Schwerpunkt liegt auf Dienstleistern, kleinen Unternehmen und
+              neuen Marken im DACH-Raum. Ob neuer Auftritt oder Relaunch:
+              wichtig ist, dass Struktur, Vertrauen und Anfragepfad zusammen
+              gedacht werden statt in separaten Einzelschritten zu enden.
             </p>
           </FadeIn>
           <div className="mt-auto flex flex-wrap items-center gap-4 border border-black/10 bg-white/70 px-4 py-4">
@@ -195,7 +188,7 @@ export function About() {
                 Jahre Erfahrung
               </p>
               <p className="text-sm text-ink-soft">
-                B2B/B2C Konzeption & Entwicklung
+                Strategie, Design und Entwicklung für serviceorientierte Marken
               </p>
             </div>
           </div>

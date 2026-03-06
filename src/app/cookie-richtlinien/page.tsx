@@ -1,29 +1,14 @@
 import type { Metadata } from "next";
 import { TransitionLink } from "@/components/ui/TransitionLink";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Cookie-Richtlinien",
   description:
     "Cookie-Richtlinien von STACKWERKHAUS mit Übersicht zu eingesetzten Cookies und Einwilligungen.",
-  alternates: {
-    canonical: "/cookie-richtlinien",
-  },
-  openGraph: {
-    title: "Cookie-Richtlinien | STACKWERKHAUS",
-    description:
-      "Cookie-Richtlinien von STACKWERKHAUS mit Übersicht zu eingesetzten Cookies und Einwilligungen.",
-    url: "/cookie-richtlinien",
-    siteName: "STACKWERKHAUS",
-    locale: "de_DE",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Cookie-Richtlinien | STACKWERKHAUS",
-    description:
-      "Cookie-Richtlinien von STACKWERKHAUS mit Übersicht zu eingesetzten Cookies und Einwilligungen.",
-  },
-};
+  path: "/cookie-richtlinien",
+  noindex: true,
+});
 
 export default function CookieRichtlinienPage() {
   return (
@@ -59,9 +44,9 @@ export default function CookieRichtlinienPage() {
             </h2>
             <p className="mt-3">
               Cookies sind kleine Textdateien, die auf deinem Endgerät
-              gespeichert werden. Sie helfen dabei, eine Website technisch
-              bereitzustellen, Präferenzen zu speichern oder Reichweitenmessungen
-              zu ermöglichen. Außerdem gibt es ähnliche Technologien wie Local
+              gespeichert werden. Damit lässt sich eine Website technisch
+              bereitstellen, Präferenzen speichern oder Reichweitenmessung
+              ermöglichen. Außerdem gibt es ähnliche Technologien wie Local
               Storage oder Pixel.
             </p>
           </div>

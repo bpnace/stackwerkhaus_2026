@@ -9,7 +9,10 @@ export async function Work() {
   const projects = await getPortfolioProjects();
 
   return (
-    <section id="work" className="mx-auto w-full max-w-6xl px-6 md:px-10">
+    <section
+      id="work"
+      className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 md:px-10"
+    >
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="space-y-3">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
@@ -19,12 +22,13 @@ export async function Work() {
             as="h2"
             className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl"
           >
-            Startup Websites mit Wirkung
+            Beispiele für klare digitale Auftritte
           </MaskedTextReveal>
         </div>
         <p className="max-w-md text-sm text-ink-soft">
-          Personalisierte Website-Pakete, schnelle Umsetzung und messbare Ergebnisse.
-          Beispiele zeigen, wie sichere, klare Websites für Startups entstehen.
+          Diese Projekte zeigen, wie aus unklaren Leistungen verständliche
+          Nutzerführung wird. Nicht als Galerie, sondern als Beweis für
+          Struktur, Vertrauen und saubere Kontaktpfade.
         </p>
       </div>
 

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import {
   Bodoni_Moda,
   IBM_Plex_Mono,
   IBM_Plex_Sans,
 } from "next/font/google";
 import dynamic from "next/dynamic";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const CustomCursor = dynamic(() =>
   import("@/components/animations/CustomCursor").then((m) => ({
@@ -13,6 +15,7 @@ const CustomCursor = dynamic(() =>
 );
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { buildSiteGraph, siteConfig } from "@/lib/seo";
 import { SmoothScrollProvider } from "@/providers/SmoothScrollProvider";
 import { TransitionProvider } from "@/providers/TransitionProvider";
 import "./globals.css";
@@ -39,56 +42,39 @@ const monoFont = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://stackwerkhaus.de"),
+  metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: "/",
   },
   title: {
-    default:
-      "STACKWERKHAUS | Dein Webauftritt mit Statik. Für mehr Sichtbarkeit und Wachstum",
+    default: siteConfig.defaultTitle,
     template: "%s | STACKWERKHAUS",
   },
-  description:
-    "Moderne, sichere Websites in kurzer Zeit. Klarer Aufbau, SEO optimiert, DSGVO fokussiert, direkt aus Berlin. Schlüsselfertige Lösungen für dein Unternehmen.",
+  description: siteConfig.defaultDescription,
   openGraph: {
     type: "website",
-    locale: "de_DE",
+    locale: siteConfig.locale,
     url: "/",
-    siteName: "STACKWERKHAUS",
-    title:
-      "STACKWERKHAUS | Webauftritte mit Statik, für mehr Sichtbarkeit und Wachstum",
-    description:
-      "Moderne, sichere Websites in kurzer Zeit. Klarer Aufbau, SEO optimiert, DSGVO fokussiert, direkt aus Berlin. Schlüsselfertige Lösungen für dein Unternehmen.",
+    siteName: siteConfig.name,
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
     images: [
       {
-        url: "/images/og_image.webp",
-        alt: "STACKWERKHAUS",
+        url: siteConfig.ogImage,
+        alt: siteConfig.name,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "STACKWERKHAUS | Webauftritte mit Statik, für mehr Sichtbarkeit und Wachstum",
-    description:
-      "Moderne, sichere Websites in kurzer Zeit. Klarer Aufbau, SEO optimiert, DSGVO fokussiert, direkt aus Berlin. Schlüsselfertige Lösungen für dein Unternehmen.",
-    images: ["/images/og_image.webp"],
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+    images: [siteConfig.ogImage],
   },
   robots: {
     index: true,
     follow: true,
   },
-};
-
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "STACKWERKHAUS",
-  url: "https://stackwerkhaus.de",
-  sameAs: [
-    "https://www.instagram.com/stackwerkhaus",
-    "https://www.linkedin.com/in/tarik-arthur-marshall",
-  ],
 };
 
 export default function RootLayout({
@@ -97,18 +83,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
+    <html lang="de" suppressHydrationWarning>
       <head>
-        <script
+        <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="f656ec61-fa34-4784-8702-a8e18483fd69"
-          type="text/javascript"
+          strategy="beforeInteractive"
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
+        <JsonLd data={buildSiteGraph()} />
       </head>
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} antialiased`}
