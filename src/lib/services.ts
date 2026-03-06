@@ -47,299 +47,300 @@ export const services: ServicePage[] = [
     slug: "webdesign-dienstleister-berlin",
     title: "Webdesign für Dienstleister in Berlin",
     shortTitle: "Webdesign für Dienstleister",
-    kicker: "Lokale Sichtbarkeit",
+    kicker: "Mehr qualifizierte Anfragen",
     summary:
-      "Für Beratungen, Praxen und Servicefirmen, die online sofort verständlich wirken und schneller passende Anfragen gewinnen wollen.",
+      "Webdesign in Berlin für Dienstleister, die mit einer klaren Website mehr passende Anfragen gewinnen wollen.",
     audience:
-      "Gründer:innen, Inhaber:innen und kleine Teams aus Beratung, Praxis, Service und lokaler Dienstleistung.",
+      "Selbstständige, Inhaber:innen und kleine Teams aus Beratung, Praxen, Agenturen und lokalen Servicebetrieben.",
     intro:
-      "Wenn deine Website heute nur grob beschreibt, was du machst, aber nicht sauber erklärt, warum genau du die richtige Wahl bist, verliert sie Anfragen. Diese Leistung baut einen Auftritt, der Spezialisierung, Vertrauen und nächsten Schritt in wenigen Sekunden verständlich macht.",
-    serviceType: "Webdesign für Dienstleistungsunternehmen",
-    timeline: "In der Regel 3 bis 6 Wochen bis zum Launch",
-    pricingHint: "Sinnvoll für fokussierte Projekte ab 1.500 EUR, abhängig von Umfang und Inhalt",
+      "Viele Dienstleister-Websites sehen ordentlich aus, beantworten aber die wichtigste Frage nicht schnell genug: Was genau bietet ihr an und warum sollte ich euch kontaktieren? Wir entwickeln eine Website, die Leistung, Vertrauen und nächsten Schritt klar zusammenführt.",
+    serviceType: "Webdesign Berlin für Dienstleistungsunternehmen",
+    timeline: "Meist 3 bis 6 Wochen bis zum Livegang",
+    pricingHint:
+      "Für fokussierte Projekte in der Regel ab 1.500 EUR, abhängig von Seitenumfang, Inhalten und Integrationen",
     updatedAt: "2026-03-06",
     situations: [
-      "Interessenten verstehen im Erstkontakt nicht schnell genug, welche Leistung du konkret anbietest und für wen sie gedacht ist.",
-      "Die Startseite wirkt allgemein, während wichtige Vertrauenselemente, Leistungsseiten oder Kontaktpfade zu spät oder gar nicht auftauchen.",
-      "Du willst lokal oder regional besser gefunden werden, aber die Website liefert dafür weder klare Leistungsbegriffe noch eine saubere Seitenlogik.",
+      "Interessenten verstehen auf den ersten Blick nicht, welche Leistungen ihr anbietet und für wen sie gedacht sind.",
+      "Startseite und Leistungsseiten wirken zu allgemein, sodass Vertrauen und Kontaktabsicht zu spät entstehen.",
+      "Ihr wollt lokal besser gefunden werden, aber die Website hat keine klare Struktur und keine präzisen Leistungsbegriffe.",
     ],
     idealFor: [
       "Beratungen, Kanzleien, Praxen, Agenturen und Servicefirmen mit kleinem bis mittlerem Leistungsportfolio.",
-      "Teams, die keine große Markenplattform brauchen, sondern eine Website, die Anfragen wahrscheinlicher macht.",
-      "Unternehmen, die in Berlin, regional oder im DACH-Raum sichtbar sein wollen und dafür klare Leistungsseiten benötigen.",
+      "Teams, die keine große Markenplattform brauchen, sondern eine Website, die zuverlässig Anfragen erzeugt.",
+      "Unternehmen, die in Berlin oder im DACH-Raum für konkrete Leistungen sichtbar werden möchten.",
     ],
     notFor: [
-      "Wenn du eigentlich einen Shop, ein Portal oder ein komplexes Produkt-Dashboard planst.",
-      "Wenn das Angebot selbst noch unklar ist und zuerst grundlegend geschärft werden muss.",
-      "Wenn nur eine optische Auffrischung gesucht ist, ohne Struktur, Copy und Kontaktpfade zu überarbeiten.",
+      "Wenn ihr einen Shop, ein Portal oder eine komplexe Produktplattform plant.",
+      "Wenn euer Angebot noch nicht klar definiert ist und erst strategisch geschärft werden muss.",
+      "Wenn nur ein neues Farbschema gewünscht ist, ohne Inhalte, Struktur und CTA-Pfade zu verbessern.",
     ],
     benefits: [
       {
-        title: "Leistung in Sekunden verständlich",
+        title: "Angebot sofort verständlich",
         copy:
-          "Besucher sehen schneller, worauf du spezialisiert bist, für wen dein Angebot gedacht ist und welcher nächste Schritt sinnvoll ist.",
+          "Besucher erkennen in wenigen Sekunden, worauf ihr spezialisiert seid, für wen euer Angebot passt und was sie als Nächstes tun sollen.",
       },
       {
-        title: "Mehr lokale Relevanz",
+        title: "Mehr Sichtbarkeit für lokale Suchanfragen",
         copy:
-          "Saubere Leistungsseiten, klare Begriffe und interne Logik stärken die Grundlage für lokale Suchanfragen und AI-gestützte Antworten.",
+          "Klare Leistungsseiten, präzise Begriffe und eine saubere interne Verlinkung verbessern eure Chancen bei lokaler SEO und KI-Antworten.",
       },
       {
-        title: "Kontaktpfade ohne Reibung",
+        title: "Mehr Anfragen über klare Kontaktpfade",
         copy:
-          "Vertrauenselemente, CTA-Platzierung und Seitenreihenfolge werden so gebaut, dass Interessenten nicht erst nach Kontakt oder Einordnung suchen müssen.",
+          "Vertrauenselemente, CTAs und Seitenreihenfolge werden so aufgebaut, dass Interessenten schnell entscheiden und direkt Kontakt aufnehmen.",
       },
     ],
     deliverables: [
       {
-        title: "Seitenlogik für Start, Leistung und Kontakt",
+        title: "Informationsarchitektur für Start, Leistung und Kontakt",
         copy:
-          "Wir definieren, welche Kernseiten wirklich gebraucht werden und in welcher Reihenfolge Angebot, Vertrauen und CTA auftauchen müssen.",
+          "Wir definieren, welche Seiten ihr wirklich braucht und wie Angebot, Vertrauen und CTA logisch aufeinander folgen.",
       },
       {
-        title: "Copy-Führung für Nutzen und Einwände",
+        title: "SEO- und AEO-optimierte Copy",
         copy:
-          "Texte werden nicht nur schöner formuliert, sondern auf Verständnis, Positionierung und konkrete Anfragewahrscheinlichkeit ausgelegt.",
+          "Texte werden natürlich formuliert, auf Suchintention ausgerichtet und so strukturiert, dass sie in KI-Antworten leichter zitiert werden können.",
       },
       {
-        title: "Responsives Frontend mit SEO-Basis",
+        title: "Responsives Frontend mit technischer SEO-Basis",
         copy:
-          "Die Umsetzung ist schnell, wartbar und technisch sauber aufgebaut, inklusive Metadaten, interner Verlinkung und DSGVO-orientierter Basis.",
+          "Die Umsetzung ist schnell, wartbar und technisch sauber, inklusive Metadaten, sauberer interner Verlinkung und DSGVO-orientierter Grundeinstellungen.",
       },
     ],
     process: [
       {
-        title: "Angebot und Anfrageziel schärfen",
+        title: "Positionierung und Anfrageziel schärfen",
         description:
-          "Wir legen fest, welche Leistung im Mittelpunkt steht, welche Anfragen du wirklich willst und was Besucher in den ersten Sekunden verstehen müssen.",
+          "Wir definieren, welche Leistung im Fokus steht, welche Anfragen ihr gewinnen wollt und welche Botschaft sofort klar sein muss.",
       },
       {
-        title: "Seitenstruktur und Copy ordnen",
+        title: "Seitenstruktur und Inhalte planen",
         description:
-          "Leistungsseiten, Vertrauensbeweise und CTA-Pfade werden so angeordnet, dass Orientierung ohne zusätzliche Erklärung funktioniert.",
+          "Leistungsseiten, Vertrauensbeweise und CTA-Pfade werden so angeordnet, dass Nutzer ohne Umwege zur richtigen Entscheidung kommen.",
       },
       {
         title: "Design und Frontend umsetzen",
         description:
-          "Die Website wird visuell klar, responsiv und technisch sauber gebaut, damit Design, Geschwindigkeit und Verständlichkeit zusammenarbeiten.",
+          "Wir setzen die Website responsiv und performant um, damit Design, Ladezeit und Verständlichkeit zusammenpassen.",
       },
       {
         title: "Launch und Übergabe vorbereiten",
         description:
-          "Zum Abschluss richten wir Livegang, Grundsettings und eine pflegbare Übergabe ein, damit die Seite nicht nur startet, sondern im Alltag nutzbar bleibt.",
+          "Vor dem Livegang prüfen wir alle Kernpunkte und übergeben eine pflegbare Grundlage, mit der ihr langfristig arbeiten könnt.",
       },
     ],
     faqs: [
       {
-        question: "Für welche Dienstleister ist diese Leistung besonders geeignet?",
+        question: "Für welche Unternehmen ist dieses Webdesign in Berlin geeignet?",
         answer:
-          "Besonders gut passt sie für Beratungen, Praxen, Agenturen, Kanzleien und lokale Servicefirmen, die Expertise sichtbar machen und Anfragen planbarer gewinnen wollen.",
+          "Die Leistung passt besonders für Beratungen, Praxen, Kanzleien, Agenturen und lokale Servicebetriebe, die online klarer kommunizieren und mehr qualifizierte Anfragen erhalten möchten.",
       },
       {
-        question: "Brauche ich schon fertige Texte und Bilder?",
+        question: "Was kostet eine Dienstleister-Website bei euch?",
         answer:
-          "Nein. Vorhandene Inhalte können übernommen und gestrafft werden. Fehlende Inhalte strukturieren wir gemeinsam so, dass nur das produziert wird, was für Klarheit und Vertrauen wirklich nötig ist.",
+          "Je nach Umfang starten Projekte meist ab 1.500 EUR. Den genauen Rahmen bestimmen wir nach Seitenanzahl, Inhaltslage und gewünschten Funktionen im Erstgespräch.",
       },
       {
-        question: "Hilft die Website auch bei lokaler Sichtbarkeit?",
+        question: "Hilft ihr auch bei SEO und KI-Sichtbarkeit?",
         answer:
-          "Ja. Die Leistung setzt bewusst auf klare Leistungsbegriffe, saubere Seitenstruktur, technische SEO-Basis und besser zitierbare Inhalte für lokale Suche und AI-Antworten.",
+          "Ja. Wir arbeiten mit klaren Leistungsbegriffen, sauberer Seitenstruktur und präzisen Antworten, damit Inhalte besser für lokale Suchanfragen und KI-Ergebnisse nutzbar sind.",
       },
       {
-        question: "Wie viel Abstimmung ist im Projekt nötig?",
+        question: "Müssen alle Texte und Bilder schon fertig sein?",
         answer:
-          "Der Prozess ist so aufgebaut, dass Entscheidungen gebündelt werden. Du bekommst klare Zwischenstände statt dauernder Mikroschleifen.",
+          "Nein. Bestehende Inhalte können wir übernehmen, straffen und gezielt ergänzen. Ihr müsst nicht vorab alles neu produzieren.",
       },
     ],
     relatedProjectSlugs: ["immo-pal", "kiez-apotheke"],
-    ctaTitle: "Du willst online schneller verständlich wirken?",
+    ctaTitle: "Ihr wollt als Dienstleister online klarer überzeugen?",
     ctaCopy:
-      "Im Erstgespräch klären wir, welche Leistungsseiten, Vertrauensblöcke und CTA-Pfade auf deiner Website den größten Hebel haben.",
+      "Im Erstgespräch klären wir, welche Seitenstruktur, Texte und CTA-Pfade auf eurer Website den größten Hebel für mehr Anfragen haben.",
   },
   {
     slug: "dsgvo-website-agentur",
     title: "DSGVO-orientierte Website-Umsetzung",
     shortTitle: "DSGVO-orientierte Websites",
-    kicker: "Vertrauen + Umsetzung",
+    kicker: "Datenschutz, der verständlich wirkt",
     summary:
-      "Für Teams, die nicht nur schön aussehen wollen, sondern eine technisch saubere, nachvollziehbare und datenschutzbewusste Website brauchen.",
+      "Für Unternehmen, die eine datenschutzbewusste Website brauchen: technisch sauber, transparent und überzeugend im Vertrieb.",
     audience:
-      "Unternehmen mit erhöhtem Vertrauensanspruch, sensiblen Daten oder erklärungsbedürftigen Tools und Prozessen.",
+      "Unternehmen mit erhöhtem Vertrauensanspruch, sensiblen Daten oder komplexen digitalen Prozessen.",
     intro:
-      "Diese Leistung ist für Unternehmen gedacht, bei denen Datenschutz, Hosting, Consent und technische Sauberkeit Teil der Kaufentscheidung sind. Ziel ist keine juristische Fassade, sondern eine Website, deren technische Grundlage nachvollziehbar und vertrauenswürdig wirkt.",
+      "Datenschutz ist für viele Kund:innen ein Entscheidungskriterium. Deshalb bauen wir Websites so, dass Consent, Tracking, Hosting und technische Entscheidungen nachvollziehbar kommuniziert und sauber umgesetzt sind.",
     serviceType: "DSGVO-orientierte Website-Umsetzung",
-    timeline: "Je nach Umfang meist 3 bis 5 Wochen",
+    timeline: "Je nach Umfang meist 3 bis 5 Wochen bis zum Livegang",
     pricingHint:
-      "Sinnvoll für Teams, die technische Sauberkeit und klare Verantwortung sichtbar machen wollen",
+      "Sinnvoll für Teams, die Datenschutz und technische Verantwortung als Teil ihrer Markenwirkung sichtbar machen möchten",
     updatedAt: "2026-03-06",
     situations: [
-      "Deine aktuelle Seite nutzt zu viele Drittanbieter oder Tracking-Tools, ohne dass ihr intern noch sauber erklären könnt, was davon wirklich gebraucht wird.",
-      "Datenschutz ist im Verkaufsgespräch relevant, aber auf der Website kaum sichtbar oder nur als Pflichttext im Footer vorhanden.",
-      "Die technische Basis soll vertrauenswürdig wirken, ohne dass Performance, Design oder Wartbarkeit darunter leiden.",
+      "Die bestehende Website nutzt viele Drittanbieter-Tools, aber intern ist unklar, was davon wirklich nötig ist.",
+      "Datenschutz spielt in Gesprächen eine wichtige Rolle, ist auf der Website aber nur als Pflichttext sichtbar.",
+      "Ihr braucht eine technische Basis, die Vertrauen schafft, ohne Performance und Wartbarkeit zu verschlechtern.",
     ],
     idealFor: [
-      "Unternehmen aus B2B, Gesundheit, Beratung, Software oder sensiblen Servicebereichen mit erhöhtem Vertrauensbedarf.",
-      "Teams, die Hosting, Consent, Tracking und externe Tools nicht dem Zufall überlassen wollen.",
-      "Auftritte, bei denen technische Nachvollziehbarkeit ein echter Teil der Markenwirkung ist.",
+      "Unternehmen aus B2B, Gesundheit, Beratung, Software und anderen sensiblen Branchen.",
+      "Teams, die Tracking, Consent und externe Tools bewusst steuern statt historisch mitlaufen lassen wollen.",
+      "Marken, bei denen technische Seriosität aktiv zum Vertrauen und zur Conversion beitragen soll.",
     ],
     notFor: [
-      "Wenn du eigentlich nur ein Cookie-Banner austauschen willst, ohne die restliche Tool-Landschaft zu hinterfragen.",
-      "Wenn rechtliche Spezialberatung erwartet wird, die über technische und kommunikative Umsetzung hinausgeht.",
-      "Wenn maximale Marketing-Tool-Dichte wichtiger ist als Klarheit, Performance und Vertrauenswirkung.",
+      "Wenn nur ein neues Cookie-Banner gewünscht ist, ohne Tracking- und Tool-Setup insgesamt zu prüfen.",
+      "Wenn eine rein juristische Spezialberatung erwartet wird.",
+      "Wenn maximale Marketing-Tool-Dichte wichtiger ist als Transparenz, Performance und Stabilität.",
     ],
     benefits: [
       {
-        title: "Datenschutz wird nachvollziehbar",
+        title: "Datenschutz wird sichtbar und verständlich",
         copy:
-          "Besucher sehen nicht nur Pflichttexte, sondern einen Auftritt, bei dem technische Entscheidungen, Consent und Vertrauenssignale zusammenpassen.",
+          "Besucher sehen nicht nur Pflichttexte, sondern eine Website, bei der technische Entscheidungen, Consent und Vertrauenssignale zusammenpassen.",
       },
       {
-        title: "Weniger unnötige Tool-Komplexität",
+        title: "Weniger unnötige Komplexität",
         copy:
-          "Wir reduzieren, wo möglich, überflüssige Abhängigkeiten und priorisieren eine Setup-Logik, die intern wartbar bleibt.",
+          "Wir reduzieren überflüssige Abhängigkeiten und schaffen ein Setup, das intern nachvollziehbar und wartbar bleibt.",
       },
       {
-        title: "Saubere Technik wirkt verkaufsstärker",
+        title: "Saubere Technik unterstützt den Vertrieb",
         copy:
-          "Performance, Stabilität und dokumentierte Grundstruktur stärken Vertrauen gerade dort, wo sensible Daten oder größere Budgets im Spiel sind.",
+          "Performance, Stabilität und eine dokumentierte Grundstruktur erhöhen das Vertrauen, besonders bei sensiblen Daten und größeren Budgets.",
       },
     ],
     deliverables: [
       {
-        title: "Prüfung der bestehenden Tools und Risiken",
+        title: "Audit von Tools, Tracking und Risiken",
         copy:
-          "Wir schauen zuerst, welche Drittanbieter, Tracking-Setups und Einbindungen wirklich nötig sind und wo unnötige Risiken reduziert werden können.",
+          "Wir prüfen, welche Drittanbieter und Tracking-Setups wirklich erforderlich sind und wo sich Risiken pragmatisch reduzieren lassen.",
       },
       {
         title: "Consent- und Vertrauensarchitektur",
         copy:
-          "Hinweise, Einwilligungen und technische Entscheidungen werden so eingebunden, dass Datenschutz nicht versteckt, sondern nachvollziehbar erscheint.",
+          "Hinweise, Einwilligungen und technische Entscheidungen werden so eingebunden, dass Datenschutz nicht versteckt, sondern klar nachvollziehbar ist.",
       },
       {
         title: "Umsetzung mit Hosting-, Performance- und Wartungsbasis",
         copy:
-          "Die Website wird so aufgebaut, dass Geschwindigkeit, Transparenz und saubere Betreuung nicht gegeneinander ausgespielt werden.",
+          "Die Website wird so gebaut, dass Ladezeit, Transparenz und langfristige Pflege sinnvoll zusammenarbeiten.",
       },
     ],
     process: [
       {
-        title: "Status quo und Tools prüfen",
+        title: "Ist-Zustand und Tools prüfen",
         description:
-          "Wir analysieren vorhandene Drittanbieter, Tracking-Logik und Integrationen, bevor Design oder Seitenbau überhaupt starten.",
+          "Wir analysieren Drittanbieter, Tracking-Logik und Integrationen, bevor Design oder Umsetzung starten.",
       },
       {
         title: "Vertrauensarchitektur planen",
         description:
-          "Texte, Hinweispunkte, Kontaktblöcke und Vertrauenselemente werden so gesetzt, dass technische Sorgfalt auch für Nicht-Techniker sichtbar wird.",
+          "Texte, Hinweise und Kontaktblöcke werden so aufgebaut, dass technische Sorgfalt auch für Nicht-Techniker verständlich ist.",
       },
       {
         title: "Frontend sauber umsetzen",
         description:
-          "Die technische Umsetzung priorisiert Ladezeit, stabile Auslieferung und eine Tool-Landschaft, die intern noch erklärbar bleibt.",
+          "Die technische Umsetzung priorisiert Ladezeit, stabile Auslieferung und ein Setup, das intern langfristig erklärbar bleibt.",
       },
       {
         title: "Vor dem Launch absichern",
         description:
-          "Consent, Metadaten, interne Links und die wichtigsten technischen Signale werden vor dem Livegang noch einmal gezielt geprüft.",
+          "Vor dem Livegang prüfen wir Consent, Metadaten, interne Verlinkung und die wichtigsten technischen Signale.",
       },
     ],
     faqs: [
       {
-        question: "Ersetzt diese Leistung eine rechtliche Beratung?",
+        question: "Ist das eine rechtliche DSGVO-Beratung?",
         answer:
-          "Nein. Sie schafft eine saubere technische und kommunikative Basis. Juristische Spezialfragen bleiben bei Bedarf ein Fall für spezialisierte Beratung.",
+          "Nein. Wir liefern die technische und kommunikative Umsetzung. Juristische Spezialfragen sollten weiterhin mit einer Rechtsberatung geklärt werden.",
+      },
+      {
+        question: "Was bedeutet DSGVO-orientiert bei euch konkret?",
+        answer:
+          "Das bedeutet: klare Consent-Flows, nachvollziehbare Tool-Landschaft, transparente Hinweise und eine technische Umsetzung, die unnötige Risiken reduziert.",
       },
       {
         question: "Können bestehende Tools übernommen werden?",
         answer:
-          "Ja, sofern sie sinnvoll sind. Wo ein Tool Vertrauen, Performance oder Nachvollziehbarkeit schwächt, schlagen wir eine pragmatische Alternative vor.",
+          "Ja, sofern sie sinnvoll sind. Wenn ein Tool Performance, Transparenz oder Wartbarkeit schwächt, empfehlen wir eine pragmatische Alternative.",
       },
       {
-        question: "Was heißt DSGVO-orientiert konkret?",
+        question: "Für welche Branchen lohnt sich das besonders?",
         answer:
-          "Gemeint sind eine nachvollziehbare Tool-Landschaft, saubere Consent-Flows, transparente Hinweise und eine Umsetzung, die unnötige Risiken vermeidet.",
-      },
-      {
-        question: "Ist das nur für stark regulierte Branchen relevant?",
-        answer:
-          "Nein. Auch in vielen normalen B2B-Situationen wirkt eine technisch saubere, vertrauenswürdige Website professioneller und reduziert Rückfragen im Vertrieb.",
+          "Besonders für B2B, Gesundheit, Beratung und Software mit erklärungsbedürftigen Prozessen. Grundsätzlich profitieren aber alle Unternehmen, die Vertrauen aktiv aufbauen müssen.",
       },
     ],
     relatedProjectSlugs: ["codariq", "bloom"],
-    ctaTitle: "Datenschutz soll kein Unsicherheitsfaktor auf der Website sein?",
+    ctaTitle: "Ihr wollt Datenschutz auf eurer Website klar und vertrauenswürdig lösen?",
     ctaCopy:
-      "Wir prüfen im Erstgespräch, wo dein aktueller Auftritt Vertrauen verliert und welche technische oder kommunikative Basis wirklich nötig ist.",
+      "Im Erstgespräch prüfen wir, wo euer Auftritt aktuell Vertrauen verliert und welche technische Basis wirklich nötig ist.",
   },
   {
     slug: "website-relaunch-kmu",
     title: "Website-Relaunch für kleine Unternehmen",
     shortTitle: "Website-Relaunch",
-    kicker: "Bestehendes modernisieren",
+    kicker: "Bestehendes verbessern statt neu anfangen",
     summary:
-      "Für kleine Unternehmen, deren Website noch funktioniert, aber zu langsam, unklar oder nicht mehr überzeugend wirkt.",
+      "Website-Relaunch für KMU, die ihre bestehende Website modernisieren und dabei Sichtbarkeit, Vertrauen und Anfragen verbessern möchten.",
     audience:
-      "Kleine und mittlere Unternehmen mit bestehender Website, gewachsenen Inhalten und unklarer Nutzerführung.",
+      "Kleine und mittlere Unternehmen mit gewachsener Website, veralteten Inhalten und unklarer Nutzerführung.",
     intro:
-      "Ein Relaunch lohnt sich dann, wenn die Website Leistung und Vertrauen nicht mehr sauber transportiert. Statt bei null zu starten, wird der bestehende Auftritt strukturell, inhaltlich und visuell so modernisiert, dass er wieder als Verkaufswerkzeug arbeitet.",
+      "Ein Website-Relaunch lohnt sich, wenn eure bestehende Seite fachlich noch Substanz hat, aber nicht mehr überzeugt. Wir modernisieren Struktur, Inhalte und Design so, dass eure Website wieder als verlässlicher Vertriebskanal arbeitet.",
     serviceType: "Website-Relaunch",
     timeline: "Je nach Ausgangslage meist 4 bis 6 Wochen",
     pricingHint:
-      "Geeignet für Teams, die vorhandene Inhalte, Rankings und Bekanntheit besser nutzen möchten",
+      "Geeignet für Teams, die bestehende Inhalte, Rankings und Markenbekanntheit gezielt weiterentwickeln möchten",
     updatedAt: "2026-03-06",
     situations: [
-      "Die Website ist über Jahre gewachsen, enthält doppelte Aussagen oder alte Inhalte und wirkt heute eher historisch als überzeugend.",
-      "Es gibt bereits Sichtbarkeit, Inhalte oder Bekanntheit, aber die Struktur bremst Verständnis, Vertrauen oder Kontaktaufnahme.",
-      "Du willst modernisieren, ohne bestehende Substanz, Weiterleitungen und Suchsignale unkontrolliert zu verlieren.",
+      "Die Website ist über Jahre gewachsen und enthält doppelte, veraltete oder widersprüchliche Inhalte.",
+      "Es gibt bereits Sichtbarkeit und Bekanntheit, aber Struktur und Nutzerführung bremsen Anfragen.",
+      "Ihr wollt modernisieren, ohne Rankings, wertvolle URLs und bestehende SEO-Signale zu verlieren.",
     ],
     idealFor: [
-      "Kleine Unternehmen mit bestehender Website, deren Angebot sich weiterentwickelt hat, die Seite aber nicht mitgewachsen ist.",
-      "Teams, die vorhandene Inhalte weiter nutzen wollen, statt alles neu zu produzieren.",
-      "Unternehmen, für die Relaunch auch SEO-, Weiterleitungs- und Vertrauenslogik sauber mitdenken muss.",
+      "KMU mit bestehender Website, deren Angebot sich verändert hat, die Seite aber nicht mitgewachsen ist.",
+      "Teams, die vorhandene Inhalte und Rankings weiter nutzen wollen, statt alles neu aufzusetzen.",
+      "Unternehmen, bei denen SEO, Weiterleitungen und Vertrauensaufbau im Relaunch sauber mitgedacht werden müssen.",
     ],
     notFor: [
-      "Wenn es noch keine verwertbare Website-Substanz gibt und ein kompletter Neubau sinnvoller ist.",
-      "Wenn nur Farben oder einzelne Oberflächen ausgetauscht werden sollen, ohne den eigentlichen Aufbau zu hinterfragen.",
-      "Wenn niemand intern Entscheidungen zu Prioritäten, alten Inhalten oder Weiterleitungen treffen kann.",
+      "Wenn kaum verwertbare Substanz vorhanden ist und ein kompletter Neubau sinnvoller wäre.",
+      "Wenn nur ein visuelles Update gewünscht ist, ohne Struktur, Inhalte und Conversion-Pfade zu verbessern.",
+      "Wenn intern keine Entscheidungen zu Prioritäten, Altinhalten und Weiterleitungen getroffen werden können.",
     ],
     benefits: [
       {
-        title: "Bestehende Substanz bleibt nutzbar",
+        title: "Bestehende Stärken bleiben erhalten",
         copy:
-          "Inhalte, Rankings und bekannte Seiten werden gezielt bewertet, statt pauschal gelöscht oder blind übernommen zu werden.",
+          "Bestehende Inhalte, Rankings und starke Seiten werden gezielt bewertet, statt pauschal gelöscht oder blind übernommen.",
       },
       {
-        title: "Klarere Navigation und Aussagen",
+        title: "Klarere Navigation und Botschaften",
         copy:
-          "Der Relaunch ordnet Reihenfolge, Leistungsdarstellung und Vertrauenselemente neu, damit Besucher schneller verstehen, was relevant ist.",
+          "Der Relaunch ordnet Seitenstruktur, Leistungsdarstellung und Vertrauenselemente neu, damit Besucher schneller verstehen, warum sie bei euch richtig sind.",
       },
       {
-        title: "Sauberer Go-live statt hektischer Umstellung",
+        title: "Sauberer Go-live ohne SEO-Verluste",
         copy:
-          "Weiterleitungen, Metadaten und wichtige SEO-Signale werden mitgedacht, damit der Relaunch nicht nur schöner, sondern auch stabiler wird.",
+          "Weiterleitungen, Metadaten und Kernsignale werden sauber vorbereitet, damit der Relaunch nicht nur besser aussieht, sondern stabil performt.",
       },
     ],
     deliverables: [
       {
-        title: "Analyse des bestehenden Auftritts",
+        title: "Audit des bestehenden Auftritts",
         copy:
-          "Wir identifizieren, was bleiben kann, wo Reibung entsteht und welche Seiten oder Inhalte aktuell den größten Hebel haben.",
+          "Wir identifizieren, was erhalten bleiben kann, wo Reibung entsteht und welche Seiten den größten Hebel haben.",
       },
       {
         title: "Neue Seitenstruktur und Content-Führung",
         copy:
-          "Startseite, Leistungsblöcke, Beweiselemente und Kontaktpfade werden neu sortiert, damit der Auftritt wieder präzise verkauft.",
+          "Startseite, Leistungsblöcke, Beweiselemente und CTA-Pfade werden neu geordnet, damit die Website wieder klar verkauft.",
       },
       {
-        title: "Neuimplementierung mit Launch-Plan",
+        title: "Neuimplementierung mit Relaunch-Plan",
         copy:
-          "Designsystem, Frontend, Weiterleitungen und technische Grundeinstellungen werden so vorbereitet, dass der Übergang sauber bleibt.",
+          "Design, Frontend, Weiterleitungen und technische Grundeinstellungen werden so vorbereitet, dass der Übergang kontrolliert und sicher bleibt.",
       },
     ],
     process: [
       {
         title: "Ist-Zustand analysieren",
         description:
-          "Wir prüfen Struktur, Inhalte, Vertrauenssignale und technische Altlasten, bevor entschieden wird, was erhalten oder neu gebaut wird.",
+          "Wir prüfen Struktur, Inhalte, Vertrauenssignale und technische Altlasten, bevor wir über Erhalt oder Neubau einzelner Bereiche entscheiden.",
       },
       {
         title: "Neuen Aufbau definieren",
@@ -349,40 +350,40 @@ export const services: ServicePage[] = [
       {
         title: "Design und Inhalte überführen",
         description:
-          "Bestehende Inhalte werden gestrafft, neue Beweiselemente ergänzt und in ein modernes, ruhigeres Interface übertragen.",
+          "Bestehende Inhalte werden gestrafft, neue Beweiselemente ergänzt und in ein modernes, ruhiges Interface überführt.",
       },
       {
         title: "Go-live sauber vorbereiten",
         description:
-          "Weiterleitungen, Metadaten, interne Links und die wichtigsten SEO-Signale werden vor dem Launch gezielt abgesichert.",
+          "Vor dem Launch sichern wir Weiterleitungen, Metadaten, interne Links und zentrale SEO-Signale gezielt ab.",
       },
     ],
     faqs: [
       {
-        question: "Muss bei einem Relaunch alles neu geschrieben werden?",
+        question: "Wann lohnt sich ein Website-Relaunch für KMU?",
         answer:
-          "Nein. Häufig ist die größere Schwäche nicht fehlender Inhalt, sondern eine unklare Reihenfolge, schwache Priorisierung oder das Fehlen von Beweisen und klaren CTA-Pfaden.",
+          "Ein Relaunch lohnt sich, wenn eure Website nicht mehr zu eurem aktuellen Angebot passt, Inhalte unklar sind oder die Conversion trotz Traffic zu niedrig bleibt.",
       },
       {
-        question: "Können bestehende Rankings erhalten bleiben?",
+        question: "Bleiben unsere Google-Rankings beim Relaunch erhalten?",
         answer:
-          "Ja, wenn der Relaunch sauber geplant wird. Wichtige URLs, Inhalte und Weiterleitungen werden deshalb bewusst behandelt statt erst kurz vor dem Livegang improvisiert.",
+          "Ja, wenn der Relaunch sauber geplant ist. Wichtige URLs, Inhalte und Weiterleitungen behandeln wir von Anfang an, nicht erst kurz vor dem Livegang.",
       },
       {
-        question: "Eignet sich das auch für ältere kleine Unternehmensseiten?",
+        question: "Müssen wir alle Inhalte komplett neu schreiben?",
         answer:
-          "Genau dafür ist die Leistung gedacht. Ein Relaunch ist besonders sinnvoll, wenn die Website historisch gewachsen ist und heute nicht mehr zu deinem Angebot passt.",
+          "Nein. In vielen Fällen können bestehende Inhalte überarbeitet, neu priorisiert und gezielt ergänzt werden.",
       },
       {
-        question: "Wann ist ein kompletter Neubau sinnvoller als ein Relaunch?",
+        question: "Wie lange dauert ein Relaunch in der Regel?",
         answer:
-          "Wenn kaum verwertbare Inhalte, keine funktionierende Struktur und keine wertvollen Suchsignale vorhanden sind, ist ein Neubau oft effizienter. Das klären wir im Erstgespräch offen.",
+          "Je nach Ausgangslage meist 4 bis 6 Wochen. Bei vielen Altseiten, komplexen Weiterleitungen oder neuen Inhalten kann es länger dauern.",
       },
     ],
     relatedProjectSlugs: ["atelier-heimat", "nordlicht-coffee", "uncloud"],
-    ctaTitle: "Deine Website soll wieder wie ein aktuelles Unternehmen wirken?",
+    ctaTitle: "Eure Website soll wieder wie ein aktuelles Unternehmen wirken?",
     ctaCopy:
-      "Im Erstgespräch schauen wir, welche bestehende Substanz erhalten bleiben sollte und wo ein Relaunch den größten Klarheitsgewinn bringt.",
+      "Im Erstgespräch klären wir, welche Substanz erhalten bleibt und wo ein Relaunch den größten Effekt auf Sichtbarkeit, Vertrauen und Anfragen hat.",
   },
 ];
 

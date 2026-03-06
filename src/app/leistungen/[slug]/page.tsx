@@ -236,7 +236,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             <FadeIn direction="up" className="border border-black/10 bg-white/70 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                Passt gut, wenn
+                Passt gut, wenn <b>↑</b>
               </p>
               <ul className="mt-5 space-y-4 text-sm text-ink-soft">
                 {service.idealFor.map((item) => (
@@ -248,7 +248,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </FadeIn>
             <FadeIn direction="up" className="border border-black/10 bg-white/70 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-                Eher nicht passend, wenn
+                Eher nicht passend, wenn <b>↓</b>
               </p>
               <ul className="mt-5 space-y-4 text-sm text-ink-soft">
                 {service.notFor.map((item) => (
