@@ -69,7 +69,7 @@ export default function CookieRichtlinienPage() {
             </h2>
             <p className="mt-3">
               Deine Einwilligung kannst du jederzeit anpassen oder widerrufen.
-              Nutze dafür den Cookie-Hinweis (Cookiebot) oder ändere deine
+              Nutze dafür den Cookie-Hinweis von CCM19 oder ändere deine
               Einstellungen direkt in deinem Browser. Wenn du Cookies löschst,
               kann es sein, dass bestimmte Funktionen eingeschränkt sind.
             </p>
@@ -91,16 +91,18 @@ export default function CookieRichtlinienPage() {
               Cookie-Übersicht
             </h2>
             <p className="mt-3">
-              Die nachfolgende Liste wird dynamisch durch unseren Consent-
-              Anbieter bereitgestellt.
+              Die detaillierte Übersicht sowie die nachträgliche Anpassung deiner
+              Auswahl stellt unser Consent-Anbieter CCM19 direkt im Frontend
+              bereit.
             </p>
             <div className="mt-6">
-              <script
-                id="CookieDeclaration"
-                src="https://consent.cookiebot.com/f656ec61-fa34-4784-8702-a8e18483fd69/cd.js"
-                type="text/javascript"
-                async
-              />
+              <a
+                href="#CCM.openWidget"
+                className="inline-flex items-center gap-2 border border-black bg-black px-5 py-3 text-[11px] uppercase tracking-[0.28em] text-white transition-colors hover:bg-white hover:text-black"
+              >
+                Cookie-Einstellungen öffnen
+                <span className="text-lg">↘</span>
+              </a>
             </div>
           </div>
         </section>

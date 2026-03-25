@@ -114,17 +114,17 @@ export default function DatenschutzPage() {
 
           <div>
             <h2 className="font-display font-bold text-xl uppercase tracking-[0.2em]">
-              4. Cookies und Einwilligungsmanagement (Cookiebot)
+              4. Cookies und Einwilligungsmanagement (CCM19)
             </h2>
             <p className="mt-3">
-              Wir verwenden Cookiebot, um deine Einwilligungen in das Setzen von
+              Wir verwenden CCM19, um deine Einwilligungen in das Setzen von
               Cookies und den Einsatz vergleichbarer Technologien zu verwalten.
-              Cookiebot speichert deine Auswahl und ermöglicht dir, diese
+              CCM19 speichert deine Auswahl und ermöglicht dir, diese
               jederzeit anzupassen.
             </p>
             <p className="mt-2">
-              <strong>Anbieter:</strong> Usercentrics A/S (Cookiebot), Havnegade
-              39, 1058 Kopenhagen, Dänemark.
+              <strong>Anbieter:</strong> Papoo Software &amp; Media GmbH,
+              Auguststr. 4, 53229 Bonn, Deutschland.
             </p>
             <p className="mt-2">
               <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. c DSGVO
@@ -135,7 +135,7 @@ export default function DatenschutzPage() {
               <strong>Zweck:</strong> Einwilligungsmanagement und Compliance
               <br />
               <strong>Speicherdauer:</strong> Gemäß den Einstellungen des
-              Consent-Tools
+              Consent-Tools.
             </p>
           </div>
 

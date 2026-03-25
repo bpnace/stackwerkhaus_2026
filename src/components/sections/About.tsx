@@ -151,7 +151,7 @@ export function About() {
       className="mx-auto w-full max-w-6xl px-6 pb-8 pt-24 md:px-10"
     >
       <div className="grid items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 text-left">
           <div id="about" className="scroll-mt-24 space-y-3">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               Über uns
@@ -163,9 +163,9 @@ export function About() {
               Wer ist STACKWERKHAUS?
             </MaskedTextReveal>
           </div>
-          <div className="space-y-6">
+          <div className="mx-auto flex w-full max-w-xl flex-col space-y-6">
             <FadeIn direction="up">
-              <p className="text-base text-ink-soft">
+              <p className="text-left text-base text-ink-soft">
                 <b>STACKWERKHAUS</b> aus Berlin entwickelt Websites für Unternehmen, die
                 online klarer wirken und weniger Erklärarbeit leisten
                 wollen. Wir verbinden Positionierung, Content-Führung, Design und
@@ -174,18 +174,18 @@ export function About() {
               </p>
             </FadeIn>
             <FadeIn direction="up">
-              <p className="text-base text-ink-soft">
+              <p className="text-left text-base text-ink-soft">
                 Der Schwerpunkt liegt auf Dienstleistern, kleinen Unternehmen und
                 neuen Marken im DACH-Raum. Ob neuer Auftritt oder Relaunch:
                 Wichtig ist, dass Struktur, Vertrauen und Anfragepfad zusammen
                 gedacht werden statt in separaten Einzelschritten zu enden.
               </p>
             </FadeIn>
-            <div className="flex flex-wrap items-center gap-4 border border-black/10 bg-white/70 px-4 py-4">
+            <div className="flex w-full flex-col items-center gap-4 border border-black/10 bg-white/70 px-5 py-5 text-center md:flex-row md:text-left">
               <span className="font-display text-4xl font-bold uppercase tracking-[0.18em]">
                 <CountUp value={8} suffix="+" />
               </span>
-              <div>
+              <div className="max-w-sm">
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                   Jahre Erfahrung
                 </p>
@@ -196,20 +196,35 @@ export function About() {
             </div>
           </div>
         </div>
-        <FadeIn direction="up" className="h-full">
-          <div className="flex h-full flex-col gap-6 border border-black/10 bg-white/70 p-6">
+        <FadeIn direction="up" className="hidden md:block md:h-full md:w-full md:max-w-xl lg:max-w-none">
+          <div className="flex h-full flex-col gap-6 border border-black/10 bg-white/70 p-5 text-center md:p-6 md:text-left">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               Leitprinzipien & Werte
             </p>
-            <ul className="space-y-4 text-sm text-ink-soft">
+            <ul className="mx-auto w-full max-w-xl space-y-4 text-sm text-ink-soft md:mx-0">
               {principles.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-6 text-xs uppercase tracking-[0.35em]">
+            <div className="mt-auto flex items-center justify-center gap-4 border-t border-black/10 pt-6 text-xs uppercase tracking-[0.35em] md:justify-between md:gap-0">
               <span>Berlin</span>
               <span><b>STACKWERKHAUS</b></span>
             </div>
+          </div>
+        </FadeIn>
+        <FadeIn direction="up" className="hidden">
+          <p className="text-center text-xs uppercase tracking-[0.35em] text-ink-soft">
+            Kompetenzen
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {competencies.map((item) => (
+              <span
+                key={item}
+                className="inline-flex items-center justify-center rounded-full border border-black/15 bg-white/90 px-4 py-2 text-center text-[11px] uppercase tracking-[0.24em] text-ink-soft shadow-[0_10px_22px_rgba(0,0,0,0.08)]"
+              >
+                {item}
+              </span>
+            ))}
           </div>
         </FadeIn>
         <FadeIn direction="up" className="hidden space-y-4 lg:col-span-2 md:block">

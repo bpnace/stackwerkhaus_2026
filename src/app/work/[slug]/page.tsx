@@ -218,7 +218,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
             </div>
 
             <FadeIn direction="up">
-              <div className="flex flex-col gap-6 border border-black/10 bg-white/70 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
+              <div className="flex flex-col gap-6 border border-black/10 bg-white/70 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] md:p-6">
                 <div>
                   <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                     {projectType === "Case Study"
@@ -275,7 +275,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
                         Live ansehen
                         <span className="text-lg">↗</span>
                       </span>
-                      <span className="justify-right flex h-2.5 w-2.5 items-center justify-center">
+                      <span className="hidden h-2.5 w-2.5 items-center justify-center md:flex">
                         <span className="absolute h-2.5 w-2.5 rounded-full bg-red-500/60 animate-ping" />
                         <span className="relative h-2 w-2 rounded-full bg-red-500" />
                       </span>
@@ -361,7 +361,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
               <FadeIn
                 key={item.title}
                 direction="up"
-                className="border border-black/10 bg-white/80 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
+                className="border border-black/10 bg-white/80 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] md:p-6"
               >
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                   Ergebnis
@@ -383,15 +383,13 @@ export default async function WorkDetailPage({ params }: PageProps) {
               Ähnliches Projekt geplant?
             </p>
             <h2 className="font-display text-3xl font-bold uppercase tracking-[0.2em] md:text-4xl">
-              Wir können denselben Klarheitsgewinn auf deine Website übertragen.
+              Wir machen auch aus deinem Webprojekt ein stabiles Bauwerk.
             </h2>
             <p className="max-w-2xl text-sm text-ink-soft">
-              Im Erstgespräch klären wir, wo dein aktueller Auftritt Reibung
-              erzeugt und welche Seiten oder Leistungsblöcke den größten Hebel
-              haben.
+              Im Erstgespräch prüfen wir, wo dein aktueller Auftritt keine tragfähige Struktur hat und welche Seiten oder Leistungsbereiche das stärkste Fundament für bessere Ergebnisse bilden.
             </p>
           </div>
-          <div className="flex items-center">
+          <div className="flex justify-center md:items-center md:justify-end">
             <MagneticLink
               href="/#contact"
               className="inline-flex items-center gap-3 border border-black bg-black px-5 py-4 text-xs uppercase tracking-[0.3em] text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-colors transition-shadow hover:bg-white hover:text-black hover:shadow-[0_16px_36px_rgba(0,0,0,0.16)] focus-visible:outline-none focus-visible:bg-white focus-visible:text-black focus-visible:ring-2 focus-visible:ring-black/25"
@@ -428,7 +426,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
             <TransitionLink
               key={item.id}
               href={`/work/${item.slug}`}
-              className="group flex flex-col justify-between border border-black/10 bg-white/70 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
+              className="group flex flex-col justify-between border border-black/10 bg-white/70 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] md:p-6"
               data-cursor-text="Ansehen"
             >
               <div className="space-y-4">
