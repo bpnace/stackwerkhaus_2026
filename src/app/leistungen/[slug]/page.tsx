@@ -84,52 +84,63 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <main>
         <section className="relative overflow-hidden border-b border-black/10">
           <div className="pointer-events-none absolute -right-20 top-12 hidden h-56 w-56 rounded-full border border-black/10 lg:block" />
-          <div className="mx-auto w-full max-w-6xl px-6 pb-5 md:px-10 md:pt-5">
-            <div className="grid grid-cols-3 items-center gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft">
+          <div className="mx-auto w-full max-w-6xl px-6 pb-8 pt-5 md:px-10 md:pb-5">
+            <div className="flex flex-col gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft md:flex-row md:flex-wrap md:items-center md:justify-between">
               <TransitionLink
                 href="/#services"
-                className="flex items-center gap-2 justify-self-start font-bold text-ink-soft hover:text-foreground"
+                className="flex items-center gap-2 font-bold text-ink-soft hover:text-foreground"
                 data-cursor-text="Zurück"
               >
                 <span>↙</span>
                 Zurück
               </TransitionLink>
-              <span className="justify-self-center">Leistungen</span>
-              <span className="justify-self-end text-right">
-                Aktualisiert: {updatedLabel}
-              </span>
+              <div className="flex flex-col items-center gap-1 text-center md:hidden">
+                <span>Leistung</span>
+                <span className="font-bold text-foreground">
+                  {service.shortTitle}
+                </span>
+              </div>
+              <div className="hidden items-center gap-6 md:flex">
+                <span>Leistung</span>
+                <span className="font-bold text-foreground">
+                  {service.shortTitle}
+                </span>
+              </div>
             </div>
-            <div className="mt-6 flex flex-wrap gap-3 text-[11px] uppercase tracking-[0.3em] text-ink-soft">
-              <span>{service.kicker}</span>
-              <span>{service.timeline}</span>
+            <div className="mt-6 text-[11px] uppercase tracking-[0.3em] text-ink-soft">
+              <span>Aktualisiert: {updatedLabel}</span>
             </div>
 
-            <div className="mt-10 grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="space-y-8">
-                <div className="space-y-6">
+            <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+              <div className="space-y-6 md:space-y-8">
+                <div className="space-y-5 md:space-y-6">
                   <MaskedTextReveal
                     as="h1"
-                    className="max-w-5xl font-display text-4xl font-bold uppercase tracking-[0.16em] md:text-6xl"
+                    className="max-w-5xl font-display font-bold text-[10vw] uppercase tracking-[0.18em] leading-[0.9] md:text-6xl"
                   >
                     {service.title}
                   </MaskedTextReveal>
                   <FadeIn direction="up">
-                    <p className="max-w-3xl text-lg text-ink-soft md:text-xl">
+                    <p className="max-w-3xl text-base text-ink-soft md:text-xl">
                       {service.summary}
                     </p>
                   </FadeIn>
+                  <div className="flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.3em] text-ink-soft md:gap-3">
+                    <span>{service.kicker}</span>
+                    <span>{service.timeline}</span>
+                  </div>
                 </div>
 
-                <FadeIn direction="up" className="border border-black/10 bg-white/70 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
+                <FadeIn direction="up" className="border border-black/10 bg-white/70 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] md:p-6">
                   <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                     Direkte Antwort
                   </p>
-                  <p className="mt-4 max-w-3xl text-sm text-ink-soft md:text-base">
+                  <p className="mt-3 max-w-3xl text-sm text-ink-soft md:mt-4 md:text-base">
                     {service.intro}
                   </p>
                 </FadeIn>
 
-                <div className="space-y-4">
+                <div className="space-y-3 md:space-y-4">
                   <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                     Typische Ausgangslage
                   </p>
@@ -138,12 +149,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                       <FadeIn
                         key={situation}
                         direction="up"
-                        className="border border-black/10 bg-white/70 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
+                        className={`border border-black/10 bg-white/70 p-4 shadow-[0_20px_40px_rgba(0,0,0,0.06)] md:p-5 ${
+                          index >= 2 ? "hidden md:block" : ""
+                        }`}
                       >
                         <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                           Ausgangslage {String(index + 1).padStart(2, "0")}
                         </p>
-                        <p className="mt-4 text-sm text-ink-soft">{situation}</p>
+                        <p className="mt-3 text-sm text-ink-soft md:mt-4">{situation}</p>
                       </FadeIn>
                     ))}
                   </div>
@@ -151,47 +164,52 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               </div>
 
               <FadeIn direction="up" className="h-full">
-                <aside className="flex h-full flex-col gap-6 border border-black/10 bg-white/70 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
+                <aside className="flex h-full flex-col gap-5 border border-black/10 bg-white/70 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] md:gap-6 md:p-6">
                   <div>
                     <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                       Leistungsrahmen
                     </p>
-                    <p className="mt-3 font-display text-3xl font-bold uppercase tracking-[0.16em]">
+                    <p className="mt-2 font-display text-2xl font-bold uppercase tracking-[0.16em] md:mt-3 md:text-3xl">
                       {service.shortTitle}
                     </p>
                   </div>
 
-                  <div className="grid gap-4 text-xs uppercase tracking-[0.3em] text-ink-soft">
-                    <div className="flex items-center justify-between gap-6 border-b border-black/10 pb-3">
+                  <div className="grid gap-3 text-xs uppercase tracking-[0.3em] text-ink-soft md:gap-4">
+                    <div className="flex flex-col items-start gap-2 border-b border-black/10 pb-3 md:flex-row md:items-center md:justify-between md:gap-6">
                       <span>Für wen</span>
-                      <span className="max-w-[18rem] text-right text-sm normal-case tracking-normal text-foreground">
+                      <span className="max-w-[18rem] text-left text-sm normal-case tracking-normal text-foreground md:text-right">
                         {service.audience}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between gap-6 border-b border-black/10 pb-3">
+                    <div className="flex flex-col items-start gap-2 border-b border-black/10 pb-3 md:flex-row md:items-center md:justify-between md:gap-6">
                       <span>Zeitrahmen</span>
-                      <span className="text-right text-sm normal-case tracking-normal text-foreground">
+                      <span className="text-left text-sm normal-case tracking-normal text-foreground md:text-right">
                         {service.timeline}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between gap-6 border-b border-black/10 pb-3">
-                      <span className=" text-center text-sm normal-case tracking-normal text-foreground">
+                    <div className="border-b border-black/10 pb-3">
+                      <span className="text-left text-sm normal-case tracking-normal text-foreground">
                         {service.pricingHint}
                       </span>
                     </div>
                   </div>
 
-                  <div className="space-y-4 pt-6">
+                  <div className="space-y-3 pt-2 md:space-y-4 md:pt-4">
                     <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                       Enthalten
                     </p>
-                    <div className="space-y-4">
-                      {service.deliverables.map((deliverable) => (
-                        <div key={deliverable.title} className="border border-black/10 bg-white/80 p-4">
+                    <div className="space-y-3 md:space-y-4">
+                      {service.deliverables.map((deliverable, index) => (
+                        <div
+                          key={deliverable.title}
+                          className={`border border-black/10 bg-white/80 p-4 ${
+                            index >= 2 ? "hidden md:block" : ""
+                          }`}
+                        >
                           <p className="text-xs uppercase tracking-[0.3em] text-foreground">
                             {deliverable.title}
                           </p>
-                          <p className="mt-3 text-sm text-ink-soft">
+                          <p className="mt-2 text-sm text-ink-soft md:mt-3">
                             {deliverable.copy}
                           </p>
                         </div>
@@ -201,7 +219,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
                   <MagneticLink
                     href="/#contact"
-                    className="inline-flex w-full items-center justify-between border border-black bg-black px-5 py-4 text-xs uppercase tracking-[0.3em] text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-colors transition-shadow hover:bg-white hover:text-black hover:shadow-[0_16px_36px_rgba(0,0,0,0.16)] focus-visible:outline-none focus-visible:bg-white focus-visible:text-black focus-visible:ring-2 focus-visible:ring-black/25"
+                    className="inline-flex w-full items-center justify-center gap-3 border border-black bg-black px-5 py-4 text-xs uppercase tracking-[0.3em] text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-colors transition-shadow hover:bg-white hover:text-black hover:shadow-[0_16px_36px_rgba(0,0,0,0.16)] focus-visible:outline-none focus-visible:bg-white focus-visible:text-black focus-visible:ring-2 focus-visible:ring-black/25 md:justify-between"
                     data-cursor-text="Kontakt"
                   >
                     Erstgespräch buchen
@@ -213,8 +231,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-6xl px-6 py-20 md:px-10">
-          <div className="flex flex-wrap items-end justify-between gap-6">
+        <section className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
+          <div className="flex flex-col gap-4 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-6">
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                 Noch nicht sicher? Kein Problem.
@@ -226,33 +244,43 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 Wann diese Leistung passt
               </MaskedTextReveal>
             </div>
-            <p className="max-w-md text-sm text-ink-soft">
+            <p className="hidden max-w-md text-sm text-ink-soft md:block">
               Gute Service-Seiten helfen nicht nur beim Verkaufen, sondern auch
               beim Aussortieren. Deshalb ist hier klar benannt, für welche
               Ausgangslage diese Leistung gedacht ist und wofür eher nicht.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <FadeIn direction="up" className="border border-black/10 bg-white/70 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]">
+          <div className="mt-8 grid gap-4 lg:mt-10 lg:gap-6 lg:grid-cols-2">
+            <FadeIn direction="up" className="border border-black/10 bg-white/70 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] md:p-6">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                 Passt gut, wenn <b>↑</b>
               </p>
-              <ul className="mt-5 space-y-4 text-sm text-ink-soft">
-                {service.idealFor.map((item) => (
-                  <li key={item} className="border-t border-black/10 pt-4 first:border-t-0 first:pt-0">
+              <ul className="mt-4 space-y-3 text-sm text-ink-soft md:mt-5 md:space-y-4">
+                {service.idealFor.map((item, index) => (
+                  <li
+                    key={item}
+                    className={`border-t border-black/10 pt-3 first:border-t-0 first:pt-0 md:pt-4 ${
+                      index >= 2 ? "hidden md:list-item" : ""
+                    }`}
+                  >
                     {item}
                   </li>
                 ))}
               </ul>
             </FadeIn>
-            <FadeIn direction="up" className="border border-black/10 bg-white/70 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]">
+            <FadeIn direction="up" className="border border-black/10 bg-white/70 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] md:p-6">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                 Eher nicht passend, wenn <b>↓</b>
               </p>
-              <ul className="mt-5 space-y-4 text-sm text-ink-soft">
-                {service.notFor.map((item) => (
-                  <li key={item} className="border-t border-black/10 pt-4 first:border-t-0 first:pt-0">
+              <ul className="mt-4 space-y-3 text-sm text-ink-soft md:mt-5 md:space-y-4">
+                {service.notFor.map((item, index) => (
+                  <li
+                    key={item}
+                    className={`border-t border-black/10 pt-3 first:border-t-0 first:pt-0 md:pt-4 ${
+                      index >= 2 ? "hidden md:list-item" : ""
+                    }`}
+                  >
                     {item}
                   </li>
                 ))}
@@ -262,7 +290,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </section>
 
         <section className="border-y border-black/10 bg-white/60">
-          <div className="mx-auto w-full max-w-6xl px-6 py-20 md:px-10">
+          <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
             <div className="max-w-2xl space-y-4">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                 Das Ergebnis
@@ -276,12 +304,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               </p>
             </div>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="mt-8 grid gap-4 md:mt-10 md:gap-6 md:grid-cols-3">
               {service.benefits.map((benefit) => (
                 <FadeIn
                   key={benefit.title}
                   direction="up"
-                  className="border border-black/10 bg-white/80 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
+                  className="border border-black/10 bg-white/80 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] md:p-6"
                 >
                   <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                     Ergebnis
@@ -296,7 +324,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-6xl px-6 py-20 md:px-10">
+        <section className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
           <div className="max-w-3xl space-y-4">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               Ablauf
@@ -306,12 +334,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             </h2>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-8 grid gap-4 md:mt-10 md:gap-6 md:grid-cols-2">
             {service.process.map((step, index) => (
               <FadeIn
                 key={step.title}
                 direction="up"
-                className="border border-black/10 bg-white/70 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
+                className={`border border-black/10 bg-white/70 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] md:p-6 ${
+                  index >= 3 ? "hidden md:block" : ""
+                }`}
               >
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                   Schritt {String(index + 1).padStart(2, "0")}
@@ -325,7 +355,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-6xl px-6 py-20 md:px-10">
+        <section className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
           <div className="max-w-3xl space-y-4">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               FAQ
@@ -333,17 +363,19 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <h2 className="font-display text-3xl font-bold uppercase tracking-[0.18em] md:text-4xl">
               Häufige Fragen zu dieser Leistung
             </h2>
-            <p className="text-sm text-ink-soft">
+            <p className="hidden text-sm text-ink-soft md:block">
               Klare Antworten auf typische Fragen zu Aufwand, Fit, Sichtbarkeit
               und Projektumfang.
             </p>
           </div>
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            {service.faqs.map((faq) => (
+          <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-2">
+            {service.faqs.map((faq, index) => (
               <FadeIn
                 key={faq.question}
                 direction="up"
-                className="border border-black/10 bg-white/70 p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
+                className={`border border-black/10 bg-white/70 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] md:p-6 ${
+                  index >= 3 ? "hidden md:block" : ""
+                }`}
               >
                 <h3 className="font-display text-xl font-bold uppercase tracking-[0.14em]">
                   {faq.question}
@@ -355,7 +387,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </section>
 
         <section className="border-t border-black/10 bg-white/60">
-          <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-20 md:grid-cols-[1fr_auto] md:px-10">
+          <div className="mx-auto grid w-full max-w-6xl gap-6 px-6 py-14 md:grid-cols-[1fr_auto] md:px-10 md:py-20">
             <div className="space-y-4">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                 Nächster Schritt
@@ -365,7 +397,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               </h2>
               <p className="max-w-2xl text-sm text-ink-soft">{service.ctaCopy}</p>
             </div>
-            <div className="flex items-center">
+            <div className="flex justify-center md:items-center md:justify-end">
               <MagneticLink
                 href="/#contact"
                 className="inline-flex items-center gap-3 border border-black bg-black px-5 py-4 text-xs uppercase tracking-[0.3em] text-white shadow-[0_12px_30px_rgba(0,0,0,0.22)] transition-colors transition-shadow hover:bg-white hover:text-black hover:shadow-[0_16px_36px_rgba(0,0,0,0.16)] focus-visible:outline-none focus-visible:bg-white focus-visible:text-black focus-visible:ring-2 focus-visible:ring-black/25"

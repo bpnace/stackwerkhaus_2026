@@ -5,14 +5,8 @@ import {
   IBM_Plex_Mono,
   IBM_Plex_Sans,
 } from "next/font/google";
-import dynamic from "next/dynamic";
+import { DesktopCursor } from "@/components/animations/DesktopCursor";
 import { JsonLd } from "@/components/seo/JsonLd";
-
-const CustomCursor = dynamic(() =>
-  import("@/components/animations/CustomCursor").then((m) => ({
-    default: m.CustomCursor,
-  })),
-);
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { buildSiteGraph, siteConfig } from "@/lib/seo";
@@ -24,21 +18,21 @@ import "./globals.css";
 const displayFont = Bodoni_Moda({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["700"],
   display: "swap",
 });
 
 const bodyFont = IBM_Plex_Sans({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
 const monoFont = IBM_Plex_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -92,9 +86,9 @@ export default function RootLayout({
     <html lang="de" suppressHydrationWarning>
       <head>
         <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="f656ec61-fa34-4784-8702-a8e18483fd69"
+          id="CCM19"
+          src="https://cloud.ccm19.de/app.js?apiKey=eefc8fecf37d0d4d42423ebb8d2ff0c38ee07663469480b8&domain=69c4664129605f52500e0082"
+          referrerPolicy="origin"
           strategy="beforeInteractive"
         />
         <JsonLd data={buildSiteGraph()} />
@@ -105,7 +99,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SmoothScrollProvider>
             <TransitionProvider>
-              <CustomCursor />
+              <DesktopCursor />
               <Header />
               <main>{children}</main>
               <Footer />

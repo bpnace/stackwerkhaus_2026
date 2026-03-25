@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSmoothScroll } from "@/providers/SmoothScrollProvider";
@@ -18,10 +18,24 @@ export function Header() {
   const innerRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
 
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = previousOverflow;
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileOpen]);
+
   const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (pathname === "/") {
       event.preventDefault();
-      scrollTo(0, { immediate: true });
+      scrollTo(0);
       return;
     }
 
@@ -109,15 +123,34 @@ export function Header() {
       </div>
       <div
         id="mobile-nav"
-        className={`border-t border-black/10 bg-[rgba(243,239,230,0.92)] backdrop-blur md:hidden ${
-          mobileOpen ? "block" : "hidden"
+        aria-hidden={!mobileOpen}
+        className={`pointer-events-none fixed inset-0 z-30 md:hidden ${
+          mobileOpen ? "pointer-events-auto" : ""
         }`}
       >
-        <div className="mx-auto w-full max-w-6xl px-6 py-6">
-          <Navigation
-            className="flex-col items-start gap-4 text-sm tracking-[0.25em]"
-            onNavigate={() => setMobileOpen(false)}
-          />
+        <button
+          type="button"
+          aria-label="Menü schließen"
+          className={`absolute inset-0 bg-[rgba(21,21,20,0.2)] transition-opacity ${
+            reducedMotion ? "duration-0" : "duration-300"
+          } ${mobileOpen ? "opacity-100" : "opacity-0"}`}
+          onClick={() => setMobileOpen(false)}
+        />
+        <div
+          className={`absolute inset-x-0 top-0 border-b border-black/10 bg-[rgba(243,239,230,0.96)] px-6 pb-8 pt-24 shadow-[0_18px_50px_rgba(0,0,0,0.12)] backdrop-blur transition-[opacity,transform] ease-out ${
+            reducedMotion ? "duration-0" : "duration-300"
+          } ${
+            mobileOpen
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-4 opacity-0"
+          }`}
+        >
+          <div className="mx-auto w-full max-w-6xl">
+            <Navigation
+              className="w-full flex-col items-start gap-4 text-sm tracking-[0.25em]"
+              onNavigate={() => setMobileOpen(false)}
+            />
+          </div>
         </div>
       </div>
     </header>

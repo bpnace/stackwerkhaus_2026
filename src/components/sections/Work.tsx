@@ -36,7 +36,7 @@ export async function Work() {
         {projects.map((project, index) => (
           <TransitionLink
             key={project.id}
-            className={`group relative flex min-h-[320px] flex-col justify-between overflow-hidden border border-black/10 bg-white/70 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.08)] ${
+            className={`${index >= 3 ? "hidden md:flex" : "flex"} group relative min-h-[280px] flex-col justify-between overflow-hidden border border-black/10 bg-white/70 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.08)] md:min-h-[320px] md:p-6 ${
               index === 2 ? "md:col-span-2" : ""
             }`}
             data-cursor-text="Ansehen"
@@ -71,7 +71,7 @@ export async function Work() {
               <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.9),rgba(255,255,255,0.65),rgba(255,255,255,0.3))] backdrop-blur-[2px]" />
               <div className="absolute inset-0 bg-black/25 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
-            <div className="relative flex items-start justify-between">
+            <div className="relative flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                   {project.client ||
@@ -79,22 +79,22 @@ export async function Work() {
                     project.type ||
                     "Projekt"}
                 </p>
-                <h3 className="font-display font-bold text-3xl uppercase tracking-[0.18em]">
+                <h3 className="font-display font-bold text-2xl uppercase tracking-[0.16em] md:text-3xl md:tracking-[0.18em]">
                   {project.title}
                 </h3>
               </div>
               {project.year && (
-                <span className="text-xs uppercase tracking-[0.35em]">
+                <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
                   {project.year}
                 </span>
               )}
             </div>
             {project.summary && (
-              <p className="relative mt-6 max-w-md text-sm text-ink-soft">
+              <p className="relative mt-6 hidden max-w-md text-sm text-ink-soft md:block">
                 {project.summary}
               </p>
             )}
-            <div className="relative mt-10 flex items-center justify-between text-xs uppercase tracking-[0.35em]">
+            <div className="relative mt-8 flex items-center justify-between text-xs uppercase tracking-[0.35em] md:mt-10">
               <span>
                 {project.type === "Case Study" ? "Zur Case Study" : "Zum Projekt"}
               </span>

@@ -6,13 +6,23 @@ import {
   useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
-import Lenis from "lenis";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface SmoothScrollContextValue {
   scrollTo: (target: number | string, options?: { immediate?: boolean }) => void;
+}
+
+interface LenisInstance {
+  destroy: () => void;
+  off: (event: string, callback: (...args: unknown[]) => void) => void;
+  on: (event: string, callback: (...args: unknown[]) => void) => void;
+  raf: (time: number) => void;
+  scrollTo: (
+    target: number | string | HTMLElement,
+    options?: { immediate?: boolean; offset?: number }
+  ) => void;
 }
 
 const SmoothScrollContext = createContext<SmoothScrollContextValue | null>(null);
@@ -57,8 +67,9 @@ export function SmoothScrollProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const lenisRef = useRef<Lenis | null>(null);
+  const lenisRef = useRef<LenisInstance | null>(null);
   const reducedMotion = useReducedMotion();
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     if (!isReloadNavigation()) return;
@@ -76,31 +87,65 @@ export function SmoothScrollProvider({
   }, []);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    const media = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(media.matches);
 
-    const lenis = new Lenis({
-      lerp: 0.1,
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-    });
+    update();
+    media.addEventListener("change", update);
 
-    lenisRef.current = lenis;
+    return () => media.removeEventListener("change", update);
+  }, []);
 
-    const onTick = (time: number) => {
-      lenis.raf(time * 1000);
-    };
+  useEffect(() => {
+    if (reducedMotion || !isDesktop) {
+      lenisRef.current?.destroy();
+      lenisRef.current = null;
+      return;
+    }
 
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add(onTick);
-    gsap.ticker.lagSmoothing(0);
+    let isDisposed = false;
+    let cleanup: (() => void) | undefined;
+
+    void (async () => {
+      const [{ default: Lenis }, { gsap, ScrollTrigger }] = await Promise.all([
+        import("lenis"),
+        import("@/lib/gsap"),
+      ]);
+
+      if (isDisposed) return;
+
+      const lenis = new Lenis({
+        lerp: 0.1,
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+      }) as LenisInstance;
+
+      lenisRef.current = lenis;
+
+      const onTick = (time: number) => {
+        lenis.raf(time * 1000);
+      };
+
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(onTick);
+      gsap.ticker.lagSmoothing(0);
+
+      cleanup = () => {
+        lenis.off("scroll", ScrollTrigger.update);
+        gsap.ticker.remove(onTick);
+        lenis.destroy();
+        if (lenisRef.current === lenis) {
+          lenisRef.current = null;
+        }
+      };
+    })();
 
     return () => {
-      lenis.off("scroll", ScrollTrigger.update);
-      gsap.ticker.remove(onTick);
-      lenis.destroy();
+      isDisposed = true;
+      cleanup?.();
     };
-  }, [reducedMotion]);
+  }, [isDesktop, reducedMotion]);
 
   const value = useMemo<SmoothScrollContextValue>(
     () => ({
@@ -108,7 +153,7 @@ export function SmoothScrollProvider({
         const anchorTarget =
           typeof target === "string" ? getAnchorTarget(target) : null;
 
-        if (reducedMotion || !lenisRef.current) {
+        if (reducedMotion || !isDesktop || !lenisRef.current) {
           if (typeof target === "number") {
             window.scrollTo({
               top: target,
@@ -143,7 +188,7 @@ export function SmoothScrollProvider({
         lenisRef.current.scrollTo(target, { immediate: options?.immediate });
       },
     }),
-    [reducedMotion]
+    [isDesktop, reducedMotion]
   );
 
   return (
