@@ -18,6 +18,12 @@ export type ServiceDeliverable = {
   copy: string;
 };
 
+export type ServiceOffer = {
+  price: string;
+  priceCurrency: string;
+  priceDisplay: string;
+};
+
 export type ServicePage = {
   slug: string;
   title: string;
@@ -29,6 +35,7 @@ export type ServicePage = {
   serviceType: string;
   timeline: string;
   pricingHint: string;
+  offer?: ServiceOffer;
   updatedAt: string;
   situations: string[];
   idealFor: string[];
@@ -57,7 +64,12 @@ export const services: ServicePage[] = [
     serviceType: "Webdesign Berlin für Dienstleistungsunternehmen",
     timeline: "Meist 3 bis 6 Wochen bis zum Livegang",
     pricingHint:
-      "Für fokussierte Projekte in der Regel ab 1.500 EUR, abhängig von Seitenumfang, Inhalten und Integrationen",
+      "Für fokussierte Projekte in der Regel ab 899 €, abhängig von Seitenumfang, Inhalten und Integrationen",
+    offer: {
+      price: "899",
+      priceCurrency: "EUR",
+      priceDisplay: "899 €",
+    },
     updatedAt: "2026-03-06",
     situations: [
       "Interessenten verstehen auf den ersten Blick nicht, welche Leistungen ihr anbietet und für wen sie gedacht sind.",
@@ -139,7 +151,7 @@ export const services: ServicePage[] = [
       {
         question: "Was kostet eine Dienstleister-Website bei euch?",
         answer:
-          "Je nach Umfang starten Projekte meist ab 1.500 EUR. Den genauen Rahmen bestimmen wir nach Seitenanzahl, Inhaltslage und gewünschten Funktionen im Erstgespräch.",
+          "Je nach Umfang starten Projekte meist ab 899 €. Den genauen Rahmen bestimmen wir nach Seitenanzahl, Inhaltslage und gewünschten Funktionen im Erstgespräch.",
       },
       {
         question: "Hilft ihr auch bei SEO und KI-Sichtbarkeit?",

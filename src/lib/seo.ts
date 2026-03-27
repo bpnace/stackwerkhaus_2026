@@ -47,6 +47,10 @@ type ServiceSchemaOptions = {
   path: string;
   serviceType: string;
   audience: string;
+  offer?: {
+    price: string;
+    priceCurrency: string;
+  };
 };
 
 type ItemListOptions = {
@@ -235,6 +239,7 @@ export function buildServiceSchema({
   path,
   serviceType,
   audience,
+  offer,
 }: ServiceSchemaOptions) {
   return {
     "@context": "https://schema.org",
@@ -247,6 +252,15 @@ export function buildServiceSchema({
       "@type": "Audience",
       audienceType: audience,
     },
+    offers: offer
+      ? {
+          "@type": "Offer",
+          price: offer.price,
+          priceCurrency: offer.priceCurrency,
+          availability: "https://schema.org/InStock",
+          url: absoluteUrl(path),
+        }
+      : undefined,
     provider: organizationSchema,
     url: absoluteUrl(path),
   };

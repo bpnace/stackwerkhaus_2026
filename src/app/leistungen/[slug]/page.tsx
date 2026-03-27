@@ -74,6 +74,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         path: `/leistungen/${service.slug}`,
         serviceType: service.serviceType,
         audience: service.audience,
+        offer: service.offer,
       }),
       buildFaqSchema(service.faqs),
     ],
