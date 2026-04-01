@@ -10,8 +10,19 @@ describe("projects data helpers", () => {
     expect(projects.length).toBeGreaterThan(0);
   });
 
+  it("returns zynapse as the newest project first", async () => {
+    const projects = await getPortfolioProjects();
+    expect(projects[0]?.slug).toBe("zynapse");
+  });
+
   it("finds a project by slug case-insensitively", async () => {
     const project = await getPortfolioProjectBySlug("Immo-Pal");
     expect(project?.slug).toBe("immo-pal");
+  });
+
+  it("includes the zynapse project by slug", async () => {
+    const project = await getPortfolioProjectBySlug("ZYNAPSE");
+    expect(project?.slug).toBe("zynapse");
+    expect(project?.website).toBe("https://zynapse.eu");
   });
 });

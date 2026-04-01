@@ -26,6 +26,38 @@ export type PortfolioProject = {
 
 export const portfolioProjects: PortfolioProject[] = [
   {
+    id: "zynapse",
+    title: "Zynapse",
+    client: "Zynapse",
+    slug: "zynapse",
+    year: "2026",
+    sector: "AI Marketing",
+    services: ["Full Stack", "UI/UX Design", "Copywriting"],
+    type: "Projekt",
+    website: "https://zynapse.eu",
+    summary:
+      "Kuratiertes AI-Kampagnensystem für Brands und Spezialist:innen: Zynapse verbindet Briefing, Matching, Produktion und Review zu einem klaren Setup für Paid Social, Reels und weitere Short-Form-Formate.",
+    body: "Für Zynapse entstand ein Auftritt, der kuratiertes AI-Marketing nicht als Tool, sondern als belastbares Kampagnen-Setup erklärt. Die Website führt von der Brand-Anfrage über Matching und Produktion bis zum Handover und macht sichtbar, wie aus Briefings reviewfähige Varianten für echte Kampagnenarbeit werden.",
+    problem:
+      "Das Angebot musste eine neue Kategorie verständlich machen: kein loses Creator-Sourcing, kein klassisches Agenturmodell und kein reiner Tool-Zugang, sondern ein kuratiertes Setup zwischen Brand, Spezialist:innen und Review.",
+    approach:
+      "Die Struktur verdichtet Rollen, Guardrails, Freigaben und Kampagnenfluss zu einer klaren Geschichte für Brands und Kreative. So werden Nutzen, Ablauf und Verantwortlichkeiten schnell verständlich, ohne die operative Tiefe des Systems zu verlieren.",
+    outcomes: [
+      "Klarere Einordnung des Angebots zwischen Tool, Agentur und Netzwerk",
+      "Stärkerer Fokus auf Ablauf, Verantwortlichkeiten und kampagnenfähigen Output",
+      "Ein markanter Auftritt, der Brands und Kreative getrennt anspricht, ohne die gemeinsame Logik zu verlieren",
+    ],
+    updatedAt: "2026-04-01",
+    cover: {
+      url: "/images/projekte/zynapse.webp",
+      alt: "Zynapse Kampagnenplattform Website",
+    },
+    coverSmall: {
+      url: "/images/projekte/small/zynapseSmall.webp",
+      alt: "Zynapse Kampagnenplattform Website",
+    },
+  },
+  {
     id: "immo-pal",
     title: "Immo Pal",
     client: "immo-pal",
@@ -212,37 +244,6 @@ export const portfolioProjects: PortfolioProject[] = [
     coverSmall: {
       url: "/images/projekte/small/uncloudSmall.webp",
       alt: "Uncloud Mental Health App",
-    },
-  },
-  {
-    id: "kiez-apotheke",
-    title: "Kiez Apotheke",
-    client: "Kiez Apotheke",
-    slug: "kiez-apotheke",
-    year: "2025",
-    sector: "Gesundheit",
-    services: ["Webdesign", "UX", "Content"],
-    type: "Case Study",
-    summary:
-      "Service-orientierte Website mit Fokus auf schnelle Information und Vertrauensaufbau.",
-    body: "Die neue Präsenz bündelt Services wie Botendienst, Öffnungszeiten und Gesundheitsaktionen. Ein vereinfachter Aufbau sorgt für schnelle Orientierung, besonders auf Mobile.",
-    problem:
-      "Wichtige Serviceinformationen mussten sofort auffindbar sein, ohne dass der Auftritt an persönlicher Nähe verliert.",
-    approach:
-      "Die Website bündelt Alltagsthemen wie Botendienst, Öffnungszeiten und Aktionen in einer klareren Navigation und reduziert unnötige Reibung auf Mobile.",
-    outcomes: [
-      "Bessere Orientierung für wiederkehrende Alltagsanfragen",
-      "Mehr Vertrauen durch klarere Servicekommunikation",
-      "Ein mobiler Auftritt, der Information und Kontakt logisch verbindet",
-    ],
-    updatedAt: "2026-03-06",
-    cover: {
-      url: "/images/projekte/apotheke.webp",
-      alt: "Kiez Apotheke Case Study",
-    },
-    coverSmall: {
-      url: "/images/projekte/small/apothekeSmall.webp",
-      alt: "Kiez Apotheke Case Study",
     },
   },
 ];
