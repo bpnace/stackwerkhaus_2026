@@ -12,6 +12,7 @@ import {
   getPortfolioProjects,
   type PortfolioProject,
 } from "@/lib/projects";
+import { getServices } from "@/lib/services";
 import {
   buildBreadcrumbSchema,
   buildPageMetadata,
@@ -98,9 +99,7 @@ const getProjectUpdatedLabel = (project: PortfolioProject) => {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project =
-    (await getPortfolioProjectBySlug(slug)) ||
-    (await getPortfolioProjects())[0];
+  const project = await getPortfolioProjectBySlug(slug);
 
   if (!project) {
     return {
@@ -125,9 +124,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function WorkDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const project =
-    (await getPortfolioProjectBySlug(slug)) ||
-    (await getPortfolioProjects())[0];
+  const project = await getPortfolioProjectBySlug(slug);
   if (!project) notFound();
   const projectType = project.type ?? "Projekt";
 
@@ -135,6 +132,12 @@ export default async function WorkDetailPage({ params }: PageProps) {
   const moreProjects = projects
     .filter((item) => item.slug !== project.slug)
     .slice(0, 3);
+  const allServices = await getServices();
+  const relatedServices = allServices.filter((service) =>
+    service.relatedProjectSlugs.includes(project.slug),
+  );
+  const highlightedServices =
+    relatedServices.length > 0 ? relatedServices : allServices.slice(0, 2);
 
   const { overview, challenge, solution, results, stats, services } =
     buildNarrative(project);
@@ -165,7 +168,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
         <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-5 md:px-10">
           <div className="flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft">
             <TransitionLink
-              href="/#work"
+              href="/work"
               className="flex items-center gap-2 text-ink-soft hover:text-foreground font-bold"
               data-cursor-text="Zurück"
             >
@@ -376,6 +379,49 @@ export default async function WorkDetailPage({ params }: PageProps) {
         </div>
       </section>
 
+      <section className="border-b border-black/10 bg-white/50">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="space-y-3">
+              <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                Passende Leistungen
+              </p>
+              <h2 className="font-display font-bold text-4xl uppercase tracking-[0.2em] md:text-5xl">
+                Welche Leistung hinter diesem Projekt steckt
+              </h2>
+            </div>
+            <p className="max-w-md text-sm text-ink-soft">
+              Von der Case Study zurück zur passenden Leistungsseite: so wird
+              aus Portfolio-Traffic ein klarer Weg zur Anfrage.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {highlightedServices.map((service) => (
+              <TransitionLink
+                key={service.slug}
+                href={`/leistungen/${service.slug}`}
+                className="group flex flex-col justify-between border border-black/10 bg-white/80 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] md:p-6"
+              >
+                <div className="space-y-3">
+                  <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                    {service.kicker}
+                  </p>
+                  <h3 className="font-display text-2xl font-bold uppercase tracking-[0.16em]">
+                    {service.shortTitle}
+                  </h3>
+                  <p className="text-sm text-ink-soft">{service.summary}</p>
+                </div>
+                <div className="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.35em]">
+                  <span>Zur Leistung</span>
+                  <span>↗</span>
+                </div>
+              </TransitionLink>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-b border-black/10">
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-16 md:grid-cols-[1fr_auto] md:px-10">
           <div className="space-y-3">
@@ -413,7 +459,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
             </MaskedTextReveal>
           </div>
           <TransitionLink
-            href="/#work"
+            href="/work"
             className="text-xs font-bold uppercase tracking-[0.35em] text-ink-soft hover:text-foreground"
             data-cursor-text="Übersicht"
           >

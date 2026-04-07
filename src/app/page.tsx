@@ -1,7 +1,10 @@
-import dynamic from "next/dynamic";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { About } from "@/components/sections/About";
+import { Contact } from "@/components/sections/Contact";
+import { Faq } from "@/components/sections/Faq";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
+import { Skills } from "@/components/sections/Skills";
 import { Work } from "@/components/sections/Work";
 import { faqItems } from "@/lib/faq";
 import {
@@ -10,21 +13,6 @@ import {
   buildWebPageSchema,
 } from "@/lib/seo";
 import { services } from "@/lib/services";
-
-const Skills = dynamic(() =>
-  import("@/components/sections/Skills").then((m) => ({ default: m.Skills })),
-);
-const About = dynamic(() =>
-  import("@/components/sections/About").then((m) => ({ default: m.About })),
-);
-const Contact = dynamic(() =>
-  import("@/components/sections/Contact").then((m) => ({
-    default: m.Contact,
-  })),
-);
-const Faq = dynamic(() =>
-  import("@/components/sections/Faq").then((m) => ({ default: m.Faq })),
-);
 
 export default function Home() {
   const homepageGraph = {

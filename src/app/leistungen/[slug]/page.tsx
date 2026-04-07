@@ -14,6 +14,7 @@ import {
   formatGermanDate,
 } from "@/lib/seo";
 import { getServiceBySlug, getServices } from "@/lib/services";
+import { getPortfolioProjects } from "@/lib/projects";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -57,6 +58,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     { name: service.shortTitle, path: `/leistungen/${service.slug}` },
   ];
   const updatedLabel = formatGermanDate(service.updatedAt);
+  const relatedProjects = (await getPortfolioProjects()).filter((project) =>
+    service.relatedProjectSlugs.includes(project.slug),
+  );
   const pageGraph = {
     "@context": "https://schema.org",
     "@graph": [
@@ -82,13 +86,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   return (
     <>
-      <main>
-        <section className="relative overflow-hidden border-b border-black/10">
+      <section className="relative overflow-hidden border-b border-black/10">
           <div className="pointer-events-none absolute -right-20 top-12 hidden h-56 w-56 rounded-full border border-black/10 lg:block" />
           <div className="mx-auto w-full max-w-6xl px-6 pb-8 pt-5 md:px-10 md:pb-5">
             <div className="flex flex-col gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft md:flex-row md:flex-wrap md:items-center md:justify-between">
               <TransitionLink
-                href="/#services"
+                href="/leistungen"
                 className="flex items-center gap-2 font-bold text-ink-soft hover:text-foreground"
                 data-cursor-text="Zurück"
               >
@@ -230,9 +233,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               </FadeIn>
             </div>
           </div>
-        </section>
+      </section>
 
-        <section className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
+      <section className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
           <div className="flex flex-col gap-4 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-6">
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
@@ -288,9 +291,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               </ul>
             </FadeIn>
           </div>
-        </section>
+      </section>
 
-        <section className="border-y border-black/10 bg-white/60">
+      <section className="border-y border-black/10 bg-white/60">
           <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
             <div className="max-w-2xl space-y-4">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
@@ -323,9 +326,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               ))}
             </div>
           </div>
-        </section>
+      </section>
 
-        <section className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
+      <section className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
           <div className="max-w-3xl space-y-4">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               Ablauf
@@ -354,9 +357,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               </FadeIn>
             ))}
           </div>
-        </section>
+      </section>
 
-        <section className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
+      <section className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
           <div className="max-w-3xl space-y-4">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               FAQ
@@ -385,9 +388,55 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               </FadeIn>
             ))}
           </div>
-        </section>
+      </section>
 
+      {relatedProjects.length > 0 ? (
         <section className="border-t border-black/10 bg-white/60">
+          <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10 md:py-20">
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div className="space-y-3">
+                <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                  Passende Referenzen
+                </p>
+                <h2 className="font-display text-3xl font-bold uppercase tracking-[0.18em] md:text-4xl">
+                  Diese Projekte zeigen die Leistung im Einsatz
+                </h2>
+              </div>
+              <p className="max-w-md text-sm text-ink-soft">
+                Verknüpfte Case Studies und Projekte machen sichtbar, wie die
+                Leistung in echten Umsetzungen aussieht und welche Resultate
+                daraus entstehen.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-2">
+              {relatedProjects.map((project) => (
+                <TransitionLink
+                  key={project.slug}
+                  href={`/work/${project.slug}`}
+                  className="group flex flex-col justify-between border border-black/10 bg-white/80 p-5 shadow-[0_20px_40px_rgba(0,0,0,0.06)] md:p-6"
+                >
+                  <div className="space-y-3">
+                    <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
+                      {project.type ?? "Projekt"}
+                    </p>
+                    <h3 className="font-display text-2xl font-bold uppercase tracking-[0.16em]">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-ink-soft">{project.summary}</p>
+                  </div>
+                  <div className="mt-6 flex items-center justify-between text-xs uppercase tracking-[0.35em]">
+                    <span>Zur Case Study</span>
+                    <span>↗</span>
+                  </div>
+                </TransitionLink>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="border-t border-black/10 bg-white/60">
           <div className="mx-auto grid w-full max-w-6xl gap-6 px-6 py-14 md:grid-cols-[1fr_auto] md:px-10 md:py-20">
             <div className="space-y-4">
               <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
@@ -409,8 +458,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               </MagneticLink>
             </div>
           </div>
-        </section>
-      </main>
+      </section>
       <JsonLd data={pageGraph} />
     </>
   );

@@ -1,38 +1,29 @@
-"use client";
-
+import Link from "next/link";
 import type { AnchorHTMLAttributes, ReactNode } from "react";
-import { useTransition } from "@/providers/TransitionProvider";
 
 type TransitionLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
   children: ReactNode;
 };
 
+const EXTERNAL_LINK_PATTERN = /^(?:[a-z]+:)?\/\//i;
+
 export function TransitionLink({
   href,
   children,
-  className,
-  onClick,
   ...props
 }: TransitionLinkProps) {
-  const { triggerTransition } = useTransition();
-
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    onClick?.(event);
-    if (event.defaultPrevented) return;
-    if (event.metaKey || event.ctrlKey || event.shiftKey) return;
-    event.preventDefault();
-    triggerTransition(href);
-  };
+  if (EXTERNAL_LINK_PATTERN.test(href) || href.startsWith("mailto:") || href.startsWith("tel:")) {
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
+  }
 
   return (
-    <a
-      href={href}
-      onClick={handleClick}
-      className={className}
-      {...props}
-    >
+    <Link href={href} {...props}>
       {children}
-    </a>
+    </Link>
   );
 }

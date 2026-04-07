@@ -27,9 +27,18 @@ export async function Work() {
         </div>
         <p className="max-w-md text-sm text-ink-soft">
           Unsere Projekte zeigen, wie wir aus unklaren Leistungen verständliche
-          Nutzerführung erstellen. Nicht nur als als Beispiele, sondern als Beweis für
+          Nutzerführung erstellen. Nicht nur als Beispiele, sondern als Beweis für
           Struktur, Vertrauen und saubere Kontaktpfade.
         </p>
+      </div>
+
+      <div className="mt-6">
+        <TransitionLink
+          href="/work"
+          className="text-xs font-bold uppercase tracking-[0.35em] text-ink-soft hover:text-foreground"
+        >
+          Alle Projekte ansehen
+        </TransitionLink>
       </div>
 
       <FadeIn className="mt-12 grid gap-8 md:grid-cols-2" stagger={0.12}>

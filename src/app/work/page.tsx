@@ -3,6 +3,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getPortfolioProjects } from "@/lib/projects";
 import {
+  buildCollectionPageSchema,
   buildItemListSchema,
   buildPageMetadata,
   buildWebPageSchema,
@@ -27,6 +28,13 @@ export default async function WorkIndexPage() {
         path: "/work",
         dateModified: "2026-03-06",
       }),
+      buildCollectionPageSchema({
+        title: "Portfolio und Case Studies",
+        description:
+          "Portfolio mit Projekten und Case Studies von STACKWERKHAUS. Jede Seite zeigt, wie Struktur, Design und Nutzerführung zu einem tragfähigen digitalen Auftritt führen.",
+        path: "/work",
+        dateModified: "2026-03-06",
+      }),
       buildItemListSchema({
         title: "Case Studies von STACKWERKHAUS",
         path: "/work",
@@ -40,7 +48,7 @@ export default async function WorkIndexPage() {
 
   return (
     <>
-      <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10">
+      <div className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10">
         <header className="space-y-3">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Portfolio
@@ -51,7 +59,8 @@ export default async function WorkIndexPage() {
           <p className="max-w-2xl text-sm text-ink-soft">
             Beispiele dafür, wie aus Angeboten mit Erklärungsbedarf klare,
             vertrauenswürdige Websites werden. Jede Detailseite zeigt, wie
-            Struktur, Design und Nutzerführung zusammenspielen.
+            Struktur, Design und Nutzerführung zusammenspielen und welche
+            Leistungen dahinterstehen.
           </p>
         </header>
 
@@ -67,7 +76,7 @@ export default async function WorkIndexPage() {
             </li>
           ))}
         </ul>
-      </main>
+      </div>
       <JsonLd data={pageGraph} />
     </>
   );

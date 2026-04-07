@@ -23,7 +23,6 @@ export function SkillsWarpBackground({ className }: SkillsWarpBackgroundProps) {
 
   useEffect(() => {
     if (reducedMotion) {
-      setParallaxY(0);
       return;
     }
 

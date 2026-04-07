@@ -1,4 +1,3 @@
-import { MagneticLink } from "@/components/animations/MagneticLink";
 import { MaskedTextReveal } from "@/components/animations/MaskedTextReveal";
 import { TransitionLink } from "@/components/ui/TransitionLink";
 import { getServices } from "@/lib/services";
@@ -29,6 +28,15 @@ export async function Services() {
           Basis. So bleibt die Seite für Suchende auffindbarer und sorgt für
           klare nächste Schritte.
         </p>
+      </div>
+
+      <div className="mt-6">
+        <TransitionLink
+          href="/leistungen"
+          className="text-xs font-bold uppercase tracking-[0.35em] text-ink-soft hover:text-foreground"
+        >
+          Alle Leistungen ansehen
+        </TransitionLink>
       </div>
 
       <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-3">

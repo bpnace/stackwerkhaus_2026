@@ -59,6 +59,13 @@ type ItemListOptions = {
   items: Array<{ name: string; path: string }>;
 };
 
+type CollectionPageSchemaOptions = {
+  title: string;
+  description: string;
+  path: string;
+  dateModified?: string;
+};
+
 export function absoluteUrl(path: string) {
   return new URL(path, siteConfig.url).toString();
 }
@@ -173,6 +180,30 @@ export function buildSiteGraph() {
   return {
     "@context": "https://schema.org",
     "@graph": [organizationSchema, websiteSchema, professionalServiceSchema],
+  };
+}
+
+export function buildCollectionPageSchema({
+  title,
+  description,
+  path,
+  dateModified,
+}: CollectionPageSchemaOptions) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: title,
+    description: clampDescription(description),
+    url: absoluteUrl(path),
+    inLanguage: siteConfig.language,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    about: organizationSchema,
+    dateModified,
+    primaryImageOfPage: absoluteUrl(siteConfig.ogImage),
   };
 }
 

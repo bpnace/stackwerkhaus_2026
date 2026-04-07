@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function CookieRichtlinienPage() {
   return (
-    <main className="mx-auto w-full max-w-4xl px-6 py-16 md:px-10">
+    <div className="mx-auto w-full max-w-4xl px-6 py-16 md:px-10">
       <div className="space-y-10">
         <div className="space-y-3">
           <TransitionLink
@@ -107,6 +107,6 @@ export default function CookieRichtlinienPage() {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }

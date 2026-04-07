@@ -1,7 +1,4 @@
-"use client";
-
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import type { ReactNode } from "react";
 
 interface LazyAnimationProps {
   children: ReactNode;
@@ -14,57 +11,7 @@ interface LazyAnimationProps {
 
 export function LazyAnimation({
   children,
-  fallback = null,
   className = "",
-  rootMargin = "0px 0px -15% 0px",
-  threshold = 0.1,
-  eagerOnMobile = false,
 }: LazyAnimationProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const reducedMotion = useReducedMotion();
-  const isActive = reducedMotion || isIntersecting || (eagerOnMobile && isMobile);
-
-  useEffect(() => {
-    if (!eagerOnMobile) return;
-
-    const media = window.matchMedia("(pointer: coarse)");
-    const update = () => setIsMobile(media.matches);
-    update();
-    const handleChange = (event: MediaQueryListEvent) => {
-      setIsMobile(event.matches);
-    };
-
-    media.addEventListener("change", handleChange);
-    return () => {
-      media.removeEventListener("change", handleChange);
-    };
-  }, [eagerOnMobile]);
-
-  useEffect(() => {
-    if (reducedMotion || (eagerOnMobile && isMobile)) return;
-
-    const element = containerRef.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsIntersecting(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin, threshold }
-    );
-
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [reducedMotion, rootMargin, threshold, eagerOnMobile, isMobile]);
-
-  return (
-    <div ref={containerRef} className={className}>
-      {isActive ? children : fallback}
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 }

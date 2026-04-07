@@ -11,6 +11,9 @@ const staticRoutes = [
   "/",
   "/leistungen",
   "/work",
+  "/impressum",
+  "/datenschutz",
+  "/cookie-richtlinien",
 ];
 
 const readProjectSlugs = async () => {
