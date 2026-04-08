@@ -22,7 +22,7 @@ export function TransitionLink({
   }
 
   return (
-    <Link href={href} {...props}>
+    <Link href={href} prefetch={false} {...props}>
       {children}
     </Link>
   );

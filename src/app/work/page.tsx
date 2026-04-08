@@ -69,6 +69,7 @@ export default async function WorkIndexPage() {
             <li key={project.id}>
               <Link
                 href={`/work/${project.slug}`}
+                prefetch={false}
                 className="block border border-black/10 bg-white/60 px-5 py-4 text-sm uppercase tracking-[0.25em] transition-colors hover:bg-white"
               >
                 {project.title}

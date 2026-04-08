@@ -6,7 +6,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-black/10 bg-[rgba(243,239,230,0.9)] backdrop-blur">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 md:px-10">
-        <Link href="/" className="flex items-center gap-4">
+        <Link href="/" prefetch={false} className="flex items-center gap-4">
           <LogoLockup className="shrink-0" />
           <div className="hidden md:block">
             <p className="text-[11px] uppercase tracking-[0.35em] text-ink-soft">
@@ -20,13 +20,25 @@ export function Header() {
           className="flex items-center gap-3 text-[11px] uppercase tracking-[0.24em] md:hidden"
           aria-label="Mobile Navigation"
         >
-          <Link href="/leistungen" className="text-ink-soft hover:text-foreground">
+          <Link
+            href="/leistungen"
+            prefetch={false}
+            className="text-ink-soft hover:text-foreground"
+          >
             Leistungen
           </Link>
-          <Link href="/work" className="text-ink-soft hover:text-foreground">
+          <Link
+            href="/work"
+            prefetch={false}
+            className="text-ink-soft hover:text-foreground"
+          >
             Projekte
           </Link>
-          <Link href="/#contact" className="text-ink-soft hover:text-foreground">
+          <Link
+            href="/#contact"
+            prefetch={false}
+            className="text-ink-soft hover:text-foreground"
+          >
             Kontakt
           </Link>
         </nav>

@@ -23,6 +23,7 @@ export function Navigation({ className = "", onNavigate }: NavigationProps) {
         <Link
           key={link.href}
           href={link.href}
+          prefetch={false}
           className="text-ink-soft transition-colors hover:text-foreground"
           onClick={onNavigate}
         >
