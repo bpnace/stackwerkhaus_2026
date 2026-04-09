@@ -21,7 +21,7 @@ const socialLinks = [
     iconSrc: "/images/logos/instagram_icon.svg",
   },
   {
-    href: "https://www.linkedin.com/in/tarik-arthur-marshall-6112b2239",
+    href: "https://www.linkedin.com/in/tarik-arthur-marshall",
     label: "LinkedIn",
     iconSrc: "/images/logos/LinkedIn_icon.svg",
   },
