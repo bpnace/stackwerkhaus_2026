@@ -19,9 +19,9 @@ export default function Home() {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageSchema({
-        title: "Klare Websites für Dienstleister und KMU",
+        title: "Digitale Bauwerke für Startups und KMU",
         description:
-          "STACKWERKHAUS entwickelt schnelle, klare Websites für Dienstleister, kleine Unternehmen und neue Marken in DACH.",
+          "STACKWERKHAUS entwickelt schnelle, moderne Websites mit solidem Fundament für Dienstleister, KMU und neue Marken in DACH.",
         path: "/",
         dateModified: "2026-03-06",
       }),

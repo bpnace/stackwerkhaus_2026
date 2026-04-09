@@ -35,6 +35,14 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const reducedMotion = useReducedMotion();
 
+  const disableSmoothScrollForNavigation = useCallback(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+  }, []);
+
+  const restoreSmoothScrollAfterNavigation = useCallback(() => {
+    document.documentElement.style.removeProperty("scroll-behavior");
+  }, []);
+
   const setOverlayIdle = useCallback(() => {
     const overlay = overlayRef.current;
     const brand = brandRef.current;
@@ -59,8 +67,9 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     overlayInCompleteRef.current = false;
     routeReadyForExitRef.current = false;
     exitStartedRef.current = false;
+    restoreSmoothScrollAfterNavigation();
     setOverlayIdle();
-  }, [setOverlayIdle]);
+  }, [restoreSmoothScrollAfterNavigation, setOverlayIdle]);
 
   const playOverlayOut = useCallback(() => {
     const overlay = overlayRef.current;
@@ -118,6 +127,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
     if (!overlay) {
       if (href) {
+        disableSmoothScrollForNavigation();
         router.push(href);
       }
       resetTransitionState();
@@ -141,6 +151,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     const timeline = gsap.timeline({
       onComplete: () => {
         if (href) {
+          disableSmoothScrollForNavigation();
           router.push(href);
         }
         overlayInCompleteRef.current = true;
@@ -170,7 +181,12 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         0.16
       );
     }
-  }, [maybePlayOverlayOut, resetTransitionState, router]);
+  }, [
+    disableSmoothScrollForNavigation,
+    maybePlayOverlayOut,
+    resetTransitionState,
+    router,
+  ]);
 
   const triggerTransition = useCallback(
     (href: string) => {
@@ -184,6 +200,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       exitStartedRef.current = false;
 
       if (reducedMotion || !overlayRef.current) {
+        disableSmoothScrollForNavigation();
         router.push(href);
         resetTransitionState();
         return;
@@ -191,7 +208,13 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
       playOverlayIn();
     },
-    [playOverlayIn, reducedMotion, resetTransitionState, router]
+    [
+      disableSmoothScrollForNavigation,
+      playOverlayIn,
+      reducedMotion,
+      resetTransitionState,
+      router,
+    ]
   );
 
   useEffect(() => {

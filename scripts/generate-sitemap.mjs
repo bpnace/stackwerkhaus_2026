@@ -9,7 +9,6 @@ const publicDir = path.join(rootDir, "public");
 
 const staticRoutes = [
   "/",
-  "/work",
   "/impressum",
   "/datenschutz",
   "/cookie-richtlinien",

@@ -1,23 +1,5 @@
 import { CountUp } from "@/components/animations/CountUp";
 
-const competencies = [
-  "Positionierung & Angebotslogik",
-  "Website-Struktur",
-  "Webdesign",
-  "Frontend-Entwicklung",
-  "Technisches SEO",
-  "Performance",
-  "DSGVO-Basis",
-  "Content-Führung",
-  "Relaunches",
-  "Launch-Begleitung",
-  "UI/UX Design",
-  "Analytics-Grundsetup",
-  "Barrierearme Patterns",
-  "Wartung & Support",
-  "Conversion-Fokus",
-];
-
 const principles = [
   "Klare Struktur vor dekorativer Überladung.",
   "Direkte Zusammenarbeit statt Agentur-Schleifen.",
@@ -86,22 +68,6 @@ export function About() {
             <span>
               <b>STACKWERKHAUS</b>
             </span>
-          </div>
-        </div>
-
-        <div className="space-y-4 lg:col-span-2">
-          <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            Kompetenzen
-          </p>
-          <div className="flex flex-wrap gap-3">
-            {competencies.map((item) => (
-              <span
-                key={item}
-                className="inline-flex items-center justify-center rounded-full border border-black/15 bg-white/90 px-4 py-2 text-center text-[11px] uppercase tracking-[0.24em] text-ink-soft shadow-[0_10px_22px_rgba(0,0,0,0.08)] md:text-xs"
-              >
-                {item}
-              </span>
-            ))}
           </div>
         </div>
       </div>

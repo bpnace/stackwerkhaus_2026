@@ -1,9 +1,10 @@
 import { MagneticLink } from "@/components/animations/MagneticLink";
+import { ScrollHint } from "@/components/animations/ScrollHint";
 
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-14 pt-5 md:px-10 md:pb-32 md:pt-16">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-14 pt-5 md:px-10 md:pb-32 md:pt-10">
         <div className="flex flex-wrap items-center justify-center gap-4 text-center md:justify-start md:text-left">
           <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Wir gestalten deinen Webauftritt.
@@ -75,6 +76,17 @@ export function Hero() {
         <div className="hidden flex-wrap items-center justify-between gap-6 border-t border-black/10 pt-10 text-xs uppercase tracking-[0.35em] text-ink-soft md:flex">
           <span>Berlin / Remote</span>
           <span>Websites für Dienstleister, KMU und neue Marken</span>
+          <MagneticLink
+            href="/#services"
+            className="inline-flex items-center gap-3 text-ink-soft transition-colors hover:text-foreground"
+            data-cursor-text="Scroll"
+          >
+            <ScrollHint
+              label="SCROLL"
+              className="font-display text-sm font-bold tracking-[0.24em]"
+            />
+            <span className="text-sm">↓</span>
+          </MagneticLink>
         </div>
       </div>
     </section>

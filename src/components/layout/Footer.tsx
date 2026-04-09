@@ -3,7 +3,7 @@ import { TransitionLink } from "@/components/ui/TransitionLink";
 
 const studioLinks = [
   { href: "/#services", label: "Leistungen" },
-  { href: "/work", label: "Projekte" },
+  { href: "/#work", label: "Projekte" },
   { href: "/#faq", label: "FAQ" },
   { href: "/#contact", label: "Kontakt" },
 ];

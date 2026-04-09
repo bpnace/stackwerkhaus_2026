@@ -31,16 +31,6 @@ export async function Work() {
           Struktur, Vertrauen und saubere Kontaktpfade.
         </p>
       </div>
-
-      <div className="mt-6">
-        <TransitionLink
-          href="/work"
-          className="text-xs font-bold uppercase tracking-[0.35em] text-ink-soft hover:text-foreground"
-        >
-          Alle Projekte ansehen
-        </TransitionLink>
-      </div>
-
       <FadeIn className="mt-12 grid gap-8 md:grid-cols-2" stagger={0.12}>
         {projects.map((project, index) => (
           <TransitionLink

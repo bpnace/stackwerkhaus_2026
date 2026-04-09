@@ -143,7 +143,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
     buildNarrative(project);
   const breadcrumbItems = [
     { name: "Start", path: "/" },
-    { name: "Projekte", path: "/work" },
+    { name: "Projekte", path: "/#work" },
     { name: project.title, path: `/work/${project.slug}` },
   ];
   const pageGraph = {
@@ -168,7 +168,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
         <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-5 md:px-10">
           <div className="flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft">
             <TransitionLink
-              href="/work"
+              href="/#work"
               className="flex items-center gap-2 text-ink-soft hover:text-foreground font-bold"
               data-cursor-text="Zurück"
             >
@@ -459,7 +459,7 @@ export default async function WorkDetailPage({ params }: PageProps) {
             </MaskedTextReveal>
           </div>
           <TransitionLink
-            href="/work"
+            href="/#work"
             className="text-xs font-bold uppercase tracking-[0.35em] text-ink-soft hover:text-foreground"
             data-cursor-text="Übersicht"
           >
