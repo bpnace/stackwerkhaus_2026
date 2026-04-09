@@ -75,7 +75,6 @@ export function Hero() {
         <div className="hidden flex-wrap items-center justify-between gap-6 border-t border-black/10 pt-10 text-xs uppercase tracking-[0.35em] text-ink-soft md:flex">
           <span>Berlin / Remote</span>
           <span>Websites für Dienstleister, KMU und neue Marken</span>
-          <span className="font-bold tracking-[0.35em]">Direkt. Verständlich. Pflegeleicht.</span>
         </div>
       </div>
     </section>

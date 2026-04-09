@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { TransitionLink } from "@/components/ui/TransitionLink";
 
 export const navigationLinks = [
   { href: "/leistungen", label: "Leistungen" },
@@ -11,24 +11,41 @@ export const navigationLinks = [
 type NavigationProps = {
   className?: string;
   onNavigate?: () => void;
+  variant?: "desktop" | "mobile";
 };
 
-export function Navigation({ className = "", onNavigate }: NavigationProps) {
+export function Navigation({
+  className = "",
+  onNavigate,
+  variant = "desktop",
+}: NavigationProps) {
+  const isMobile = variant === "mobile";
+
   return (
     <nav
-      className={`flex items-center gap-6 text-xs uppercase tracking-[0.3em] ${className}`}
+      className={`flex flex-wrap items-center ${
+        isMobile ? "justify-end gap-x-3 gap-y-2" : "gap-6"
+      } ${className}`}
       aria-label="Hauptnavigation"
     >
       {navigationLinks.map((link) => (
-        <Link
+        <TransitionLink
           key={link.href}
           href={link.href}
-          prefetch={false}
-          className="text-ink-soft transition-colors hover:text-foreground"
+          className={
+            isMobile
+              ? "inline-flex items-center text-[10px] uppercase tracking-[0.22em] text-ink-soft transition-colors hover:text-foreground"
+              : "nav-link text-xs uppercase tracking-[0.3em] text-ink-soft transition-colors hover:text-foreground"
+          }
           onClick={onNavigate}
         >
-          {link.label}
-        </Link>
+          <span className={isMobile ? "whitespace-nowrap" : "nav-link__label"}>
+            {link.label}
+          </span>
+          {!isMobile ? (
+            <span className="nav-link__line" aria-hidden="true" />
+          ) : null}
+        </TransitionLink>
       ))}
     </nav>
   );

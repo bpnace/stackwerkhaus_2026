@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { TransitionLink } from "@/components/ui/TransitionLink";
 import { getPortfolioProjects } from "@/lib/projects";
 import {
   buildCollectionPageSchema,
@@ -67,13 +67,12 @@ export default async function WorkIndexPage() {
         <ul className="mt-10 grid gap-4 md:grid-cols-2">
           {projects.map((project) => (
             <li key={project.id}>
-              <Link
+              <TransitionLink
                 href={`/work/${project.slug}`}
-                prefetch={false}
                 className="block border border-black/10 bg-white/60 px-5 py-4 text-sm uppercase tracking-[0.25em] transition-colors hover:bg-white"
               >
                 {project.title}
-              </Link>
+              </TransitionLink>
             </li>
           ))}
         </ul>

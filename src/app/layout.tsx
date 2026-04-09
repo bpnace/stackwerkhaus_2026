@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { buildSiteGraph, siteConfig } from "@/lib/seo";
+import { TransitionProvider } from "@/providers/TransitionProvider";
 import "./globals.css";
 
 const displayFont = Bodoni_Moda({
@@ -91,9 +92,11 @@ export default function RootLayout({
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} antialiased`}
       >
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <TransitionProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </TransitionProvider>
       </body>
     </html>
   );
