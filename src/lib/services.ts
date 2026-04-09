@@ -117,7 +117,7 @@ export const services: ServicePage[] = [
       {
         title: "Responsives Frontend mit technischer SEO-Basis",
         copy:
-          "Die Umsetzung ist schnell, wartbar und technisch sauber, inklusive Metadaten, sauberer interner Verlinkung und DSGVO-orientierter Grundeinstellungen.",
+          "Die Umsetzung ist schnell, wartbar und technisch sauber, inklusive Metadaten, sauberer interner Verlinkung und datenschutzbewusster Grundeinstellungen.",
       },
     ],
     process: [
@@ -164,7 +164,7 @@ export const services: ServicePage[] = [
           "Nein. Bestehende Inhalte können wir übernehmen, straffen und gezielt ergänzen. Ihr müsst nicht vorab alles neu produzieren.",
       },
     ],
-    relatedProjectSlugs: ["immo-pal", "kiez-apotheke"],
+    relatedProjectSlugs: ["immo-pal"],
     ctaTitle: "Ihr wollt als Dienstleister online klarer überzeugen?",
     ctaCopy:
       "Im Erstgespräch klären wir, welche Seitenstruktur, Texte und CTA-Pfade auf eurer Website den größten Hebel für mehr Anfragen haben.",
@@ -362,7 +362,7 @@ export const services: ServicePage[] = [
       {
         title: "Design und Inhalte überführen",
         description:
-          "Bestehende Inhalte werden gestrafft, neue Beweiselemente ergänzt und in ein modernes, ruhiges Interface überführt.",
+          "Bestehende Inhalte werden gestrafft, neue Beweiselemente ergänzt und in ein ruhiges, zeitgemäßes Interface überführt.",
       },
       {
         title: "Go-live sauber vorbereiten",
@@ -393,7 +393,7 @@ export const services: ServicePage[] = [
       },
     ],
     relatedProjectSlugs: ["atelier-heimat", "nordlicht-coffee", "uncloud"],
-    ctaTitle: "Eure Website soll wieder wie ein aktuelles Unternehmen wirken?",
+    ctaTitle: "Eure Website soll wieder klar und zeitgemäß wirken?",
     ctaCopy:
       "Im Erstgespräch klären wir, welche Substanz erhalten bleibt und wo ein Relaunch den größten Effekt auf Sichtbarkeit, Vertrauen und Anfragen hat.",
   },

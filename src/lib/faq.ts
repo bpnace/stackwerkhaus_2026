@@ -25,9 +25,9 @@ export const faqItems: FaqItem[] = [
       "Typischerweise enthalten sind Struktur, Copy-Führung, Design, Frontend-Umsetzung, responsive Optimierung, technisches SEO-Grundsetup und eine saubere Live-Schaltung. Je nach Projekt kommen Relaunch-Planung, Consent-Setup oder Inhaltsmigration dazu.",
   },
   {
-    question: "Ist die Website suchmaschinenfreundlich und AI-ready aufgebaut?",
+    question: "Ist die Website suchmaschinenfreundlich und für KI-Antworten mitgedacht?",
     answer:
-      "Ja. Die Umsetzung berücksichtigt eine saubere Informationsarchitektur, Metadaten, strukturierte Inhalte, interne Verlinkung und eine technische Basis, die sowohl klassische Suche als auch AI-gestützte Antworten besser unterstützt.",
+      "Ja. Die Umsetzung berücksichtigt eine saubere Informationsarchitektur, Metadaten, strukturierte Inhalte, interne Verlinkung und eine technische Basis, die sowohl klassische Suche als auch KI-gestützte Antworten besser unterstützt.",
   },
   {
     question: "Übernehmt ihr auch DSGVO-Basis und Consent-Setup?",

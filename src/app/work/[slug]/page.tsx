@@ -42,7 +42,7 @@ const buildNarrative = (project: PortfolioProject) => {
   const overview =
     project.body ||
     project.summary ||
-    `Für ${client} entstand eine Website, die Haltung, Angebot und Persönlichkeit in eine klare digitale Struktur übersetzt.`;
+    `Für ${client} entstand eine Website, die Haltung, Angebot und Persönlichkeit in eine klare Seitenstruktur übersetzt.`;
 
   const challenge =
     project.problem ||

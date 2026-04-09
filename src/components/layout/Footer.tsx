@@ -57,9 +57,9 @@ export function Footer() {
               </p>
 
               <p className="max-w-xl text-sm leading-relaxed text-white/72 md:text-[15px]">
-                Digitale Auftritte mit klarer Struktur, ruhiger Markenführung
+                Digitale Bauwerke mit klarer Struktur, einfacher Markenführung
                 und sauberen Kontaktpfaden. Für Dienstleister, KMU und neue
-                Marken, die professionell auftreten und schneller zu passenden
+                Marken, die fundierter auftreten und schneller zu passenden
                 Anfragen kommen wollen.
               </p>
             </div>

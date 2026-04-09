@@ -31,15 +31,15 @@ export const portfolioProjects: PortfolioProject[] = [
     client: "Zynapse",
     slug: "zynapse",
     year: "2026",
-    sector: "AI Marketing",
+    sector: "KI-Marketing",
     services: ["Full Stack", "UI/UX Design", "Copywriting"],
     type: "Projekt",
     website: "https://zynapse.eu",
     summary:
-      "Kuratiertes AI-Kampagnensystem für Brands und Spezialist:innen: Zynapse verbindet Briefing, Matching, Produktion und Review zu einem klaren Setup für Paid Social, Reels und weitere Short-Form-Formate.",
-    body: "Für Zynapse entstand ein Auftritt, der kuratiertes AI-Marketing nicht als Tool, sondern als belastbares Kampagnen-Setup erklärt. Die Website führt von der Brand-Anfrage über Matching und Produktion bis zum Handover und macht sichtbar, wie aus Briefings reviewfähige Varianten für echte Kampagnenarbeit werden.",
+      "Kampagnen-Setup für Brands und Spezialist:innen: Zynapse verbindet Briefing, Matching, Produktion und Review zu einem klaren Ablauf für Paid Social, Reels und weitere Short-Form-Formate.",
+    body: "Für Zynapse entstand ein Auftritt, der KI-gestützte Kampagnenproduktion nicht als Tool, sondern als belastbares Setup erklärt. Die Website führt von der Brand-Anfrage über Matching und Produktion bis zum Handover und macht sichtbar, wie aus Briefings reviewfähige Varianten für echte Kampagnenarbeit werden.",
     problem:
-      "Das Angebot musste eine neue Kategorie verständlich machen: kein loses Creator-Sourcing, kein klassisches Agenturmodell und kein reiner Tool-Zugang, sondern ein kuratiertes Setup zwischen Brand, Spezialist:innen und Review.",
+      "Das Angebot musste eine neue Kategorie verständlich machen: kein loses Creator-Sourcing, kein klassisches Agenturmodell und kein reiner Tool-Zugang, sondern ein klar geführtes Setup zwischen Brand, Spezialist:innen und Review.",
     approach:
       "Die Struktur verdichtet Rollen, Guardrails, Freigaben und Kampagnenfluss zu einer klaren Geschichte für Brands und Kreative. So werden Nutzen, Ablauf und Verantwortlichkeiten schnell verständlich, ohne die operative Tiefe des Systems zu verlieren.",
     outcomes: [
@@ -132,8 +132,8 @@ export const portfolioProjects: PortfolioProject[] = [
     type: "Projekt",
     website: "https://www.codariq.de",
     summary:
-      "Weniger Klickarbeit. Mehr Ergebnis: intelligente Automatisierungen, die E-Mails, Leads, Dokumente und Routineaufgaben sauber verbinden - DSGVO-konform, verständlich erklärt und in wenigen Wochen spürbar.",
-    body: "Für Codariq entstand ein digitaler Auftritt, der den Nutzen intelligenter Automatisierungen klar auf den Punkt bringt. Im Fokus stehen Entlastung im Alltag, verbundene Workflows und eine DSGVO-konforme Umsetzung - verständlich, ohne neues IT-Team und schnell wirksam.",
+      "Weniger Klickarbeit. Mehr Ergebnis: intelligente Automatisierungen, die E-Mails, Leads, Dokumente und Routineaufgaben sauber verbinden - datenschutzbewusst, verständlich erklärt und in wenigen Wochen spürbar.",
+    body: "Für Codariq entstand ein digitaler Auftritt, der den Nutzen intelligenter Automatisierungen klar auf den Punkt bringt. Im Fokus stehen Entlastung im Alltag, verbundene Workflows und eine datenschutzbewusste Umsetzung - verständlich, ohne neues IT-Team und schnell wirksam.",
     problem:
       "Automatisierungsleistungen klingen schnell abstrakt oder technisch überladen, obwohl Kunden vor allem Entlastung und Klarheit suchen.",
     approach:
@@ -195,7 +195,7 @@ export const portfolioProjects: PortfolioProject[] = [
     services: ["Branding", "Webdesign", "Launch"],
     type: "Case Study",
     summary:
-      "Ein sympathischer Auftritt für ein neues Café - mit Fokus auf Community und Storytelling.",
+      "Ein sympathischer Auftritt für ein neues Café - mit klarem Fokus auf Community und Storytelling.",
     body: "Für Nordlicht Coffee wurde eine helle, einladende Markenidentität entwickelt. Die Website setzt auf kurze Wege zu Karte, Events und Reservierung und unterstützt den Aufbau der Community.",
     problem:
       "Der Auftritt sollte nicht nur hübsch wirken, sondern schnell zwischen Story, Besuchsinformationen und Community unterscheiden.",

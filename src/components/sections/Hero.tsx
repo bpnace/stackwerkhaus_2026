@@ -10,7 +10,7 @@ export function Hero() {
             Wir gestalten deinen Webauftritt.
           </span>
           <span className="text-xs uppercase tracking-[0.35em] text-ink-soft">
-            <b>Sicher. Schnell. Direkt.</b>
+            <b>Klar. Schnell. Direkt.</b>
           </span>
         </div>
 
@@ -21,10 +21,10 @@ export function Hero() {
             </h1>
             <div className="relative z-0 mt-10 md:mt-20">
               <p className="mx-auto max-w-xl text-lg text-ink-soft md:mx-0 md:text-l">
-                <b>STACKWERKHAUS</b> entwickelt schnelle und moderne Websites für
-                Dienstleister, kleine Unternehmen und neue Marken. Du bekommst
-                einen Auftritt mit sauberer Struktur, verständlicher
-                Nutzerführung, SEO-Basis und DSGVO-orientierter Umsetzung.
+                <b>STACKWERKHAUS</b> entwickelt Websites mit Substanz.
+                Du bekommst ein digitales Bauwerk: saubere Struktur,
+                verständliche Nutzerführung, SEO-Basis und datenschutzbewusste
+                Umsetzung. Stockwerk für Stockwerk.
               </p>
             </div>
           </div>
@@ -41,7 +41,7 @@ export function Hero() {
                   </p>
                 </div>
                 <span className="text-xs font-bold uppercase tracking-[0.3em]">
-                  SKWHKS
+                  SKWKHS
                 </span>
               </div>
               <div className="text-sm text-ink-soft">
