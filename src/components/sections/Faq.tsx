@@ -6,9 +6,11 @@ export function Faq() {
       className="mx-auto w-full max-w-6xl px-6 pb-20 pt-24 md:px-10 md:pb-24"
       aria-labelledby="faq-title"
     >
-      <div id="faq" className="scroll-mt-24" />
       <div className="space-y-8">
-        <div className="flex flex-col gap-4 text-left md:flex-row md:items-end md:justify-between">
+        <div
+          id="faq"
+          className="section-anchor flex flex-col gap-4 text-left md:flex-row md:items-end md:justify-between"
+        >
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               FAQ

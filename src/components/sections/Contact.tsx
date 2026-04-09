@@ -104,10 +104,9 @@ export function Contact() {
 
   return (
     <section className="border-t border-black/10 bg-white/60 pt-24">
-      <div id="contact" className="scroll-mt-24" />
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 pb-16 md:grid-cols-[1.1fr_0.9fr] md:px-10 md:pb-24">
         <FadeIn direction="up" className="space-y-6">
-          <div className="space-y-3">
+          <div id="contact" className="section-anchor space-y-3">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               Kontakt
             </p>

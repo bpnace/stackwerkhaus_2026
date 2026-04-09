@@ -6,12 +6,9 @@ export async function Services() {
   const services = await getServices();
 
   return (
-    <section
-      id="services"
-      className="mx-auto w-full max-w-6xl scroll-mt-24 px-6 pb-8 md:px-10"
-    >
+    <section className="mx-auto w-full max-w-6xl px-6 pb-8 md:px-10">
       <div className="flex flex-wrap items-end justify-between gap-6">
-        <div className="space-y-3">
+        <div id="services" className="section-anchor space-y-3">
           <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
             Leistungen
           </p>
@@ -29,16 +26,6 @@ export async function Services() {
           klare nächste Schritte.
         </p>
       </div>
-
-      <div className="mt-6">
-        <TransitionLink
-          href="/leistungen"
-          className="text-xs font-bold uppercase tracking-[0.35em] text-ink-soft hover:text-foreground"
-        >
-          Alle Leistungen ansehen
-        </TransitionLink>
-      </div>
-
       <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-3">
         {services.map((service) => (
           <TransitionLink

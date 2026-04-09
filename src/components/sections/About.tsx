@@ -34,7 +34,7 @@ export function About() {
     <section className="mx-auto w-full max-w-6xl px-6 pb-8 pt-24 md:px-10">
       <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col gap-8 text-left">
-          <div id="about" className="scroll-mt-24 space-y-3">
+          <div id="about" className="section-anchor space-y-3">
             <p className="text-xs uppercase tracking-[0.35em] text-ink-soft">
               Über uns
             </p>

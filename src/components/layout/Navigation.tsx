@@ -1,7 +1,7 @@
 import { TransitionLink } from "@/components/ui/TransitionLink";
 
 export const navigationLinks = [
-  { href: "/leistungen", label: "Leistungen" },
+  { href: "/#services", label: "Leistungen" },
   { href: "/work", label: "Projekte" },
   { href: "/#about", label: "Über uns" },
   { href: "/#contact", label: "Kontakt" },

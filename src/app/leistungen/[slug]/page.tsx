@@ -54,7 +54,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   const breadcrumbItems = [
     { name: "Start", path: "/" },
-    { name: "Leistungen", path: "/leistungen" },
     { name: service.shortTitle, path: `/leistungen/${service.slug}` },
   ];
   const updatedLabel = formatGermanDate(service.updatedAt);
@@ -91,7 +90,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <div className="mx-auto w-full max-w-6xl px-6 pb-8 pt-5 md:px-10 md:pb-5">
             <div className="flex flex-col gap-4 text-xs uppercase tracking-[0.35em] text-ink-soft md:flex-row md:flex-wrap md:items-center md:justify-between">
               <TransitionLink
-                href="/leistungen"
+                href="/#services"
                 className="flex items-center gap-2 font-bold text-ink-soft hover:text-foreground"
                 data-cursor-text="Zurück"
               >

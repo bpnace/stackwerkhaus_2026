@@ -9,6 +9,13 @@
   --accent-2: #d2b073;
   --background: var(--paper);
   --foreground: var(--ink);
+  --section-anchor-offset: 6rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --section-anchor-offset: 5.3125rem;
+  }
 }
 
 @theme inline {
@@ -27,7 +34,7 @@
 html {
   background-color: var(--paper);
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: var(--section-anchor-offset);
 }
 
 body {
@@ -65,6 +72,10 @@ body {
 
 .border-metal {
   border-color: rgba(138, 127, 116, 0.4);
+}
+
+.section-anchor {
+  scroll-margin-top: var(--section-anchor-offset);
 }
 
 .nav-link {

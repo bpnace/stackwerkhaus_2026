@@ -28,7 +28,7 @@ export default function Home() {
       buildFaqSchema(faqItems),
       buildItemListSchema({
         title: "Leistungen von STACKWERKHAUS",
-        path: "/leistungen",
+        path: "/",
         items: services.map((service) => ({
           name: service.title,
           path: `/leistungen/${service.slug}`,

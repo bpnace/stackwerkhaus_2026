@@ -29,18 +29,7 @@ export function Skills() {
             <p className="text-xs uppercase tracking-[0.35em] text-white/55">
               Was wir mitbringen
             </p>
-            <h2
-              id="skills-title"
-              className="font-display text-3xl font-bold uppercase tracking-[0.2em] md:text-4xl"
-            >
-              Strategie, Design und Umsetzung in einem System
-            </h2>
           </div>
-          <p className="max-w-xl text-sm text-white/72">
-            Kein dekorativer Motion-Block mehr auf der Startseite, sondern eine
-            schnelle Übersicht der Kompetenzen, die für Sichtbarkeit, Vertrauen
-            und einen sauberen Launch wirklich zählen.
-          </p>
         </div>
 
         <ul className="mt-8 flex flex-wrap gap-3">

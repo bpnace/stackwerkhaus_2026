@@ -4,14 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransition } from "@/providers/TransitionProvider";
 import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react";
+import {
+  getTransitionNavigationDecision,
+  isBypassHref,
+} from "@/components/ui/transition-link-routing";
 
 type TransitionLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
   children: ReactNode;
   prefetch?: boolean;
 };
-
-const EXTERNAL_LINK_PATTERN = /^(?:[a-z]+:)?\/\//i;
 
 function isModifiedEvent(event: MouseEvent<HTMLAnchorElement>) {
   return (
@@ -35,12 +37,7 @@ export function TransitionLink({
   const pathname = usePathname();
   const { triggerTransition } = useTransition();
 
-  if (
-    href.startsWith("#") ||
-    EXTERNAL_LINK_PATTERN.test(href) ||
-    href.startsWith("mailto:") ||
-    href.startsWith("tel:")
-  ) {
+  if (href.startsWith("#") || isBypassHref(href)) {
     return (
       <a href={href} onClick={onClick} target={target} rel={rel} {...props}>
         {children}
@@ -52,30 +49,32 @@ export function TransitionLink({
     onClick?.(event);
 
     if (event.defaultPrevented) return;
-    if (target && target !== "_self") return;
-    if (isModifiedEvent(event)) return;
+    const decision = getTransitionNavigationDecision({
+      href,
+      currentOrigin: window.location.origin,
+      currentPathname: pathname,
+      currentSearch: window.location.search,
+      target,
+      isModifiedEvent: isModifiedEvent(event),
+    });
 
-    const url = new URL(href, window.location.origin);
-    if (url.hash) {
+    if (decision.kind === "bypass" || decision.kind === "same-page-hash") {
       return;
     }
 
-    const samePathAndSearch =
-      url.pathname === pathname && url.search === window.location.search;
-
-    if (samePathAndSearch) {
+    if (decision.kind === "noop") {
       event.preventDefault();
       return;
     }
 
     event.preventDefault();
-    triggerTransition(`${url.pathname}${url.search}${url.hash}`);
+    triggerTransition(decision.href);
   };
 
   return (
     <Link
       href={href}
-      prefetch={prefetch ?? false}
+      prefetch={prefetch}
       onClick={handleClick}
       target={target}
       rel={rel}

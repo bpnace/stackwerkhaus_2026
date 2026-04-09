@@ -28,6 +28,9 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const pendingHrefRef = useRef<string | null>(null);
   const previousPathnameRef = useRef<string | null>(null);
   const isTransitioningRef = useRef(false);
+  const overlayInCompleteRef = useRef(false);
+  const routeReadyForExitRef = useRef(false);
+  const exitStartedRef = useRef(false);
   const router = useRouter();
   const pathname = usePathname();
   const reducedMotion = useReducedMotion();
@@ -53,6 +56,9 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     pendingHrefRef.current = null;
     navigationSourceRef.current = null;
     isTransitioningRef.current = false;
+    overlayInCompleteRef.current = false;
+    routeReadyForExitRef.current = false;
+    exitStartedRef.current = false;
     setOverlayIdle();
   }, [setOverlayIdle]);
 
@@ -76,7 +82,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         brand,
         {
           autoAlpha: 0,
-          duration: 0.16,
+          duration: 0.24,
           y: -10,
           ease: "power2.inOut",
         },
@@ -89,12 +95,21 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       {
         scaleY: 0,
         transformOrigin: "top",
-        duration: 0.42,
+        duration: 0.68,
         ease: "power4.inOut",
       },
       0
     );
   }, [reducedMotion, resetTransitionState]);
+
+  const maybePlayOverlayOut = useCallback(() => {
+    if (exitStartedRef.current) return;
+    if (!overlayInCompleteRef.current) return;
+    if (!routeReadyForExitRef.current) return;
+
+    exitStartedRef.current = true;
+    playOverlayOut();
+  }, [playOverlayOut]);
 
   const playOverlayIn = useCallback(() => {
     const overlay = overlayRef.current;
@@ -128,6 +143,8 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         if (href) {
           router.push(href);
         }
+        overlayInCompleteRef.current = true;
+        maybePlayOverlayOut();
       },
     });
 
@@ -135,7 +152,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       overlay,
       {
         scaleY: 1,
-        duration: 0.48,
+        duration: 0.78,
         ease: "power4.inOut",
       },
       0
@@ -146,14 +163,14 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         brand,
         {
           autoAlpha: 1,
-          duration: 0.22,
+          duration: 0.32,
           y: 0,
           ease: "power2.out",
         },
-        0.1
+        0.16
       );
     }
-  }, [resetTransitionState, router]);
+  }, [maybePlayOverlayOut, resetTransitionState, router]);
 
   const triggerTransition = useCallback(
     (href: string) => {
@@ -162,6 +179,9 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       pendingHrefRef.current = href;
       navigationSourceRef.current = "link";
       isTransitioningRef.current = true;
+      overlayInCompleteRef.current = false;
+      routeReadyForExitRef.current = false;
+      exitStartedRef.current = false;
 
       if (reducedMotion || !overlayRef.current) {
         router.push(href);
@@ -212,10 +232,11 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
-        playOverlayOut();
+        routeReadyForExitRef.current = true;
+        maybePlayOverlayOut();
       });
     });
-  }, [pathname, playOverlayOut, reducedMotion, resetTransitionState]);
+  }, [maybePlayOverlayOut, pathname, reducedMotion, resetTransitionState]);
 
   const contextValue = useMemo(
     () => ({

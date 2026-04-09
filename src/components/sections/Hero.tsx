@@ -61,7 +61,7 @@ export function Hero() {
                   <span className="text-lg">↘</span>
                 </MagneticLink>
                 <MagneticLink
-                  href="/leistungen"
+                  href="/#services"
                   className="inline-flex items-center justify-between border border-black/10 px-5 py-4 text-xs uppercase tracking-[0.3em] text-ink-soft transition-colors hover:border-black/20 hover:text-foreground"
                 >
                   Leistungen ansehen
